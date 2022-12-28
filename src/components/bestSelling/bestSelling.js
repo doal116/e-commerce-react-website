@@ -1,5 +1,6 @@
 import './bestSelling.css';
-import productIm from './naturalProduct.jpg'
+import productIm from './naturalProduct.jpg';
+import productIm2 from './bonelessRibeyes.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
@@ -51,14 +52,16 @@ const CategoryMenu = ({ categories }) => {
 const ProductBestSellingSection = ({ product }) => {
     return (
         product.map(elem => <div className='ProductSect'>
-            <img src={productIm} alt={"product from mother nature"} />
+            <img src={elem.img} alt={"product from mother nature"} />
+
             <div className='titleDescription'>
                 <span className='productTitle'>{elem.title}</span>
                 <span className='productDescrip'>{elem.description}</span>
             </div>
             <div className='buyingSection'>
                 <div className='price'>
-                    <span>{elem.price} USD</span>
+                    <span className='current-price'>{elem.price} USD</span>
+                    <span className='old-price'>{elem.oldPrice}</span>
                 </div>
                 <div className='btn-buy'><span>BUY NOW</span></div>
             </div>
@@ -71,18 +74,24 @@ const BestSellingProducts = ({ categories }) => {
         <div className="BestSellingProducts">
             <CommonOptionSec categories={categories} nameOfSecion={"Best selling products"} buttonMoreInfo={"More products"} />
             <ProductBestSellingSection
-                product={[{ title: "Butter", description: "very tasty you wanna have more", price: 1.48 },
-                { title: "Butter", description: "very tasty you wanna have more", price: 1.48 },
-                { title: "Butter", description: "very tasty you wanna have more", price: 1.48 },
-                { title: "Butter", description: "very tasty you wanna have more", price: 1.48 }]}
+                product={[{ title: "Butter", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm },
+                { title: "Butter", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm },
+                { title: "Butter", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm },
+                { title: "Butter", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm }]}
             />
         </div>
     );
 }
-const BestFromFarmers = ({categories}) => {
+const BestFromFarmers = ({ categories }) => {
     return (
         <div className="BestFromFarmers">
             <CommonOptionSec categories={categories} nameOfSecion={"Best from Farmers"} buttonMoreInfo={"More products"} />
+            <ProductBestSellingSection
+                product={[{ title: "Ribs", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: productIm2 },
+                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: productIm2 },
+                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: productIm2 },
+                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: productIm2 }]}
+            />
         </div>
     );
 }

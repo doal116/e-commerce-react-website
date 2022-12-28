@@ -119,11 +119,18 @@
 .ProductSect > .buyingSection >.price{
     margin: 0px 0px 0px 16px;
     align-self: center;
-
+    display: flex;
+    flex-direction: column;
 }
-.ProductSect > .buyingSection >.price>span{
+.ProductSect > .buyingSection >.price>.current-price{
     font-weight: bold;
     font-size: 20px;
+}
+.ProductSect > .buyingSection >.price>.old-price{
+    font-weight: bold;
+    font-size: 13px;
+    color:rgb(174, 174, 174);
+    text-decoration: line-through;
 }
 .ProductSect > .buyingSection >.btn-buy{
     width: fit-content;
@@ -141,4 +148,5 @@
 .BestFromFarmers {
     margin-top: 48px;
     display: flex;
+    column-gap: 24px;
 }
