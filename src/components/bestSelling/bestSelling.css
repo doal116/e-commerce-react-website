@@ -1,0 +1,79 @@
+.CategoryMenu{
+    margin-top: 32px;
+    display: flex;
+    column-gap: 24px;
+}
+
+.categories{
+    display: flex;
+    flex-direction: column ;
+    row-gap: 10px;
+}
+.categories > a {
+    color: rgb(0, 165, 110);
+}
+.CategorySec{
+    width: 300px;
+    height: 280px;
+    margin-left: 80px;
+}
+.CategorySec > .title{
+    margin: 16px 0px 16px 0px;
+}
+.CategorySec > .title > span{
+    font-weight: bold;
+    font-size: 20px;
+}
+.CategorySec > button{
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 32px;
+}   
+.CategorySec > button > span{
+    font-size:16px;
+    font-weight: bold;
+    margin-left:8px;
+}
+.CategorySec > button> .icon{
+    margin:0px 8px 0px 8px;
+}
+
+
+.BannerSubFocus{
+    border-radius: 16px;
+    background-color: aquamarine;
+    width: 360px;
+    height: 280px;
+    display: grid;
+    grid-template-rows: auto auto;
+}
+.BannerSubFocus > button{
+    align-self: end;
+    background-color: transparent;
+    border: 3px solid rgb(56, 56, 56);
+    height: 40px;
+    border-radius: 10px;
+    margin:16px 0px 32px 16px;
+    width: fit-content;
+}
+.BannerSubFocus > button > a{
+    text-decoration: none;
+    color:rgb(56, 56, 56);
+    font-weight: bold;
+}
+.BannerSubFocus >  button > .icon{
+    margin:0px 8px 0px 8px;
+}
+.BannerSubFocus > .txt-area{
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}
+.BannerSubFocus >.txt-area{
+    margin:40px 0px 0px 16px;
+}
+.BannerSubFocus >.txt-area >.primary-txt{
+    font-weight: bold;
+    font-size: 20px;
+}   
