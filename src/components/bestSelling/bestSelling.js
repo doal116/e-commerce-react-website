@@ -2,7 +2,7 @@ import './bestSelling.css';
 import productIm from './naturalProduct.jpg';
 import productIm2 from './bonelessRibeyes.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 const CommonOptionSec = ({ nameOfSecion, categories, buttonMoreInfo }) => {
     return (
@@ -95,10 +95,67 @@ const BestFromFarmers = ({ categories }) => {
         </div>
     );
 }
+const TestimonyBox = ({ testimonies }) => {
+    return (
+        <div className='Testimonysec'>
+            <div className='arrowLeft'>
+                <div className='arrowBox'>
+                    <div className='icon' >
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                    </div>
+                </div>
+            </div>
+            {
+                testimonies.map(elem =>
+                    <div className='TestimonyBox'>
+                        <div className='text'>{elem.testimony}</div>
+                        <div className='nameSurname'>{elem.nameSurname} </div>
+                        <div className='img'></div>
+                    </div>
+                )}
+            <div className='arrowRight'>
+                <div className='arrowBox'>
+                    <div className='icon' >
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    );
+}
 const Testimonials = () => {
     return (
         <div className="Testimonials">
 
+            <div className='TestimonialsUpperSec'>
+                <p>Our customers says</p>
+                <div className='btnTestimonies'>
+                    <span>
+                        Button
+                    </span>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+            </div>
+            <TestimonyBox
+                testimonies={[{
+                    testimony: `“ This is an super space for your customers qoute.
+                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
+                }, {
+                    testimony: `“ This is an super space for your customers qoute.
+                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
+                }, {
+                    testimony: `“ This is an super space for your customers qoute.
+                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
+                }, {
+                    testimony: `“ This is an super space for your customers qoute.
+                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
+                }, {
+                    testimony: `“ This is an super space for your customers qoute.
+                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
+                }]} />
         </div>
     );
 }
