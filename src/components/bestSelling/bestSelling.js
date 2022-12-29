@@ -1,6 +1,7 @@
 import './bestSelling.css';
 import productIm from './naturalProduct.jpg';
 import productIm2 from './bonelessRibeyes.jpg';
+import productIm3 from './essentialOils.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
@@ -162,7 +163,109 @@ const Testimonials = () => {
 const SectionHeadlines = () => {
     return (
         <div className="SectionHeadlines">
+            <div className='smallHeader'>
+                <p>Section Headline</p>
+                <div className='btn-SectionHeadline'>
+                    <p>Button</p>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+            </div>
+            <div className='productSec'>
+                <ProductBestSellingSection
+                    product={[{ title: "Essential oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm3 },
+                    { title: "MGD Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 231.2, img: productIm3 },
+                    { title: "Best Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 431.2, img: productIm3 },
+                    { title: "Good Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 531.2, img: productIm3 },
+                    { title: "Good Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 531.2, img: productIm3 }]}
+                />
+            </div>
 
+        </div>
+    )
+}
+const BlogPostSec1 = () => {
+    return (
+        <div className='BlgP1'>
+
+            <div className='Tag'>
+                Dinner tips
+            </div>
+
+            <div className='videoInfo'>
+                <div className='description'>Our chef tips for a great and tasty dinner ready in 20 minutes</div>
+                <div className='userInfo'>
+                    <div className='profile'></div>
+                    <p>author date</p>
+                </div>
+            </div>
+
+        </div>
+    );
+}
+const BlogPostSec2 = ({popularPost}) => {
+    return (
+        <div className='BlgP2'>
+            <div className='video'>
+
+            </div>
+            <div className='vidInfo'>
+                <div className='vidTag'>{popularPost.tag}</div>
+                <p>{popularPost.description}</p>
+                <span className='authorDate'>{popularPost.author}  {popularPost.date}</span>
+            </div>
+        </div>
+    )
+}
+const BlogPostSec3 = ({ post }) => {
+    return (
+        <div className='BlogPostSec3'>
+            {post.map(elem =>
+                <div className='BlgP3'>
+                    <div className='videos'>
+                        <div className='videoInfo'>
+                            <p>{elem.title}</p>
+                            <span className='authorDate'>{elem.author} {elem.date}</span>
+                        </div>
+                        <div className='video'></div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+const BlogPost = () => {
+    return (
+        <div className='BlogPost'>
+            <BlogPostSec1 />
+            <BlogPostSec2
+                popularPost={
+                    {
+                        tag: "Vegetable",
+                        description: "Which vegetable your family will love and want’s eat each day",
+                        author:"author",
+                        date:"15.6.2020"
+                    }
+                }
+            />
+            <BlogPostSec3
+                post={[
+                    {
+                        title: "Salat is kinda good start to your morning routines",
+                        author: "author",
+                        date: "15.6.2020"
+                    },
+                    {
+                        title: "Salat is kinda good start to your morning routines",
+                        author: "author",
+                        date: "15.6.2020"
+                    },
+                    {
+                        title: "Salat is kinda good start to your morning routines",
+                        author: "author",
+                        date: "15.6.2020"
+                    }
+                ]}
+            />
         </div>
     )
 }
@@ -181,6 +284,7 @@ class BestSelling extends React.Component {
                         "Potatoes", "Chicken", "Pork"]} />
                 <Testimonials />
                 <SectionHeadlines />
+                <BlogPost />
             </div>
         );
     }
