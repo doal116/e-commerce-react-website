@@ -113,7 +113,8 @@ const TestimonyBox = ({ testimonies }) => {
                         <div className='nameSurname'>{elem.nameSurname} </div>
                         <div className='img'></div>
                     </div>
-                )}
+                )
+            }
             <div className='arrowRight'>
                 <div className='arrowBox'>
                     <div className='icon' >
@@ -192,17 +193,19 @@ const BlogPostSec1 = () => {
             </div>
 
             <div className='videoInfo'>
-                <div className='description'>Our chef tips for a great and tasty dinner ready in 20 minutes</div>
+                <div className='description'>
+                    Our chef tips for a great and tasty dinner ready in 20 minutes
+                </div>
                 <div className='userInfo'>
                     <div className='profile'></div>
-                    <p>author date</p>
+                    <p>Author   17.16.2023</p>
                 </div>
             </div>
 
         </div>
     );
 }
-const BlogPostSec2 = ({popularPost}) => {
+const BlogPostSec2 = ({ popularPost }) => {
     return (
         <div className='BlgP2'>
             <div className='video'>
@@ -235,38 +238,76 @@ const BlogPostSec3 = ({ post }) => {
 }
 const BlogPost = () => {
     return (
-        <div className='BlogPost'>
-            <BlogPostSec1 />
-            <BlogPostSec2
-                popularPost={
-                    {
-                        tag: "Vegetable",
-                        description: "Which vegetable your family will love and want’s eat each day",
-                        author:"author",
-                        date:"15.6.2020"
+        <div className='BlogPost' >
+            <h3>Read our Blog post</h3>
+            <div className='BlgP'>
+                <BlogPostSec1 />
+                <BlogPostSec2
+                    popularPost={
+                        {
+                            tag: "Vegetable",
+                            description: "Which vegetable your family will love and want’s eat each day",
+                            author: "author",
+                            date: "15.6.2020"
+                        }
                     }
-                }
-            />
-            <BlogPostSec3
-                post={[
-                    {
-                        title: "Salat is kinda good start to your morning routines",
-                        author: "author",
-                        date: "15.6.2020"
-                    },
-                    {
-                        title: "Salat is kinda good start to your morning routines",
-                        author: "author",
-                        date: "15.6.2020"
-                    },
-                    {
-                        title: "Salat is kinda good start to your morning routines",
-                        author: "author",
-                        date: "15.6.2020"
-                    }
-                ]}
-            />
+                />
+                <BlogPostSec3
+                    post={[
+                        {
+                            title: "Salat is kinda good start to your morning routines",
+                            author: "author",
+                            date: "15.6.2020"
+                        },
+                        {
+                            title: "Salat is kinda good start to your morning routines",
+                            author: "author",
+                            date: "15.6.2020"
+                        },
+                        {
+                            title: "Salat is kinda good start to your morning routines",
+                            author: "author",
+                            date: "15.6.2020"
+                        }
+                    ]}
+                />
+            </div>
         </div>
+    )
+}
+const FooterSec = ({ sec1, Tags }) => {
+    return (
+        <footer>
+            <div className='sec1'>
+                {
+                    sec1.map(elem =>
+                        <div className='elm'>
+                            <div className='title'>
+                                {elem.title}
+                            </div>
+                            {
+                                elem.option.map(val =>
+                                    <a href='/link'>{val}</a>
+                                )
+                            }
+                        </div>
+
+                    )
+
+                }
+            </div>
+            <h3>Products Tag</h3>
+            <div className='Tag'>
+                {
+                    Tags.map(tag =>
+                        <div>{tag}</div>
+                    )
+                }
+            </div>
+            <div className='copyright'>
+                Copyright 2020 freshenesscom.com
+            </div>
+        </footer>
     )
 }
 class BestSelling extends React.Component {
@@ -285,6 +326,54 @@ class BestSelling extends React.Component {
                 <Testimonials />
                 <SectionHeadlines />
                 <BlogPost />
+                <FooterSec sec1={[
+                    {
+                        title: "Get in touch",
+                        option: [
+                            "About Us",
+                            "Careers",
+                            "Press Releases",
+                            "Blog"
+                        ]
+
+                    },
+                    {
+                        title: "Connections",
+                        option: [
+                            "Facebook",
+                            "Twitter",
+                            "Instagram",
+                            "Youtube"
+                        ]
+                    },
+                    {
+                        title: "Earnings",
+                        option: [
+                            "Become an Affiliate",
+                            "Advertise your product",
+                            "Sell on Market"
+                        ]
+                    },
+                    {
+                        title: "Account",
+                        option: [
+                            "Your account",
+                            "Returns Centre",
+                            "100% purchase protection",
+                            "Chat with us",
+                            "Help"
+                        ]
+                    }
+                ]} Tags={[
+                    "Beans", "carrots",
+                    "apple", "garlic",
+                    "mushrooms", "tomatoes",
+                    "Chilli peppers", "Broccoli",
+                    "Cherries", "Meat", "Seo tag"
+                    , "Bananas", "Grapes", "watermelons",
+                    "meat", "fish", "fresh food",
+                    "seo Tag", "broccoli"
+                ]} />
             </div>
         );
     }
