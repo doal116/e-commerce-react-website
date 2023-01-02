@@ -32,8 +32,101 @@
     column-gap: 16px;
 }
 
-.Title > .filters >div{
-    background-color: rgb(171, 171, 171);
+.Title > .filters > div{
+    background-color: rgb(235, 235, 235);
     border-radius: 10px;
-    padding: 4px 16px 0px 16px;
+    padding: 8px 16px 8px 16px;
+    border:2px solid rgb(205, 205, 205);
+}
+
+.Title > .filters > .filter1{
+    display: flex;
+    column-gap: 12px;
+    align-items: center;
+}
+
+.Title > .filters > .filter1 > span{
+    margin-bottom: 2px;
+}
+.Title > .filters > .filter1 > .circle{
+    border:2px solid rgb(205, 205, 205);
+    border-radius: 50%;
+    color: rgb(235, 235, 235);
+}
+.Title > .filters > .filter2 {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+.Title > .filters > .filter2 >span{
+    margin-bottom: 2px;
+}
+.Title > .filters > .filter2 > .square{
+    color: rgb(235, 235, 235);
+    border: 2px solid rgb(205, 205, 205);
+}
+.Title > .filters > .filter2  > .nbm{
+    border: 2px solid rgb(205, 205, 205);
+    font-size:12px;
+    border-radius: 10px;
+    padding: 0px 2px 0px 2px;
+    font-weight: bold;
+}
+
+.Title > .filters > .filter3 {
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+}
+.Title > .filters >.filter3 > .leftSide{
+    display: flex;
+    column-gap: 6px;
+    align-items: center;
+}
+.Title > .filters >.filter3 > .leftSide> span{
+    padding-bottom: 2px;
+}
+.Title > .filters > .filter3 > span{
+    padding-bottom: 2px;
+}
+.Title > .filters > .filter3 > .selectSection{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+.Title > .filters > .filter3 > .selectSection > .selectArrow{
+    font-size:10px;
+}
+.Title > .filters > .filter3 > .leftSide > .squareCheck{
+    color: rgb(0, 148, 99);
+}
+.appliedFilters{
+    margin-top: 16px;
+    display: flex;
+    column-gap: 8px;
+}
+.selectedFilters{
+    background-color: aquamarine;
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 3px;
+    border-radius: 10px;
+}
+.selectedFilters > span{
+    color: rgb(0, 109, 73);
+    font-weight: bold;
+    font-size:14px;
+}
+.selectedFilters > i{
+    color: rgb(155, 155, 155);
+    margin-top: 4px;
+    font-size: 10px;
+    align-self: center;
+}
+
+.SearchSection{
+    height: 500px;
 }

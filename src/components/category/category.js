@@ -1,8 +1,29 @@
 
 import React from "react";
-import './category.css'
+import './category.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTh, faList } from "@fortawesome/free-solid-svg-icons";
+import { faTh, faList, faDotCircle, faCircle, faSquare, faSquareCheck, faChevronDown, faGripLinesVertical, faX } from "@fortawesome/free-solid-svg-icons";
+
+const LeftSideFilters =()=>{
+    return(
+        <div>
+
+        </div>
+    )
+}
+const ProductSearchResults = ()=>{
+    return(
+        <div>                                                                                  
+        </div>
+    )
+}
+const SearchSection =()=>{
+    return(
+        <div className="SearchSection">
+
+        </div>
+    )
+}
 const Title = ({ categoryName }) => {
     return (
         <div className="Title">
@@ -17,18 +38,45 @@ const Title = ({ categoryName }) => {
                     <p className="productAvailable"><span>123</span> Products</p>
                 </div>
             </div>
+
             <div className="filters">
                 <div className="filter1">
-                   <span>Filter text </span> 
+                    <FontAwesomeIcon className="circle" icon={faCircle} />
+                    <span>Filter text </span>
+                    <FontAwesomeIcon icon={faDotCircle} />
                     <span>Filter Text</span>
                 </div>
-                <div className="filter2">Filter</div>
-                <div className="filter3">Filter</div>
-                <div className="filter4">
+                <div className="filter2">
+                    <FontAwesomeIcon className="square" icon={faSquare} />
                     <span>Filter</span>
-                    <span>select</span>
+                    <span className="nbm">Nbm</span>
                 </div>
-                <p></p>
+                <div className="filter2">
+                    <FontAwesomeIcon className="square" icon={faSquare} />
+                    <span>Filter</span>
+                    <span className="nbm">Nbm</span>
+                </div>
+
+                <div className="filter3">
+                    <div className="leftSide">
+                        <FontAwesomeIcon className="squareCheck"icon={faSquareCheck} />
+                        <span>Filter</span>
+                        <span>12</span>
+                    </div>
+                    <FontAwesomeIcon icon={faGripLinesVertical} />
+                    <div className="selectSection">
+                        <span>select</span>
+                        <FontAwesomeIcon className="selectArrow" icon={faChevronDown} />
+                    </div>
+                </div>
+
+            </div>
+            <div className="appliedFilters">
+                <span>Applied filters: </span>
+                <div className="selectedFilters">
+                    <span>selected Filter </span>
+                    <i><FontAwesomeIcon icon={faX} /></i>
+                </div>
             </div>
         </div>
     )
@@ -38,6 +86,7 @@ class Category extends React.Component {
         return (
             <div>
                 <Title categoryName={"Fruit and vegetables"} />
+                <SearchSection />
             </div>
         );
     };
