@@ -1,0 +1,49 @@
+footer{
+    height: 300px;
+    width: 100%;
+}
+footer > .sec1{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 20px;
+    margin-left: 80px;
+}
+footer> .sec1 > .elm{
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    list-style: none;
+}
+footer> .sec1 > .elm > .title {
+    font-weight: bold;
+    font-size: 20px;
+}
+footer> .sec1 > .elm > a{
+    text-decoration: none;
+    color: rgb(0, 173, 116);
+}
+footer > .Tag{
+    margin-top: 24px;
+    margin-left: 80px;
+    margin-right: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    row-gap: 10px;
+}
+footer > .Tag > div{
+    background-color: rgb(231, 231, 231);
+    width: fit-content;
+    padding: 0px 6px 3px 6px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size:12px;}
+footer > .copyright{
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+}
+footer > h3{
+    margin-left: 80px;
+}
