@@ -1,0 +1,39 @@
+.Title{
+    height: 200px;
+    margin-left: 80px;
+}
+.Title > .CategoryPath{
+    height: 25px;
+}
+.Title > .CategoryPath > p > span{
+    opacity: 0.5;
+}
+.Title> .choosenCategory{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.Title>.choosenCategory > .ViewStyle{
+    margin-right: 80px;
+    justify-self: end;
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+}
+.Title>.choosenCategory > .ViewStyle > .productAvailable >span{
+    background-color: rgba(0, 153, 102, 0.2);
+    border-radius: 10px;
+    padding: 0px 6px 2px 6px;
+    color: rgb(0, 117, 78);
+    font-weight: bold;
+}
+
+.Title>.filters{
+    display: flex;
+    column-gap: 16px;
+}
+
+.Title > .filters >div{
+    background-color: rgb(171, 171, 171);
+    border-radius: 10px;
+    padding: 4px 16px 0px 16px;
+}

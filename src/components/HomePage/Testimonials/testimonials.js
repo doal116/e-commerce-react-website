@@ -6,13 +6,13 @@ import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons
 const TestimonyBox = ({ testimonies }) => {
     return (
         <div className='Testimonysec'>
-            
+
             <div className='arrowLeft'>
                 <div className='arrowBox'>
-                        <FontAwesomeIcon className='arrow'  icon={faChevronLeft} />
+                    <FontAwesomeIcon className='arrow' icon={faChevronLeft} />
                 </div>
             </div>
-            
+
             <div className='Testimonies'>
                 {
                     testimonies.map(elem =>
@@ -27,7 +27,7 @@ const TestimonyBox = ({ testimonies }) => {
 
             <div className='arrowRight'>
                 <div className='arrowBox'>
-                        <FontAwesomeIcon className='arrow' icon={faChevronRight} />
+                    <FontAwesomeIcon className='arrow' icon={faChevronRight} />
                 </div>
 
             </div>
@@ -37,7 +37,7 @@ const TestimonyBox = ({ testimonies }) => {
 
     );
 }
-const Testimonials = () => {
+const Testimonials = ({ testimonies }) => {
     return (
         <div className="Testimonials">
 
@@ -52,37 +52,8 @@ const Testimonials = () => {
             </div>
 
             <TestimonyBox
-                testimonies={[{
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                }, {
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                }, {
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                }, {
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                }, {
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                },{
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                },{
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                },{
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                },{
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                },{
-                    testimony: `“ This is an super space for your customers qoute.
-                Don’t worry it works smooth as pie. You will get all what you need by writiing a text here “`, nameSurname: `Name and Surname`
-                }]} />
+                testimonies={testimonies}
+            />
         </div>
     );
 }

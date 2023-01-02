@@ -1,9 +1,8 @@
 import ProductBestSellingSection from "./ProductBestSellingSection";
 
-import productIm3 from '../essentialOils.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-const SectionHeadlines = () => {
+const SectionHeadlines = ({products}) => {
     return (
         <div className="SectionHeadlines">
             <div className='smallHeader'>
@@ -14,13 +13,7 @@ const SectionHeadlines = () => {
                 </div>
             </div>
             <div className='productSec'>
-                <ProductBestSellingSection
-                    product={[{ title: "Essential oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm3 },
-                    { title: "MGD Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 231.2, img: productIm3 },
-                    { title: "Best Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 431.2, img: productIm3 },
-                    { title: "Good Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 531.2, img: productIm3 },
-                    { title: "Good Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 531.2, img: productIm3 }]}
-                />
+                <ProductBestSellingSection product={products}/>
             </div>
 
         </div>
