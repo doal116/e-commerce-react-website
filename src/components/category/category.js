@@ -251,7 +251,7 @@ const BottomNavigation = () => {
     return (
         <div className="BottomNavigation">
             <div className="page">
-                <span>Page:</span>
+                <span>Page: </span>
                 <span>1</span>
             </div>
 
