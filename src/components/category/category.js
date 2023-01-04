@@ -12,120 +12,180 @@ import {
     faHeart, faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 
+const Ratings = ({ stars }) => {
+    const yellowStarStyling = {
+        color: 'rgb(255, 162, 0)'
+    };
+    const grayStarStyling = {
+        color: 'rgb(207, 207, 207)'
+    };
+    return (
+        stars.map(
+            star =>
+                <div className="level">
+                    <div className="box"></div>
+                    <div className="stars">
+                        {
+                            [...Array(star)].map(
+                                () => <i style={yellowStarStyling}><FontAwesomeIcon icon={faStar} /></i>
+                            )
+                        }
+                        {
+                            [...Array(5 - star)].map(
+                                () => <i style={grayStarStyling}><FontAwesomeIcon icon={faStar} /></i>
+                            )
+                        }
+                    </div>
+                </div>
+        )
+    )
+}
+
+const Brands = ({ brands }) => {
+    return (
+        brands.map(
+            brand =>
+                <div className="brand">
+                    <div className="box"></div>
+                    <span>{brand}</span>
+                </div>
+        )
+    )
+}
+const Categories = ({ categories }) => {
+    return (
+        categories.map(
+            category =>
+                <div className="category">
+                    <span className="categoryName">{category.name}</span>
+                    <span className="availableElm">{category.number}</span>
+                </div>
+        )
+    )
+}
 const LeftSideFilters = () => {
     return (
         <div className="LeftSideFilters">
-            <div>
-                <h3>Categories</h3>
+            <h3>Categories</h3>
+            <div className="categories">
+                <Categories categories={
+                    [
+                        {
+                            name: "Bakery",
+                            number: 128
+                        },
+                        {
+                            name: "Bakery",
+                            number: 128
+                        },
+                        {
+                            name: "Bakery",
+                            number: 128
+                        },
+                        {
+                            name: "Bakery",
+                            number: 128
+                        }
+                    ]
+                } />
             </div>
 
-            <div>
-                <h3>Brands</h3>
-                <div>
-                    <div><i><FontAwesomeIcon icon={faSquare}/></i><span>Filter by brand item</span></div><i><FontAwesomeIcon icon={faSquare}/></i><span>Filter by brand item</span>
-                    <div><i><FontAwesomeIcon icon={faSquare}/></i><span>Filter by brand item</span></div>
-                    <div><i><FontAwesomeIcon icon={faSquare}/></i><span>Filter by brand item</span></div>
-                    <div><i><FontAwesomeIcon icon={faSquare}/></i><span>Filter by brand item</span></div>
-                    <div><i><FontAwesomeIcon icon={faSquare}/></i><span>Filter by brand item</span></div>
-                    <div><i><FontAwesomeIcon icon={faSquare}/></i><span>Filter by brand item</span></div>
+            <h3>Brands</h3>
+            <div className="Brands">
+                <Brands brands={["Filter by brand item", "Filter by brand item", "Filter by brand item", "Filter by brand item"]} />
+            </div>
+
+            <h3>Rating</h3>
+            <div className="Ratings">
+                <div className="rating">
+                    <Ratings stars={[5, 4, 3, 2, 1]} />
                 </div>
             </div>
 
-            <div>
-                <h3>Rating</h3>
-            </div>
-
+            <h3>Price</h3>
             <div className="priceSettings">
-                <h3>Price</h3>
                 <div className="PriceRange">
                     <div className="minPrice">
-                        <div>Min</div>
-                        <input type="text"></input>
+                        <span>Min</span>
+                        <input type="number"></input>
                     </div>
                     <div className="maxPrice">
-                        <div>Max</div>
-                        <input type="text"></input>
+                        <span>Max</span>
+                        <input type="number"></input>
                     </div>
                 </div>
             </div>
-            <div>
-                <div>Apply</div>
-                <div>Reset</div>
+
+            <div className="submittingFilter">
+                <div className="apply">Apply</div>
+                <div className="reset">Reset</div>
             </div>
         </div>
     )
 }
 const ProductDisplay = ({ products }) => {
     return (
-        products.map(
-            product =>
-                <div className="ProductDisplay">
-                    <img src={productPicture} alt="product sold"></img>
-
-                    <div className="middleSection">
-
-                        <div className="productNameRating">
-                            <span className="productTitle">{product.name}</span>
-                            <span className="description">{product.description}</span>
-                            <div>
-                                <FontAwesomeIcon icon={faStar} />
-                                <FontAwesomeIcon icon={faStar} />
-                                <FontAwesomeIcon icon={faStar} />
-                                <FontAwesomeIcon icon={faStar} />
-                                <FontAwesomeIcon icon={faStar} />
-                            </div>
-
-                        </div>
-
-                        <div className="productInfo">
-                            <div className="leftSide">
-                                <div>Fresheness</div>
-                                <div>Farm</div>
-                                <div>Delivery</div>
-                                <div>Stock</div>
-                            </div>
-                            <div className="rightSide">
-                                <div>{product.extraInfo.fresheness}</div>
-                                <div>{product.extraInfo.farm}</div>
-                                <div>{product.extraInfo.delivery}</div>
-                                <div>{product.extraInfo.stock}</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="buySection">
-                        <div className="PriceSection">
-                            <span className="price">{product.price.currentPrice} USD</span>
-                            <span className="discount">{product.price.previousPrice}</span>
-                        </div>
-
-                        <div className="deliveryInfo">
-                            <span className="shippingStatus">{product.shipping.status}</span>
-                            <span className="shippingDelay">{product.shipping.delay}</span>
-                        </div>
-
-                        <div className="addToWishList">
-                            <div className="btnproductDetails">Product Details <i><FontAwesomeIcon icon={faChevronRight} /></i></div>
-                            <div className="btnWishList"><i><FontAwesomeIcon icon={faHeart} /></i><span>Add to wish list</span></div>
-                        </div>
-                    </div>
-                </div>
-        )
-
-    )
-}
-const ProductSearchResults = ({ products }) => {
-    return (
         <div className="ProductSearchResults">
-            <ProductDisplay products={products} />
+            {
+                products.map(
+                    product =>
+                        <div className="ProductDisplay">
+                            <img src={productPicture} alt="product sold"></img>
+
+                            <div className="middleSection">
+
+                                <div className="productNameRating">
+                                    <span className="productTitle">{product.name}</span>
+                                    <span className="description">{product.description}</span>
+                                    <Ratings stars={[2]} />
+
+                                </div>
+
+                                <div className="productInfo">
+                                    <div className="leftSide">
+                                        <div>Fresheness</div>
+                                        <div>Farm</div>
+                                        <div>Delivery</div>
+                                        <div>Stock</div>
+                                    </div>
+                                    <div className="rightSide">
+                                        <div>{product.extraInfo.fresheness}</div>
+                                        <div>{product.extraInfo.farm}</div>
+                                        <div>{product.extraInfo.delivery}</div>
+                                        <div>{product.extraInfo.stock}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="buySection">
+                                <div className="PriceSection">
+                                    <span className="price">{product.price.currentPrice} USD</span>
+                                    <span className="discount">{product.price.previousPrice}</span>
+                                </div>
+
+                                <div className="deliveryInfo">
+                                    <span className="shippingStatus">{product.shipping.status}</span>
+                                    <span className="shippingDelay">{product.shipping.delay}</span>
+                                </div>
+
+                                <div className="addToWishList">
+                                    <div className="btnproductDetails">Product Details <i><FontAwesomeIcon icon={faChevronRight} /></i></div>
+                                    <div className="btnWishList"><i><FontAwesomeIcon icon={faHeart} /></i><span>Add to wish list</span></div>
+                                </div>
+                            </div>
+                        </div>
+                )
+            }
         </div>
+
     )
 }
+
 const SearchSection = ({ products }) => {
     return (
         <div className="SearchSection">
             <LeftSideFilters />
-            <ProductSearchResults products={products} />
+            <ProductDisplay products={products} />
         </div>
     )
 }
@@ -182,6 +242,27 @@ const Title = ({ categoryName }) => {
                     <span>selected Filter </span>
                     <i><FontAwesomeIcon icon={faX} /></i>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+const BottomNavigation = () => {
+    return (
+        <div className="BottomNavigation">
+            <div className="page">
+                <span>Page:</span>
+                <span>1</span>
+            </div>
+
+            <div className="moreProducts">
+                <span>Show more products</span>
+                <i><FontAwesomeIcon icon={faChevronDown}/></i>
+            </div>
+
+            <div className="allProductFound">
+                <span className="num">356</span>
+                <span className="product">Products</span>
             </div>
         </div>
     )
@@ -248,8 +329,45 @@ class Category extends React.Component {
                             currentPrice: 36.99,
                             previousPrice: 48.56
                         }
+                    }, {
+                        name: "Product Title",
+                        description: "Space for small product description",
+                        extraInfo:
+                        {
+                            fresheness: "New(Extra fresh)",
+                            farm: "Grocery Tarm Fields",
+                            delivery: "Europe",
+                            stock: "320 pcs"
+                        }
+                        , shipping: {
+                            status: "free shipping",
+                            delay: "Delivery in 1 day"
+                        },
+                        price: {
+                            currentPrice: 36.99,
+                            previousPrice: 48.56
+                        }
+                    }, {
+                        name: "Product Title",
+                        description: "Space for small product description",
+                        extraInfo:
+                        {
+                            fresheness: "New(Extra fresh)",
+                            farm: "Grocery Tarm Fields",
+                            delivery: "Europe",
+                            stock: "320 pcs"
+                        }
+                        , shipping: {
+                            status: "free shipping",
+                            delay: "Delivery in 1 day"
+                        },
+                        price: {
+                            currentPrice: 36.99,
+                            previousPrice: 48.56
+                        }
                     }
                 ]} />
+                <BottomNavigation />
             </div>
         );
     };
