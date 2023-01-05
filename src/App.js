@@ -1,16 +1,16 @@
 import './App.css';
 import Footer from './components/footer/footer';
 import Header  from './components/header/header';
-//import HomePage  from './components/HomePage/homePage';
-import Category from './components/category/category.js'
+import HomePage  from './components/HomePage/homePage';
+//import Category from './components/category/category.js'
 
-// completed <HomePage />
+// completed <Category />
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Category />
+      <HomePage />
       <Footer sec1={[
                     {
                         title: "Get in touch",
