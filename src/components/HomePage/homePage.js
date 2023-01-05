@@ -14,7 +14,7 @@ import React from "react";
 class HomePage extends React.Component {
     render() {
         return (
-            <div className="BestSelling">
+            <div className='homepage'>
                 <CategoryMenu
                     categories={["Bakery", "Fruits and Vegetables",
                         "Meat and fish", "Drinks", "Kitchen"]} />
@@ -84,6 +84,7 @@ class HomePage extends React.Component {
                 { title: "Good Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 531.2, img: productIm3 },
                 { title: "Good Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 531.2, img: productIm3 }]} />
                 <BlogPost />
+                
             </div>
         );
     }

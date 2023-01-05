@@ -368,6 +368,7 @@ class Category extends React.Component {
                     }
                 ]} />
                 <BottomNavigation />
+              
             </div>
         );
     };

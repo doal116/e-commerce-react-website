@@ -94,7 +94,7 @@ const BlogPostSec2 = ({ popularPost }) => {
             </div>
             <div style={vidInfo}>
                 <div style={vidTag}>{popularPost.tag}</div>
-                <p>{popularPost.description}</p>
+                <p style={{'font-weight': 'bold'}}>{popularPost.description}</p>
                 <span >{popularPost.author}  {popularPost.date}</span>
             </div>
         </div>

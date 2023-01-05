@@ -4,15 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import './header.css';
+import { Link } from 'react-router-dom';
 
 const BottomPart = ({ Options }) => {
     return (
         <div className="Bottom-part">
             {
-                Options.map(elem => <div className="elem">
-                    <span>{elem}</span>
-                    <FontAwesomeIcon icon={faChevronDown} className="Bottom-icons" />
-                </div>)
+                Options.map(elem =>
+                    <div className="elem">
+                        <Link style={{ 'text-decoration': 'none', 'color': 'black' }} to={"/category"}>{elem}</Link>
+                        <FontAwesomeIcon icon={faChevronDown} className="Bottom-icons" />
+                    </div>
+                )
             }
         </div>
     )
@@ -57,7 +60,7 @@ const UpperPart = ({ Options1, Options2 }) => {
     )
 }
 class Header extends React.Component {
-    
+
     render() {
         return (
             <header>
