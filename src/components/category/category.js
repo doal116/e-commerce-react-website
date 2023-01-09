@@ -11,6 +11,7 @@ import {
     faX, faStar,
     faHeart, faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Ratings = ({ stars }) => {
     const yellowStarStyling = {
@@ -130,12 +131,13 @@ const ProductDisplay = ({ products }) => {
                 products.map(
                     product =>
                         <div className="ProductDisplay">
+
                             <img src={productPicture} alt="product sold"></img>
 
                             <div className="middleSection">
 
                                 <div className="productNameRating">
-                                    <span className="productTitle">{product.name}</span>
+                                    <span className="productTitle"><Link to={'/product'}>{product.name}</Link></span>
                                     <span className="description">{product.description}</span>
                                     <Ratings stars={[2]} />
 
@@ -257,7 +259,7 @@ const BottomNavigation = () => {
 
             <div className="moreProducts">
                 <span>Show more products</span>
-                <i><FontAwesomeIcon icon={faChevronDown}/></i>
+                <i><FontAwesomeIcon icon={faChevronDown} /></i>
             </div>
 
             <div className="allProductFound">
@@ -368,7 +370,7 @@ class Category extends React.Component {
                     }
                 ]} />
                 <BottomNavigation />
-              
+
             </div>
         );
     };
