@@ -12,7 +12,14 @@ const BottomPart = ({ Options }) => {
             {
                 Options.map(elem =>
                     <div className="elem">
-                        <Link style={{ 'text-decoration': 'none', 'color': 'black' }} to={"/category"}>{elem}</Link>
+                        <Link style={{ 'text-decoration': 'none', 'color': 'black' }} to={"/category"}>{elem.name}</Link>
+                        <div className='dropDownNavigation'>
+                            {
+                                elem.section.map(
+                                    sec => <Link className="dropDownLink" to={""}>{sec}</Link>
+                                )
+                            }
+                        </div>
                         <FontAwesomeIcon icon={faChevronDown} className="Bottom-icons" />
                     </div>
                 )
@@ -24,7 +31,7 @@ const MiddlePart = () => {
     return (
         <div className="Middle-part">
             <div className="Name">
-                <h1>freshenesecom</h1>
+                <h1><Link style={{ 'text-decoration': 'none', 'color': 'black' }} to={"/"}>freshenesecom</Link></h1>
             </div>
 
             <div className="search-tool">
@@ -69,9 +76,42 @@ class Header extends React.Component {
                     Options2={["Blog", "About Us", "Careers"]} />
                 <MiddlePart />
                 <BottomPart
-                    Options={["Bakery", "Fruits and Vegetables",
-                        "Meat and fish", "Drinks", "Kitchen",
-                        "Special Nutrition", "Baby", "Pharmacy"]}
+                    Options={[
+                        {
+                            name: "Bakery", section: [
+                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                            ]
+                        }, {
+                            name: "Fruits and Vegetables", section: [
+                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                            ]
+                        },
+                        {
+                            name: "Meat and fish", section: [
+                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                            ]
+                        }, {
+                            name: "Drinks", section: [
+                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                            ]
+                        }, {
+                            name: "Kitchen", section: [
+                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                            ]
+                        },
+                        {
+                            name: "Special Nutrition", section: [
+                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                            ]
+                        }, {
+                            name: "Baby", section: [
+                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                            ]
+                        }, {
+                            name: "Pharmacy", section: [
+                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                            ]
+                        }]}
                 />
             </header>
         );

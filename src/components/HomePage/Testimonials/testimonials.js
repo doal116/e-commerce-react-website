@@ -3,20 +3,31 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
+const gotToRight = () => {
+    document.getElementById(
+        'Testimonies'
+    ).scrollLeft += 350;
+}
+const gotToLeft = () => {
+    document.getElementById(
+        'Testimonies'
+    ).scrollLeft -= 350;
+}
+
 const TestimonyBox = ({ testimonies }) => {
     return (
-        <div className='Testimonysec'>
+        <div className='Testimonysec' >
 
             <div className='arrowLeft'>
-                <div className='arrowBox'>
+                <div className='arrowBox' onClick={gotToLeft}>
                     <FontAwesomeIcon className='arrow' icon={faChevronLeft} />
                 </div>
             </div>
 
-            <div className='Testimonies'>
+            <div className='Testimonies' id="Testimonies" >
                 {
-                    testimonies.map(elem =>
-                        <div className='TestimonyBox'>
+                    testimonies.map((elem, i) =>
+                        <div className='TestimonyBox' >
                             <div className='text'>{elem.testimony}</div>
                             <div className='nameSurname'>{elem.nameSurname} </div>
                             <div className='img'></div>
@@ -26,7 +37,7 @@ const TestimonyBox = ({ testimonies }) => {
             </div>
 
             <div className='arrowRight'>
-                <div className='arrowBox'>
+                <div className='arrowBox' onClick={gotToRight}>
                     <FontAwesomeIcon className='arrow' icon={faChevronRight} />
                 </div>
 
@@ -38,8 +49,10 @@ const TestimonyBox = ({ testimonies }) => {
     );
 }
 const Testimonials = ({ testimonies }) => {
+    
+
     return (
-        <div className="Testimonials">
+        <div className="Testimonials" >
 
             <div className='TestimonialsUpperSec'>
                 <p>Our customers says</p>
@@ -55,7 +68,8 @@ const Testimonials = ({ testimonies }) => {
                 testimonies={testimonies}
             />
         </div>
-    );
+    )
+
 }
 
 export default Testimonials;
