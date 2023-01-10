@@ -1,11 +1,12 @@
 
 const ProductBestSellingSection = ({ product }) => {
     return (
-        product.map(elem => <div className='ProductSect'>
+        product.map(elem => 
+        <div className='ProductSect'>
             <img src={elem.img} alt={"product from mother nature"} />
 
             <div className='titleDescription'>
-                <a href={'hey'}className='productTitle'>{elem.title}</a>
+                <a href={'hey'} className='productTitle'>{elem.title}</a>
                 <span className='productDescrip'>{elem.description}</span>
             </div>
             <div className='buyingSection'>

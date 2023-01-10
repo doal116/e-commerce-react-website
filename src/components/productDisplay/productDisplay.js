@@ -1,12 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import './productDisplay.css';
 import {
     faStar, faPlus
     , faChevronDown,
-    faListSquares
+    faListSquares,
+    faChevronRight
+
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import heart from './heart.png'
+import heart from './heart.png';
+import carrot from './carrots.png';
+import ProductBestSellingSection from "../HomePage/categoryBestSelling/ProductBestSellingSection";
+
 
 const Ratings = ({ stars }) => {
     const yellowStarStyling = {
@@ -36,25 +41,25 @@ const Ratings = ({ stars }) => {
         )
     )
 }
-const PictureSec = ({ images }) => {
-    return (
-        <div className="pictureSec">
-            Hello
-        </div>
-    )
-}
 const ExtraDetails = ({ info }) => {
     return (
         <div className="extraDetails">
 
             <div className="leftSec">
                 {
-                    info.left.map(inf => <span>{inf}:</span>)
+                    info.left.map(inf =>
+                        <span style={{ 'opacity': '0.5' }}>{inf}:</span>
+                    )
                 }
             </div>
             <div className="rightSec">
                 {
-                    info.right.map(inf => <span>{inf}</span>)
+                    info.right.map(inf => {
+                        if (inf === 'In Stock')
+                            return <span style={{ 'color': 'green', 'textDecoration': 'underline' }}>{inf}</span>;
+                        else return <span>{inf}</span>;
+                    }
+                    )
                 }
             </div>
 
@@ -66,7 +71,7 @@ const AddToCart = () => {
         'width': '2px',
         'height': '16px',
         'background-color': 'black',
-        'opacity': '0.5',
+        'opacity': '0.4',
         'border-radius': '10px',
         'align-self': 'center'
     }
@@ -80,7 +85,7 @@ const AddToCart = () => {
 
             <div className="addToCartOptions">
                 <div className="piecesToAdd">
-                    <span>1</span>
+                    <span style={{ 'opacity': '0.4' }}>1</span>
                     <div style={line}></div>
                     <div className="pieces">
                         <span>Pcs</span>
@@ -101,7 +106,7 @@ const AddToWishList = () => {
     return (
         <div className="addToWishList">
             <div className="wishList">
-                <img className="heartIcon" alt="icon"src={heart}></img>
+                <img className="heartIcon" alt="icon" src={heart}></img>
                 <span> Add to my wish list</span>
             </div>
             <div className="compare">
@@ -111,14 +116,9 @@ const AddToWishList = () => {
         </div>
     )
 }
-const ReviewDescripQuestion = ({ table }) => {
+const Descrip = ({ table }) => {
     return (
-        <div className="ReviewDescripQuestion">
-            <div className="nav">
-                <div>Description</div>
-                <div>Reviews</div>
-                <div>Questions</div>
-            </div>
+        <div>
             <div className="origins">
                 <h4>Origins</h4>
                 <p>We work hard to ensure that the fruit and vegetables we sell are fresh and high in quality. If we don’t grow them ourselves, we source them from carefully chosen suppliers, preferring to buy locally whenever possible.
@@ -153,12 +153,80 @@ const ReviewDescripQuestion = ({ table }) => {
         </div>
     )
 }
+const Review = () => {
+    return (
+        <div>
+
+        </div>
+    )
+}
+const Question = () => {
+    return (
+        <div>
+
+        </div>
+    )
+}
+const ReviewDescripQuestion = ({ table }) => {
+
+    const [description, setDescription] = useState(true);
+    const [review, setReview] = useState(false);
+    const [question, setQuestion] = useState(false);
+
+    function descriptionV() {
+        setDescription(true);
+        setReview(false);
+        setQuestion(false);
+    }
+    function reviewVal() {
+        setDescription(false);
+        setReview(true);
+        setQuestion(false);
+    }
+    function questionVal() {
+        setDescription(false);
+        setReview(false);
+        setQuestion(true);
+    }
+
+
+    return (
+        <div className="ReviewDescripQuestion">
+            <div className="nav">
+                {
+                    description ?
+                        <div onClick={() => descriptionV()} className="greenSlider">Description</div> :
+                        <div onClick={() => descriptionV()} className="graySlider">Description</div>
+                }
+                {
+                    review ?
+                        <div onClick={() => reviewVal()} className="greenSlider">Reviews</div> :
+                        <div onClick={() => reviewVal()} className="graySlider">Reviews</div>
+                }
+                {
+                    question ?
+                        <div onClick={() => questionVal()} className="greenSlider">Questions</div> :
+                        <div onClick={() => questionVal()} className="graySlider">Questions</div>
+                }
+            </div>
+            {
+                description ? <Descrip table={table} /> :
+                    review ? <Review /> :
+                        question ? <Question /> :
+                            console.log('Error')
+            }
+        </div>
+    )
+}
 const DescriptionSec = () => {
     return (
         <div className="descriptionSec">
 
             <h1>Carrots from Tomissy Farm</h1>
-            <Ratings stars={[4]} />
+            <div style={{ display: 'flex', columnGap: '10px' }}>
+                <Ratings stars={[4]} />
+                <span style={{ opacity: '0.4', textDecoration: 'underline' }}>(1 customer review)</span>
+            </div>
 
             <div className="shortDescription">
                 <p>Carrots from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s carrots are growing on the fields naturally.</p>
@@ -166,27 +234,76 @@ const DescriptionSec = () => {
 
             <div className="moreDescription">
                 <ExtraDetails info={{ left: ['SKU', 'Category', 'Stock', 'Farm'], right: ['76645', 'Vegetables', 'In Stock', 'Grocery Tarm Fields'] }} />
-                <ExtraDetails info={{ left: ['SKU', 'Category', 'Stock', 'Farm'], right: ['76645', 'Vegetables', 'In Stock', 'Grocery Tarm Fields'] }} />
+                <ExtraDetails info={{ left: ['Freshness', 'Buy by', 'Delivery', 'Delivery area'], right: ['1 days old', 'pcs,kgs,box,pack', 'In 2 days', 'Czech republic'] }} />
             </div>
 
             <AddToCart />
             <AddToWishList />
-            <ReviewDescripQuestion 
-                table={[{vitamin:"Vitamin A equiv.",quantity:"735 μg",dv:"104 %"},
-                {vitamin:"Vitamin A equiv.",quantity:"735 μg",dv:"104 %"},
-                {vitamin:"Vitamin A equiv.",quantity:"735 μg",dv:"104 %"},
-                {vitamin:"Vitamin A equiv.",quantity:"735 μg",dv:"104 %"},
-                {vitamin:"Vitamin A equiv.",quantity:"735 μg",dv:"104 %"},
-                {vitamin:"Vitamin A equiv.",quantity:"735 μg",dv:"104 %"}]}/>
+            <ReviewDescripQuestion
+                table={[{ vitamin: "Vitamin A equiv.", quantity: "735 μg", dv: "104 %" },
+                { vitamin: "Vitamin A equiv.", quantity: "735 μg", dv: "104 %" },
+                { vitamin: "Vitamin A equiv.", quantity: "735 μg", dv: "104 %" },
+                { vitamin: "Vitamin A equiv.", quantity: "735 μg", dv: "104 %" },
+                { vitamin: "Vitamin A equiv.", quantity: "735 μg", dv: "104 %" },
+                { vitamin: "Vitamin A equiv.", quantity: "735 μg", dv: "104 %" }]} />
+        </div>
+    )
+}
+const PictureSec = ({ images }) => {
+    return (
+        <div className="pictureSec">
+            {
+                images.map(
+                    image =>
+                        <div className="productPic">
+                            <img src={image} alt=""></img>
+                        </div>
+                )
+            }
+        </div>
+    )
+}
+const RelatedProducts = () => {
+    const styling = {
+        'display': 'flex',
+        'margin-bottom': '48px',
+        'margin-left': '80px',
+        'column-gap': '24px'
+    }
+    return (
+        <div className="RelatedProducts">
+            <div className="upperSec">
+                <span >Related Products</span>
+                <button>
+                    More Products
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </button>
+
+            </div>
+            <div style={styling}>
+                <ProductBestSellingSection product={[{ title: "Ribs", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot },
+                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot },
+                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot },
+                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot },
+                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot }]} />
+            </div>
         </div>
     )
 }
 class ProductDisplay extends Component {
     render() {
         return (
-            <div className="productDisplay">
-                <PictureSec />
-                <DescriptionSec />
+            <div >
+                <div style={{ 'margin-top': '180px', 'margin-left': '80px' }}>
+                    <span style={{ 'opacity': '0.4' }}>Homepage</span>
+                    <span style={{ 'opacity': '0.4' }}> / Fruit and vegetables / </span>
+                    <span>Carrots from Tomissy Farm</span>
+                </div>
+                <div className="productDisplay">
+                    <PictureSec images={[carrot, carrot, carrot]} />
+                    <DescriptionSec />
+                </div>
+                <RelatedProducts />
             </div>
         )
     }
