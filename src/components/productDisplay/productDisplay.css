@@ -229,3 +229,63 @@ th {
     border: none;
     cursor: pointer;
 }
+
+.reviews>.userInfo {
+    display: flex;
+    column-gap: 16px;
+}
+
+.reviews>.userInfo>img {
+    width: 100px;
+    height: fit-content;
+    border-radius: 50%;
+    align-self: center;
+    margin-left: 10px;
+    border: 3px solid rgb(2, 173, 2);
+}
+
+.reviews>.userInfo>.userReview {
+    margin: 20px 0px 0px 0px;
+}
+
+.reviews>.userInfo>.userReview>.userName {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.reviews>.userInfo>.userReview>p {
+    font-size: 14px;
+}
+
+.reviews>.userInfo>.userReview>.date {
+    font-size: 13px;
+}
+
+.questions{
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.questions>.question {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(93, 93, 93);
+    border-radius: 10px;
+    cursor: pointer;
+}
+.questions>.question>i{
+    justify-self: end;
+    margin-right: 10px;
+    color: white;
+    font-weight: bold;
+}
+.questions>.question>p{
+    margin-left: 24px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+

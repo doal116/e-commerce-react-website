@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import heart from './heart.png';
 import carrot from './carrots.png';
 import ProductBestSellingSection from "../HomePage/categoryBestSelling/ProductBestSellingSection";
-
+import profilePic from './profilePic.png';
 
 const Ratings = ({ stars }) => {
     const yellowStarStyling = {
@@ -153,16 +153,56 @@ const Descrip = ({ table }) => {
         </div>
     )
 }
-const Review = () => {
+const Review = ({ usersInfo }) => {
     return (
-        <div>
+        <div className="reviews">
+            {
+                usersInfo.map(
+                    user =>
+                        <div className="userInfo">
+                            <img src={user.profile} alt="user's profilee"></img>
+                            <div className="userReview">
+                                <span className="userName">{user.name}</span>
+                                <Ratings stars={[user.stars]} />
+                                <span className="date">{user.date}</span>
+                                <p>{user.comment}</p>
+                            </div>
+                        </div>
+                )
 
+            }
         </div>
     )
 }
-const Question = () => {
+const Question = ({ questions }) => {
+
+    function click(answer) {
+        document.getElementById
+        const presenceOfAnswer = document.getElementsByClassName('answer');
+        console.log(presenceOfAnswer);
+        if (presenceOfAnswer.length === 0) {
+            const destination = document.getElementsByClassName('question');
+            const elem = document.createElement('p');
+            elem.className = 'answer';
+            elem.innerHTML = answer;
+            destination[0].appendChild(elem)
+        }
+
+    }
     return (
-        <div>
+        <div className="questions">
+            {
+                questions.map(
+                    (elem, i) =>
+                        <div className={(i + 3).toString()+" question"} 
+                        key={(i + 3).toString()} dataKey={(i + 3).toString()}
+                        onClick={() => click(elem.answer)}>
+                            <p>{elem.question}</p>
+                            <i><FontAwesomeIcon icon={faChevronRight} /></i>
+                        </div>
+                )
+
+            }
 
         </div>
     )
@@ -211,8 +251,45 @@ const ReviewDescripQuestion = ({ table }) => {
             </div>
             {
                 description ? <Descrip table={table} /> :
-                    review ? <Review /> :
-                        question ? <Question /> :
+                    review ? <Review usersInfo={
+                        [
+                            {
+                                name: "Adelin Berlo",
+                                date: "12.01.2020",
+                                stars: 3,
+                                comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                                profile: profilePic
+                            },
+                            {
+                                name: "Adelin Berlo",
+                                date: "12.01.2020",
+                                stars: 3,
+                                comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                                profile: profilePic
+                            }
+
+                        ]
+                    } /> :
+                        question ? <Question
+                            questions={[
+                                {
+                                    question: "Where to store after recieving?",
+                                    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                                },
+                                {
+                                    question: "Where to store after recieving?",
+                                    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                                },
+                                {
+                                    question: "Where to store after recieving?",
+                                    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                                }
+                                , {
+                                    question: "Where to store after recieving?",
+                                    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                                }
+                            ]}
+                        /> :
                             console.log('Error')
             }
         </div>
