@@ -77,39 +77,87 @@
     border: 3px solid rgb(36, 99, 0);
 }
 
+.addToCart>.addToCartOptions>.btnAddToCart:hover {
+    cursor: pointer;
+    animation: btnAddToCart;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes btnAddToCart {
+    100% {
+        background-color: white;
+        color: rgb(0, 92, 61);
+        border: 3px solid rgb(0, 92, 61);
+    }
+}
+
 .addToCart>.addToCartOptions>.btnAddToCart>span {
     font-size: 20px;
 }
 
 .addToCart>.addToCartOptions {
+    position: relative;
     display: flex;
     column-gap: 24px;
 }
 
-.addToCart>.addToCartOptions>.piecesToAdd {
-
+.addToCart>.addToCartOptions>.piecesToAddSec>.piecesToAdd {
     border: 1px solid rgb(189, 189, 189);
     background-color: rgb(239, 239, 239);
     border-radius: 10px;
     width: 100px;
-    display: flex;
-    column-gap: 20px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 10px;
     padding-left: 20px;
 }
 
-.addToCart>.addToCartOptions>.piecesToAdd>span {
-    align-self: center;
+.addToCart>.addToCartOptions>.piecesToAddSec>.numPieces {
+    background-color: rgb(239, 239, 239);
+    display: none;
+    position: absolute;
+    width: 48px;
+    height: 200px;
+    left: 20%;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.5);
+    overflow-y: auto;
 }
 
-.addToCart>.addToCartOptions>.piecesToAdd>.pieces {
+.addToCart>.addToCartOptions>.piecesToAddSec:hover .numPieces {
+    display: block;
+}
+
+.addToCart>.addToCartOptions>.piecesToAddSec>.numPieces>.num {
+    cursor: pointer;
+    padding-left: 6px;
+}
+
+.addToCart>.addToCartOptions>.piecesToAddSec>.numPieces>.num:hover {
+    background-color: rgb(51, 51, 51);
+    color: white;
+}
+
+.addToCart>.addToCartOptions>.piecesToAddSec>.piecesToAdd>span {
     align-self: center;
+
+}
+
+.addToCart>.addToCartOptions>.piecesToAddSec>.piecesToAdd>.pieces {
+    align-self: center;
+    align-items: center;
     font-weight: bold;
+    display: flex;
+    column-gap: 6px;
+    cursor: pointer;
 }
 
-.addToCart>.addToCartOptions>.piecesToAdd>.pieces>.arrowDown {
+.addToCart>.addToCartOptions>.piecesToAddSec>.piecesToAdd>.pieces>.arrowDown {
     font-size: 12px;
-    margin-bottom: 1px;
-    margin-left: 2px;
 }
 
 .addToWishList {
@@ -188,6 +236,7 @@ th {
 }
 
 .pictureSec {
+
     margin-top: 24px;
     display: flex;
     flex-direction: column;
@@ -201,6 +250,22 @@ th {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.pictureSec>.grid {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.pictureSec>.grid>img {
+    max-width: 150px;
+    height: fit-content;
+    border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(47, 47, 47);
 }
 
 .productPic {
@@ -261,12 +326,13 @@ th {
     font-size: 13px;
 }
 
-.questions{
+.questions {
     margin-top: 16px;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
 }
+
 .questions>.question {
     display: grid;
     grid-template-columns: auto auto;
@@ -276,16 +342,17 @@ th {
     border-radius: 10px;
     cursor: pointer;
 }
-.questions>.question>i{
+
+.questions>.question>i {
     justify-self: end;
     margin-right: 10px;
     color: white;
     font-weight: bold;
 }
-.questions>.question>p{
+
+.questions>.question>p {
     margin-left: 24px;
     color: white;
     font-weight: bold;
     font-size: 16px;
 }
-

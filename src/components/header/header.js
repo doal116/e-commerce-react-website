@@ -12,7 +12,14 @@ const BottomPart = ({ Options }) => {
             {
                 Options.map(elem =>
                     <div className="elem">
-                        <Link style={{ 'text-decoration': 'none', 'color': 'black' }} to={"/category"}>{elem.name}</Link>
+                        <Link
+                            style={{ 'text-decoration': 'none', 'color': 'black' }}
+                            to={{
+                                pathname: "/category",
+                                state: { name: elem.name }
+                            }}
+                        >{elem.name}
+                        </Link>
                         <div className='dropDownNavigation'>
                             {
                                 elem.section.map(

@@ -270,10 +270,14 @@ const BottomNavigation = () => {
     )
 }
 class Category extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
+
         return (
             <div>
-                <Title categoryName={"Fruit and vegetables"} />
+                <Title categoryName={this.props.name} />
                 <SearchSection products={[
                     {
                         name: "Product Title",

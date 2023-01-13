@@ -10,6 +10,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import heart from './heart.png';
 import carrot from './carrots.png';
+import ribs  from './bonelessRibeyes.jpg'
 import ProductBestSellingSection from "../HomePage/categoryBestSelling/ProductBestSellingSection";
 import profilePic from './profilePic.png';
 
@@ -67,6 +68,8 @@ const ExtraDetails = ({ info }) => {
     )
 }
 const AddToCart = () => {
+    const [pieces, setPieces] = useState(1);
+    const availablePieces = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const line = {
         'width': '2px',
         'height': '16px',
@@ -75,6 +78,9 @@ const AddToCart = () => {
         'border-radius': '10px',
         'align-self': 'center'
     }
+
+
+
     return (
         <div className="addToCart">
 
@@ -84,12 +90,30 @@ const AddToCart = () => {
             </div>
 
             <div className="addToCartOptions">
-                <div className="piecesToAdd">
-                    <span style={{ 'opacity': '0.4' }}>1</span>
-                    <div style={line}></div>
-                    <div className="pieces">
-                        <span>Pcs</span>
-                        <FontAwesomeIcon className="arrowDown" icon={faChevronDown} />
+                <div className="piecesToAddSec">
+
+                    <div className="piecesToAdd">
+
+                        <span style={{ 'opacity': '0.4' }}>{pieces}</span>
+                        <div style={line}></div>
+
+                        <div className="pieces" >
+                            <span>Pcs</span>
+                            <FontAwesomeIcon className="arrowDown" icon={faChevronDown} />
+                        </div>
+
+                    </div>
+
+                    <div className="numPieces" >
+                        {
+                            availablePieces.map(
+                                (elem, i) => {
+                                    if (i > 0) return <div className="num" onClick={() => setPieces(old => i)}>{i}</div>
+                                    return <></>
+                                }
+
+                            )
+                        }
                     </div>
                 </div>
 
@@ -176,16 +200,17 @@ const Review = ({ usersInfo }) => {
 }
 const Question = ({ questions }) => {
 
-    function click(answer) {
-        document.getElementById
-        const presenceOfAnswer = document.getElementsByClassName('answer');
-        console.log(presenceOfAnswer);
+    function click(answer, questionClass) {
+        const presenceOfAnswer = document.getElementsByClassName(`${questionClass}answer`);
+
         if (presenceOfAnswer.length === 0) {
-            const destination = document.getElementsByClassName('question');
+            const destination = document.getElementsByClassName(questionClass);
             const elem = document.createElement('p');
-            elem.className = 'answer';
+            elem.className = `${questionClass}answer`;
             elem.innerHTML = answer;
             destination[0].appendChild(elem)
+        } else {
+            presenceOfAnswer[0].remove();
         }
 
     }
@@ -194,9 +219,11 @@ const Question = ({ questions }) => {
             {
                 questions.map(
                     (elem, i) =>
-                        <div className={(i + 3).toString()+" question"} 
-                        key={(i + 3).toString()} dataKey={(i + 3).toString()}
-                        onClick={() => click(elem.answer)}>
+                        <div
+                            className={(i).toString() + " question"}
+                            key={(i).toString()}
+                            onClick={() => click(elem.answer, (i).toString())}
+                        >
                             <p>{elem.question}</p>
                             <i><FontAwesomeIcon icon={faChevronRight} /></i>
                         </div>
@@ -327,16 +354,21 @@ const DescriptionSec = () => {
     )
 }
 const PictureSec = ({ images }) => {
+    const [selectImg, setSelectImg] =useState(0);
+
     return (
         <div className="pictureSec">
-            {
-                images.map(
-                    image =>
-                        <div className="productPic">
-                            <img src={image} alt=""></img>
-                        </div>
-                )
-            }
+            <div className="productPic">
+                <img src={images[selectImg]} alt=""></img>
+            </div>
+            <div className="grid">
+                {
+                    images.map(
+                        (image, i) => <img src={image} alt="" onClick={()=>setSelectImg(val=>i)}></img>
+                    )
+                }
+            </div>
+
         </div>
     )
 }
@@ -377,7 +409,7 @@ class ProductDisplay extends Component {
                     <span>Carrots from Tomissy Farm</span>
                 </div>
                 <div className="productDisplay">
-                    <PictureSec images={[carrot, carrot, carrot]} />
+                    <PictureSec images={[carrot, carrot, carrot, carrot, carrot, ribs]} />
                     <DescriptionSec />
                 </div>
                 <RelatedProducts />
