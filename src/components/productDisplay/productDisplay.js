@@ -375,9 +375,9 @@ const PictureSec = ({ images }) => {
 const RelatedProducts = () => {
     const styling = {
         'display': 'flex',
-        'margin-bottom': '48px',
-        'margin-left': '80px',
-        'column-gap': '24px'
+        'marginBottom': '48px',
+        'marginLeft': '80px',
+        'columnGap': '24px'
     }
     return (
         <div className="RelatedProducts">

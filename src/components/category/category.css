@@ -25,6 +25,14 @@
     align-items: center;
 }
 
+.Title>.choosenCategory>.ViewStyle>.gridView {
+    cursor: pointer;
+}
+
+.Title>.choosenCategory>.ViewStyle>.listView {
+    cursor: pointer;
+}
+
 .Title>.choosenCategory>.ViewStyle>.productAvailable>span {
     background-color: rgba(0, 153, 102, 0.2);
     border-radius: 10px;
@@ -40,7 +48,6 @@
 }
 
 .Title>.filters>div {
-    background-color: rgb(235, 235, 235);
     border-radius: 10px;
     padding: 8px 16px 8px 16px;
     border: 2px solid rgb(205, 205, 205);
@@ -59,7 +66,7 @@
 .Title>.filters>.filter1>.circle {
     border: 2px solid rgb(205, 205, 205);
     border-radius: 50%;
-    color: rgb(235, 235, 235);
+    color: transparent;
 }
 
 .Title>.filters>.filter2 {
@@ -73,7 +80,7 @@
 }
 
 .Title>.filters>.filter2>.square {
-    color: rgb(235, 235, 235);
+    color: transparent;
     border: 2px solid rgb(205, 205, 205);
 }
 
@@ -118,6 +125,7 @@
 
 .Title>.filters>.filter3>.leftSide>.squareCheck {
     color: rgb(0, 148, 99);
+    font-size: 20px
 }
 
 .appliedFilters {
@@ -157,12 +165,16 @@
     grid-template-columns: auto 70%;
 }
 
+.ProductSearchResults {
+    margin-right: 40px;
+}
+
 .ProductDisplay {
     border: 2px solid rgb(173, 173, 173);
     margin: 16px;
     height: 250px;
     display: grid;
-    grid-template-columns: auto 40% auto;
+    grid-template-columns: auto 35% auto;
     column-gap: 24px;
     border-radius: 10px;
     background-color: azure;
@@ -246,8 +258,14 @@
     font-size: 13px;
 }
 
+.ProductDisplay>.buySection>.addToWishList {
+    display: flex;
+    flex-direction: column;
+}
+
 .ProductDisplay>.buySection>.addToWishList>.btnproductDetails {
     color: white;
+    border: 2px solid;
     font-weight: bold;
     padding: 8px 16px 10px 16px;
     width: fit-content;
@@ -255,18 +273,67 @@
     border-radius: 10px;
 }
 
+.ProductDisplay>.buySection>.addToWishList>.btnproductDetails>.btnProductDetailsLink {
+    text-decoration: none;
+    color: white;
+}
+
+.ProductDisplay>.buySection>.addToWishList>.btnproductDetails:hover .btnProductDetailsLink {
+    cursor: pointer;
+    animation: link;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes link {
+    100% {
+        color: rgb(0, 92, 61);
+    }
+}
+
+.ProductDisplay>.buySection>.addToWishList>.btnproductDetails:hover {
+    cursor: pointer;
+    animation: productDetails;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes productDetails {
+    100% {
+        background-color: white;
+        color: rgb(0, 92, 61);
+        border: 2px solid rgb(0, 92, 61);
+    }
+}
+
 .ProductDisplay>.buySection>.addToWishList>.btnproductDetails>i {
     font-size: 12px;
 }
 
 .ProductDisplay>.buySection>.addToWishList>.btnWishList {
+    cursor: pointer;
     display: flex;
     column-gap: 5px;
     margin-top: 8px;
     width: fit-content;
     background-color: rgb(206, 206, 206);
     border-radius: 10px;
+    border: 2px solid transparent;
     padding: 8px 16px 10px 16px;
+}
+
+.ProductDisplay>.buySection>.addToWishList>.btnWishList:hover {
+    animation: wishBtn 0.4s forwards ease-out;
+}
+
+@keyframes wishBtn {
+    100% {
+        background-color: white;
+        color: rgb(0, 92, 61);
+        border: 2px solid rgb(0, 92, 61);
+    }
 }
 
 .LeftSideFilters {
@@ -413,12 +480,14 @@
     margin-bottom: 20px;
     width: 100%;
 }
-.BottomNavigation>.page{
+
+.BottomNavigation>.page {
     display: flex;
     column-gap: 10px;
     margin-left: 80px;
     align-self: center;
 }
+
 .BottomNavigation>.moreProducts {
     color: white;
     display: flex;
@@ -431,22 +500,26 @@
     border-radius: 10px;
     font-weight: bold;
 }
-.BottomNavigation>.moreProducts>i{
+
+.BottomNavigation>.moreProducts>i {
     margin-top: 3px;
     font-size: 13px;
 }
-.BottomNavigation>.allProductFound{
+
+.BottomNavigation>.allProductFound {
     display: flex;
     column-gap: 6px;
     justify-self: end;
     margin-right: 20px;
     align-self: center;
 }
-.BottomNavigation>.allProductFound>.product{
+
+.BottomNavigation>.allProductFound>.product {
     align-self: center;
     font-size: 12px;
 }
-.BottomNavigation>.allProductFound>.num{
+
+.BottomNavigation>.allProductFound>.num {
     color: rgb(15, 167, 48);
     width: fit-content;
     height: fit-content;
@@ -454,4 +527,66 @@
     padding: 2px 6px 2px 6px;
     border-radius: 10px;
     font-weight: bold;
+}
+
+.productDisplayGrid {
+    margin-right: 40px;
+    display: flex;
+    height: fit-content;
+    flex-wrap: wrap;
+    column-gap: 24px;
+    row-gap: 24px;
+}
+
+.productDisplayGrid>.mainBox {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: fit-content;
+    border: 2px solid rgb(153, 153, 153);
+    border-radius: 10px;
+    row-gap: 10px;
+    padding-left: 16px;
+    padding-bottom: 16px;
+}
+
+.productDisplayGrid>.mainBox>.buyingSection {
+    display: flex;
+    column-gap: 16px;
+}
+
+.productDisplayGrid>.mainBox>.buyingSection>.btn-buy {
+    padding: 8px 16px 8px 16px;
+    border-radius: 10px;
+    background-color: rgb(0, 187, 124);
+    font-weight: bold;
+    color: white;
+}
+
+.productDisplayGrid>.mainBox>.buyingSection>.price {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.productDisplayGrid>.mainBox>.buyingSection>.price>.old-price {
+    text-decoration: line-through;
+    font-size: 12px;
+}
+
+.productDisplayGrid>.mainBox>.description {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.productDisplayGrid>.mainBox>.description>.title{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+.productDisplayGrid>.mainBox>img {
+    margin-top: 10px;
+    width: 90%;
+    border-radius: 10px;
 }

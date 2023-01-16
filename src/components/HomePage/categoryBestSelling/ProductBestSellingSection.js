@@ -1,4 +1,3 @@
-
 const ProductBestSellingSection = ({ product }) => {
     return (
         product.map((elem,i) => 

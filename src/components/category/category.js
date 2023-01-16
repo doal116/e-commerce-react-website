@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import './category.css';
 import productPicture from '../../naturalProduct.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,18 +22,18 @@ const Ratings = ({ stars }) => {
     };
     return (
         stars.map(
-            star =>
-                <div className="level">
+            (star, i) =>
+                <div key={i.toString()} className="level">
                     <div className="box"></div>
                     <div className="stars">
                         {
                             [...Array(star)].map(
-                                () => <i style={yellowStarStyling}><FontAwesomeIcon icon={faStar} /></i>
+                                (elm, i) => <i key={i.toString()} style={yellowStarStyling}><FontAwesomeIcon icon={faStar} /></i>
                             )
                         }
                         {
                             [...Array(5 - star)].map(
-                                () => <i style={grayStarStyling}><FontAwesomeIcon icon={faStar} /></i>
+                                (elm, i) => <i key={i.toString()} style={grayStarStyling}><FontAwesomeIcon icon={faStar} /></i>
                             )
                         }
                     </div>
@@ -45,8 +45,8 @@ const Ratings = ({ stars }) => {
 const Brands = ({ brands }) => {
     return (
         brands.map(
-            brand =>
-                <div className="brand">
+            (brand, i) =>
+                <div key={i.toString()} className="brand">
                     <div className="box"></div>
                     <span>{brand}</span>
                 </div>
@@ -56,8 +56,8 @@ const Brands = ({ brands }) => {
 const Categories = ({ categories }) => {
     return (
         categories.map(
-            category =>
-                <div className="category">
+            (category, i) =>
+                <div key={i.toString()} className="category">
                     <span className="categoryName">{category.name}</span>
                     <span className="availableElm">{category.number}</span>
                 </div>
@@ -124,20 +124,24 @@ const LeftSideFilters = () => {
         </div>
     )
 }
-const ProductDisplay = ({ products }) => {
+const ProductDisplayList = ({ products }) => {
     return (
         <div className="ProductSearchResults">
             {
                 products.map(
-                    product =>
-                        <div className="ProductDisplay">
+                    (product, i) =>
+                        <div key={i.toString()} className="ProductDisplay">
 
                             <img src={productPicture} alt="product sold"></img>
 
                             <div className="middleSection">
 
                                 <div className="productNameRating">
-                                    <span className="productTitle"><Link to={'/product'}>{product.name}</Link></span>
+                                    <span className="productTitle">
+                                        <Link style={{ 'textDecoration': 'none', 'color': 'black' }} to={'/product'}>
+                                            {product.name}
+                                        </Link>
+                                    </span>
                                     <span className="description">{product.description}</span>
                                     <Ratings stars={[2]} />
 
@@ -171,7 +175,9 @@ const ProductDisplay = ({ products }) => {
                                 </div>
 
                                 <div className="addToWishList">
-                                    <div className="btnproductDetails">Product Details <i><FontAwesomeIcon icon={faChevronRight} /></i></div>
+                                    <div className="btnproductDetails">
+                                        <Link className="btnProductDetailsLink" to="/product">Product Details </Link>
+                                        <i><FontAwesomeIcon icon={faChevronRight} /></i></div>
                                     <div className="btnWishList"><i><FontAwesomeIcon icon={faHeart} /></i><span>Add to wish list</span></div>
                                 </div>
                             </div>
@@ -183,15 +189,45 @@ const ProductDisplay = ({ products }) => {
     )
 }
 
-const SearchSection = ({ products }) => {
+const ProductDisplayGrid = ({ products }) => {
     return (
-        <div className="SearchSection">
-            <LeftSideFilters />
-            <ProductDisplay products={products} />
+        <div className="productDisplayGrid">
+            {
+                products.map(
+                    (elem, i) =>
+                        <div key={i.toString()} className='mainBox'>
+                            <img src={elem.image} alt={"product from mother nature"} />
+
+                            <div className='description'>
+                                <Link className="title">{elem.name}</Link>
+                                <span className='productDescrip'>{elem.description}</span>
+                            </div>
+                            <Ratings stars={[3]}/>
+                            <div className='buyingSection'>
+                                <div className='price'>
+                                    <span className='current-price'>{elem.price.currentPrice} USD</span>
+                                    <span className='old-price'>{elem.price.previousPrice}</span>
+                                </div>
+                                <div className='btn-buy'><span>BUY NOW</span></div>
+                            </div>
+                        </div>
+                )
+            }
         </div>
     )
 }
-const Title = ({ categoryName }) => {
+const SearchSection = ({ products, listGridDisplay }) => {
+    return (
+        <div className="SearchSection">
+            <LeftSideFilters />
+            {
+                listGridDisplay ? <ProductDisplayList products={products} /> :
+                    <ProductDisplayGrid products={products} />
+            }
+        </div>
+    )
+}
+const Title = ({ categoryName, listGridDisplay, setlistGridDisplay }) => {
     return (
         <div className="Title">
             <div className="CategoryPath">
@@ -200,8 +236,8 @@ const Title = ({ categoryName }) => {
             <div className="choosenCategory">
                 <h2>{categoryName}</h2>
                 <div className="ViewStyle">
-                    <p className="gridView"><FontAwesomeIcon icon={faTh} /> Gird view</p>
-                    <p className="listView"><FontAwesomeIcon icon={faList} /> List View</p>
+                    <p className="gridView" onClick={() => setlistGridDisplay(!listGridDisplay)}><FontAwesomeIcon icon={faTh} /> Gird view</p>
+                    <p className="listView" onClick={() => setlistGridDisplay(!listGridDisplay)} ><FontAwesomeIcon icon={faList} /> List View</p>
                     <p className="productAvailable"><span>123</span> Products</p>
                 </div>
             </div>
@@ -271,106 +307,120 @@ const BottomNavigation = () => {
 }
 
 function Category() {
+
+    const [listGridDisplay, setlistGridDisplay] = useState(true);
     const location = useLocation();
     const { name } = location.state;
     return (
         <div>
-            <Title categoryName={name} />
-            <SearchSection products={[
-                {
-                    name: "Product Title",
-                    description: "Space for small product description",
-                    extraInfo:
+            <Title
+                categoryName={name}
+                listGridDisplay={listGridDisplay}
+                setlistGridDisplay={setlistGridDisplay}
+
+            />
+            <SearchSection
+                listGridDisplay={listGridDisplay}
+                products={[
                     {
-                        fresheness: "New(Extra fresh)",
-                        farm: "Grocery Tarm Fields",
-                        delivery: "Europe",
-                        stock: "320 pcs"
-                    }
-                    , shipping: {
-                        status: "free shipping",
-                        delay: "Delivery in 1 day"
+                        name: "Product Title",
+                        description: "Space for small product description",
+                        extraInfo:
+                        {
+                            fresheness: "New(Extra fresh)",
+                            farm: "Grocery Tarm Fields",
+                            delivery: "Europe",
+                            stock: "320 pcs"
+                        }
+                        , shipping: {
+                            status: "free shipping",
+                            delay: "Delivery in 1 day"
+                        },
+                        price: {
+                            currentPrice: 36.99,
+                            previousPrice: 48.56
+                        },
+                        image:productPicture
                     },
-                    price: {
-                        currentPrice: 36.99,
-                        previousPrice: 48.56
-                    }
-                },
-                {
-                    name: "Product Title",
-                    description: "Space for small product description",
-                    extraInfo:
                     {
-                        fresheness: "New(Extra fresh)",
-                        farm: "Grocery Tarm Fields",
-                        delivery: "Europe",
-                        stock: "320 pcs"
-                    }
-                    , shipping: {
-                        status: "free shipping",
-                        delay: "Delivery in 1 day"
+                        name: "Product Title",
+                        description: "Space for small product description",
+                        extraInfo:
+                        {
+                            fresheness: "New(Extra fresh)",
+                            farm: "Grocery Tarm Fields",
+                            delivery: "Europe",
+                            stock: "320 pcs"
+                        }
+                        , shipping: {
+                            status: "free shipping",
+                            delay: "Delivery in 1 day"
+                        },
+                        price: {
+                            currentPrice: 36.99,
+                            previousPrice: 48.56
+                        },
+                        image:productPicture
                     },
-                    price: {
-                        currentPrice: 36.99,
-                        previousPrice: 48.56
-                    }
-                },
-                {
-                    name: "Product Title",
-                    description: "Space for small product description",
-                    extraInfo:
                     {
-                        fresheness: "New(Extra fresh)",
-                        farm: "Grocery Tarm Fields",
-                        delivery: "Europe",
-                        stock: "320 pcs"
+                        name: "Product Title",
+                        description: "Space for small product description",
+                        extraInfo:
+                        {
+                            fresheness: "New(Extra fresh)",
+                            farm: "Grocery Tarm Fields",
+                            delivery: "Europe",
+                            stock: "320 pcs"
+                        }
+                        , shipping: {
+                            status: "free shipping",
+                            delay: "Delivery in 1 day"
+                        },
+                        price: {
+                            currentPrice: 36.99,
+                            previousPrice: 48.56
+                        },
+                        image:productPicture
+                    }, {
+                        name: "Product Title",
+                        description: "Space for small product description",
+                        extraInfo:
+                        {
+                            fresheness: "New(Extra fresh)",
+                            farm: "Grocery Tarm Fields",
+                            delivery: "Europe",
+                            stock: "320 pcs"
+                        }
+                        , shipping: {
+                            status: "free shipping",
+                            delay: "Delivery in 1 day"
+                        },
+                        price: {
+                            currentPrice: 36.99,
+                            previousPrice: 48.56
+                        },
+                        image:productPicture
+                    }, {
+                        name: "Product Title",
+                        description: "Space for small product description",
+                        extraInfo:
+                        {
+                            fresheness: "New(Extra fresh)",
+                            farm: "Grocery Tarm Fields",
+                            delivery: "Europe",
+                            stock: "320 pcs"
+                        }
+                        , shipping: {
+                            status: "free shipping",
+                            delay: "Delivery in 1 day"
+                        },
+                        price: {
+                            currentPrice: 36.99,
+                            previousPrice: 48.56
+                        },
+                        image:productPicture
                     }
-                    , shipping: {
-                        status: "free shipping",
-                        delay: "Delivery in 1 day"
-                    },
-                    price: {
-                        currentPrice: 36.99,
-                        previousPrice: 48.56
-                    }
-                }, {
-                    name: "Product Title",
-                    description: "Space for small product description",
-                    extraInfo:
-                    {
-                        fresheness: "New(Extra fresh)",
-                        farm: "Grocery Tarm Fields",
-                        delivery: "Europe",
-                        stock: "320 pcs"
-                    }
-                    , shipping: {
-                        status: "free shipping",
-                        delay: "Delivery in 1 day"
-                    },
-                    price: {
-                        currentPrice: 36.99,
-                        previousPrice: 48.56
-                    }
-                }, {
-                    name: "Product Title",
-                    description: "Space for small product description",
-                    extraInfo:
-                    {
-                        fresheness: "New(Extra fresh)",
-                        farm: "Grocery Tarm Fields",
-                        delivery: "Europe",
-                        stock: "320 pcs"
-                    }
-                    , shipping: {
-                        status: "free shipping",
-                        delay: "Delivery in 1 day"
-                    },
-                    price: {
-                        currentPrice: 36.99,
-                        previousPrice: 48.56
-                    }
-                }
-            ]} />
+                ]} />
             <BottomNavigation />
 
         </div>
