@@ -4,8 +4,8 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const BannerSubFocus = ({ banner }) => {
     return (
-        banner.map(elem =>
-            <div className='BannerSubFocus'>
+        banner.map((elem,i) =>
+            <div className='BannerSubFocus' key={i.toString()}>
                 <div className='txt-area'>
                     <span className='secondary-txt'>{elem.subText}</span>
                     <span className='primary-txt'>{elem.heading}</span>

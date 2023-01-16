@@ -27,7 +27,7 @@ const TestimonyBox = ({ testimonies }) => {
             <div className='Testimonies' id="Testimonies" >
                 {
                     testimonies.map((elem, i) =>
-                        <div className='TestimonyBox' >
+                        <div className='TestimonyBox' key={i.toString()} >
                             <div className='text'>{elem.testimony}</div>
                             <div className='nameSurname'>{elem.nameSurname} </div>
                             <div className='img'></div>

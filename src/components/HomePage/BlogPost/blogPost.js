@@ -27,7 +27,7 @@ const BlogPostSec2 = ({ popularPost }) => {
             </div>
             <div className="vidInfo">
                 <div className="vidTag">{popularPost.tag}</div>
-                <p style={{'font-weight': 'bold'}}>{popularPost.description}</p>
+                <p style={{'fontWeight': 'bold'}}>{popularPost.description}</p>
                 <span >{popularPost.author}  {popularPost.date}</span>
             </div>
         </div>
@@ -36,8 +36,9 @@ const BlogPostSec2 = ({ popularPost }) => {
 const BlogPostSec3 = ({ post }) => {
     return (
         <div className="BlogPostSec3">
-            {post.map(elem =>
-                <div className="BlgP3">
+            {
+            post.map((elem,i) =>
+                <div className="BlgP3" key={i.toString()}>
                     <div className="videos">
                         <div className="videoInfo">
                             <p >{elem.title}</p>
@@ -46,7 +47,8 @@ const BlogPostSec3 = ({ post }) => {
                         <div className="video"></div>
                     </div>
                 </div>
-            )}
+            )
+            }
         </div>
     );
 }

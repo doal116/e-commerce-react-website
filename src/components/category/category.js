@@ -11,7 +11,7 @@ import {
     faX, faStar,
     faHeart, faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Ratings = ({ stars }) => {
     const yellowStarStyling = {
@@ -269,115 +269,112 @@ const BottomNavigation = () => {
         </div>
     )
 }
-class Category extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
 
-        return (
-            <div>
-                <Title categoryName={this.props.name} />
-                <SearchSection products={[
+function Category() {
+    const location = useLocation();
+    const { name } = location.state;
+    return (
+        <div>
+            <Title categoryName={name} />
+            <SearchSection products={[
+                {
+                    name: "Product Title",
+                    description: "Space for small product description",
+                    extraInfo:
                     {
-                        name: "Product Title",
-                        description: "Space for small product description",
-                        extraInfo:
-                        {
-                            fresheness: "New(Extra fresh)",
-                            farm: "Grocery Tarm Fields",
-                            delivery: "Europe",
-                            stock: "320 pcs"
-                        }
-                        , shipping: {
-                            status: "free shipping",
-                            delay: "Delivery in 1 day"
-                        },
-                        price: {
-                            currentPrice: 36.99,
-                            previousPrice: 48.56
-                        }
-                    },
-                    {
-                        name: "Product Title",
-                        description: "Space for small product description",
-                        extraInfo:
-                        {
-                            fresheness: "New(Extra fresh)",
-                            farm: "Grocery Tarm Fields",
-                            delivery: "Europe",
-                            stock: "320 pcs"
-                        }
-                        , shipping: {
-                            status: "free shipping",
-                            delay: "Delivery in 1 day"
-                        },
-                        price: {
-                            currentPrice: 36.99,
-                            previousPrice: 48.56
-                        }
-                    },
-                    {
-                        name: "Product Title",
-                        description: "Space for small product description",
-                        extraInfo:
-                        {
-                            fresheness: "New(Extra fresh)",
-                            farm: "Grocery Tarm Fields",
-                            delivery: "Europe",
-                            stock: "320 pcs"
-                        }
-                        , shipping: {
-                            status: "free shipping",
-                            delay: "Delivery in 1 day"
-                        },
-                        price: {
-                            currentPrice: 36.99,
-                            previousPrice: 48.56
-                        }
-                    }, {
-                        name: "Product Title",
-                        description: "Space for small product description",
-                        extraInfo:
-                        {
-                            fresheness: "New(Extra fresh)",
-                            farm: "Grocery Tarm Fields",
-                            delivery: "Europe",
-                            stock: "320 pcs"
-                        }
-                        , shipping: {
-                            status: "free shipping",
-                            delay: "Delivery in 1 day"
-                        },
-                        price: {
-                            currentPrice: 36.99,
-                            previousPrice: 48.56
-                        }
-                    }, {
-                        name: "Product Title",
-                        description: "Space for small product description",
-                        extraInfo:
-                        {
-                            fresheness: "New(Extra fresh)",
-                            farm: "Grocery Tarm Fields",
-                            delivery: "Europe",
-                            stock: "320 pcs"
-                        }
-                        , shipping: {
-                            status: "free shipping",
-                            delay: "Delivery in 1 day"
-                        },
-                        price: {
-                            currentPrice: 36.99,
-                            previousPrice: 48.56
-                        }
+                        fresheness: "New(Extra fresh)",
+                        farm: "Grocery Tarm Fields",
+                        delivery: "Europe",
+                        stock: "320 pcs"
                     }
-                ]} />
-                <BottomNavigation />
+                    , shipping: {
+                        status: "free shipping",
+                        delay: "Delivery in 1 day"
+                    },
+                    price: {
+                        currentPrice: 36.99,
+                        previousPrice: 48.56
+                    }
+                },
+                {
+                    name: "Product Title",
+                    description: "Space for small product description",
+                    extraInfo:
+                    {
+                        fresheness: "New(Extra fresh)",
+                        farm: "Grocery Tarm Fields",
+                        delivery: "Europe",
+                        stock: "320 pcs"
+                    }
+                    , shipping: {
+                        status: "free shipping",
+                        delay: "Delivery in 1 day"
+                    },
+                    price: {
+                        currentPrice: 36.99,
+                        previousPrice: 48.56
+                    }
+                },
+                {
+                    name: "Product Title",
+                    description: "Space for small product description",
+                    extraInfo:
+                    {
+                        fresheness: "New(Extra fresh)",
+                        farm: "Grocery Tarm Fields",
+                        delivery: "Europe",
+                        stock: "320 pcs"
+                    }
+                    , shipping: {
+                        status: "free shipping",
+                        delay: "Delivery in 1 day"
+                    },
+                    price: {
+                        currentPrice: 36.99,
+                        previousPrice: 48.56
+                    }
+                }, {
+                    name: "Product Title",
+                    description: "Space for small product description",
+                    extraInfo:
+                    {
+                        fresheness: "New(Extra fresh)",
+                        farm: "Grocery Tarm Fields",
+                        delivery: "Europe",
+                        stock: "320 pcs"
+                    }
+                    , shipping: {
+                        status: "free shipping",
+                        delay: "Delivery in 1 day"
+                    },
+                    price: {
+                        currentPrice: 36.99,
+                        previousPrice: 48.56
+                    }
+                }, {
+                    name: "Product Title",
+                    description: "Space for small product description",
+                    extraInfo:
+                    {
+                        fresheness: "New(Extra fresh)",
+                        farm: "Grocery Tarm Fields",
+                        delivery: "Europe",
+                        stock: "320 pcs"
+                    }
+                    , shipping: {
+                        status: "free shipping",
+                        delay: "Delivery in 1 day"
+                    },
+                    price: {
+                        currentPrice: 36.99,
+                        previousPrice: 48.56
+                    }
+                }
+            ]} />
+            <BottomNavigation />
 
-            </div>
-        );
-    };
+        </div>
+    );
 }
 
 export default Category;

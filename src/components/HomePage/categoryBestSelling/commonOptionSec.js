@@ -9,7 +9,8 @@ const CommonOptionSec = ({ nameOfSecion, categories, buttonMoreInfo }) => {
             </div>
             <div className="categories">
                 {
-                    categories.map(elem => <a href={`www.google.com`}>{elem}</a>)
+                    categories.map((elem,i) => <a key={i.toString()}
+                    href={`www.google.com`}>{elem}</a>)
                 }
             </div>
             <button>

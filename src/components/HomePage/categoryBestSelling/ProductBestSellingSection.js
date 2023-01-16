@@ -1,8 +1,8 @@
 
 const ProductBestSellingSection = ({ product }) => {
     return (
-        product.map(elem => 
-        <div className='ProductSect'>
+        product.map((elem,i) => 
+        <div key={i.toString()} className='ProductSect'>
             <img src={elem.img} alt={"product from mother nature"} />
 
             <div className='titleDescription'>
