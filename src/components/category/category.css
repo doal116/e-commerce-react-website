@@ -114,15 +114,42 @@
 }
 
 .Title>.filters>.filter3>.selectSection {
+    position: relative;
     display: flex;
     align-items: center;
     column-gap: 5px;
+    cursor: pointer;
+    height: 155%;
 }
 
 .Title>.filters>.filter3>.selectSection>.selectArrow {
     font-size: 10px;
 }
-
+.Title>.filters>.filter3>.selectSection>.listFilters {
+    position: absolute;
+    display: none;
+    top:32px;
+    right: 0px;
+    width: 150px;
+    word-wrap: break-word;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.Title>.filters>.filter3>.selectSection:hover .listFilters{
+    display: block;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgb(95, 95, 95, 0.5)  ;
+}
+.Title>.filters>.filter3>.selectSection>.listFilters>div{
+    cursor: pointer;
+    padding:10px;
+}
+.Title>.filters>.filter3>.selectSection>.listFilters>div:hover{
+    color: white;
+    background-color: rgb(137, 137, 137);
+    border-radius: 10px;
+}
 .Title>.filters>.filter3>.leftSide>.squareCheck {
     color: rgb(0, 148, 99);
     font-size: 20px
@@ -132,6 +159,10 @@
     margin-top: 16px;
     display: flex;
     column-gap: 8px;
+}
+.appliedFilters>.selectedFilters>i{
+    cursor: pointer;
+    color: black;
 }
 
 .selectedFilters {
@@ -418,6 +449,10 @@
     height: 20px;
     width: 20px;
     border: 2px solid rgb(182, 180, 180);
+    cursor: pointer;
+}
+.LeftSideFilters>.Ratings>.rating>.level>.box:hover{
+    border: 2px solid rgb(100, 100, 100);
 }
 
 .LeftSideFilters>.Ratings>.rating>.level>.stars {
@@ -437,17 +472,29 @@
     flex-direction: column;
     row-gap: 10px;
 }
+.LeftSideFilters>.Brands {
+    justify-self: center;
+}
 
 .LeftSideFilters>.Brands>.brand {
     display: flex;
     column-gap: 10px;
+    align-items: center;
 }
-
+.LeftSideFilters>.Brands>.brand>.checkedSquare {
+    cursor: pointer;
+    color: rgb(0, 135, 54);
+    font-size: 24px;
+}
 .LeftSideFilters>.Brands>.brand>.box {
+    cursor: pointer;
     height: 20px;
     width: 20px;
     border: 2px solid rgb(191, 191, 191);
     border-radius: 5px;
+}
+.LeftSideFilters>.Brands>.brand>.box:hover {
+    border: 2px solid rgb(118, 118, 118);
 }
 
 .LeftSideFilters>.categories {
@@ -546,13 +593,13 @@
     border: 2px solid rgb(153, 153, 153);
     border-radius: 10px;
     row-gap: 10px;
-    padding-left: 16px;
     padding-bottom: 16px;
+    align-items: center;
 }
 
 .productDisplayGrid>.mainBox>.buyingSection {
     display: flex;
-    column-gap: 16px;
+    column-gap: 32px;
 }
 
 .productDisplayGrid>.mainBox>.buyingSection>.btn-buy {
@@ -561,6 +608,18 @@
     background-color: rgb(0, 187, 124);
     font-weight: bold;
     color: white;
+    cursor: pointer;
+    border: 2px solid ;
+}
+.productDisplayGrid>.mainBox>.buyingSection>.btn-buy:hover{
+    animation: buyNowbtn 0.4s forwards ease-out;
+}
+@keyframes buyNowbtn {
+    to{
+        background-color: white;
+        color: rgb(0, 92, 61);
+        border: 2px solid rgb(0, 92, 61); 
+    }
 }
 
 .productDisplayGrid>.mainBox>.buyingSection>.price {

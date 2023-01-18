@@ -2,17 +2,40 @@
 import React, { useState } from "react";
 import './category.css';
 import productPicture from '../../naturalProduct.jpg';
+import gridDisplay from './gridDisplaySelected.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faTh, faList,
+    faList,
     faDotCircle, faCircle,
     faSquare, faSquareCheck,
     faChevronDown, faGripLinesVertical,
     faX, faStar,
-    faHeart, faChevronRight
+    faHeart, faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 
+const BoxChecker = () => {
+    const [checked, setBoxChecked] = useState(false);
+    const boxCheckedStyle = {
+        'color': 'rgb(0, 135, 54)',
+        'fontSize': '25px',
+        'cursor': 'pointer'
+    }
+    return (
+        <>
+            {
+                checked ?
+                    <FontAwesomeIcon icon={faSquareCheck}
+                        style={boxCheckedStyle}
+                        onClick={() => setBoxChecked(!checked)} />
+                    : <div className="box"
+                        onClick={() => setBoxChecked(!checked)}></div>
+            }
+
+        </>
+
+    )
+}
 const Ratings = ({ stars }) => {
     const yellowStarStyling = {
         color: 'rgb(255, 162, 0)'
@@ -24,7 +47,7 @@ const Ratings = ({ stars }) => {
         stars.map(
             (star, i) =>
                 <div key={i.toString()} className="level">
-                    <div className="box"></div>
+                    <BoxChecker />
                     <div className="stars">
                         {
                             [...Array(star)].map(
@@ -42,13 +65,31 @@ const Ratings = ({ stars }) => {
     )
 }
 
-const Brands = ({ brands }) => {
+const Brands = () => {
+    const [selectedBrands, setSelectedBrands] = useState(
+        [
+            { name: 'Air Heads', active: false },
+            { name: 'Betty Crocker', active: false },
+            { name: 'Black Forest', active: false },
+            { name: 'Dare', active: false }
+        ]
+    )
+
+    function boxChecked(BoxList, i) {
+        const newSelectBrands = [...BoxList];
+        newSelectBrands[i].active = !newSelectBrands[i].active;
+        setSelectedBrands(newSelectBrands);
+    }
+
     return (
-        brands.map(
+        selectedBrands.map(
             (brand, i) =>
-                <div key={i.toString()} className="brand">
-                    <div className="box"></div>
-                    <span>{brand}</span>
+                <div key={i.toString()} 
+                    className="brand"
+                    onClick={()=>boxChecked(selectedBrands,i)}
+                >
+                    <BoxChecker />
+                    <span>{brand.name}</span>
                 </div>
         )
     )
@@ -199,10 +240,11 @@ const ProductDisplayGrid = ({ products }) => {
                             <img src={elem.image} alt={"product from mother nature"} />
 
                             <div className='description'>
-                                <Link className="title">{elem.name}</Link>
+                                <Link to="/product" className="title">{elem.name}</Link>
                                 <span className='productDescrip'>{elem.description}</span>
+                                <Ratings stars={[3]} />
                             </div>
-                            <Ratings stars={[3]}/>
+
                             <div className='buyingSection'>
                                 <div className='price'>
                                     <span className='current-price'>{elem.price.currentPrice} USD</span>
@@ -210,6 +252,7 @@ const ProductDisplayGrid = ({ products }) => {
                                 </div>
                                 <div className='btn-buy'><span>BUY NOW</span></div>
                             </div>
+
                         </div>
                 )
             }
@@ -228,6 +271,12 @@ const SearchSection = ({ products, listGridDisplay }) => {
     )
 }
 const Title = ({ categoryName, listGridDisplay, setlistGridDisplay }) => {
+    const [filterList, setFilterList] = useState([
+        { name: "Price: Low to High", active: false },
+        { name: "Price: High to Low", active: false },
+        { name: "Newest Arrivals", active: false },
+        { name: "Avg. Customer Review", active: false }
+    ]);
     return (
         <div className="Title">
             <div className="CategoryPath">
@@ -236,8 +285,29 @@ const Title = ({ categoryName, listGridDisplay, setlistGridDisplay }) => {
             <div className="choosenCategory">
                 <h2>{categoryName}</h2>
                 <div className="ViewStyle">
-                    <p className="gridView" onClick={() => setlistGridDisplay(!listGridDisplay)}><FontAwesomeIcon icon={faTh} /> Gird view</p>
-                    <p className="listView" onClick={() => setlistGridDisplay(!listGridDisplay)} ><FontAwesomeIcon icon={faList} /> List View</p>
+                    <p className="gridView"
+                        onClick={
+                            () => {
+                                if (listGridDisplay) return setlistGridDisplay(!listGridDisplay)
+                            }
+                        }>
+                        {
+                            !listGridDisplay ?
+                                <img src={gridDisplay} style={{ 'maxWidth': '20px', 'marginRight': '6px' }} alt="Gridicon"></img> :
+                                <img src={gridDisplay} style={{ 'maxWidth': '20px', 'marginRight': '6px' }} alt="Gridicon"></img>
+                        }
+                        Gird view</p>
+                    <p className="listView" onClick={
+                        () => {
+                            if (!listGridDisplay) return setlistGridDisplay(!listGridDisplay)
+                        }
+                    } >
+                        {
+                            listGridDisplay ?
+                                <FontAwesomeIcon icon={faList} style={{ 'color': 'rgb(0, 187, 124)' }} /> :
+                                <FontAwesomeIcon icon={faList} />
+                        }
+                        List View</p>
                     <p className="productAvailable"><span>123</span> Products</p>
                 </div>
             </div>
@@ -267,24 +337,57 @@ const Title = ({ categoryName, listGridDisplay, setlistGridDisplay }) => {
                         <span>12</span>
                     </div>
                     <FontAwesomeIcon icon={faGripLinesVertical} />
+
                     <div className="selectSection">
                         <span>select</span>
                         <FontAwesomeIcon className="selectArrow" icon={faChevronDown} />
+
+                        <div className="listFilters">
+                            {
+                                filterList.map(
+                                    (elem, i) =>
+                                        <div key={i.toString()}
+                                            onClick={
+                                                () => {
+                                                    const newFilterList = [...filterList]
+                                                    newFilterList[i].active = !newFilterList[i].active;
+                                                    setFilterList(newFilterList);
+                                                }}
+                                        >{elem.name}</div>
+                                )
+                            }
+                        </div>
+
                     </div>
                 </div>
 
             </div>
             <div className="appliedFilters">
                 <span>Applied filters: </span>
-                <div className="selectedFilters">
-                    <span>selected Filter </span>
-                    <i><FontAwesomeIcon icon={faX} /></i>
-                </div>
+                {
+                    filterList.map(
+                        (elem, i) => {
+                            if (elem.active) {
+                                return (
+                                    <div key={i.toString()} className="selectedFilters">
+                                        <span>{elem.name} </span>
+                                        <i><FontAwesomeIcon icon={faX} onClick={
+                                            () => {
+                                                const newFilterList = [...filterList]
+                                                newFilterList[i].active = !newFilterList[i].active;
+                                                setFilterList(newFilterList);
+                                            }} /></i>
+                                    </div>
+                                )
+                            } return '';
+                        }
+                    )
+
+                }
             </div>
         </div>
     )
 }
-
 const BottomNavigation = () => {
     return (
         <div className="BottomNavigation">
@@ -305,9 +408,7 @@ const BottomNavigation = () => {
         </div>
     )
 }
-
 function Category() {
-
     const [listGridDisplay, setlistGridDisplay] = useState(true);
     const location = useLocation();
     const { name } = location.state;
@@ -340,7 +441,7 @@ function Category() {
                             currentPrice: 36.99,
                             previousPrice: 48.56
                         },
-                        image:productPicture
+                        image: productPicture
                     },
                     {
                         name: "Product Title",
@@ -360,7 +461,7 @@ function Category() {
                             currentPrice: 36.99,
                             previousPrice: 48.56
                         },
-                        image:productPicture
+                        image: productPicture
                     },
                     {
                         name: "Product Title",
@@ -380,7 +481,7 @@ function Category() {
                             currentPrice: 36.99,
                             previousPrice: 48.56
                         },
-                        image:productPicture
+                        image: productPicture
                     }, {
                         name: "Product Title",
                         description: "Space for small product description",
@@ -399,7 +500,7 @@ function Category() {
                             currentPrice: 36.99,
                             previousPrice: 48.56
                         },
-                        image:productPicture
+                        image: productPicture
                     }, {
                         name: "Product Title",
                         description: "Space for small product description",
@@ -418,7 +519,7 @@ function Category() {
                             currentPrice: 36.99,
                             previousPrice: 48.56
                         },
-                        image:productPicture
+                        image: productPicture
                     }
                 ]} />
             <BottomNavigation />
