@@ -10,9 +10,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import heart from './heart.png';
 import carrot from './carrots.png';
-import ribs  from './bonelessRibeyes.jpg'
-import ProductBestSellingSection from "../HomePage/categoryBestSelling/ProductBestSellingSection";
+import ribs  from './bonelessRibeyes.jpg';
 import profilePic from './profilePic.png';
+import ProductBlock from "../commonComponent/ProductBlock";
+import ExtraDetails from "../commonComponent/ProductExtraDetails";
+
 
 const Ratings = ({ stars }) => {
     const yellowStarStyling = {
@@ -42,31 +44,7 @@ const Ratings = ({ stars }) => {
         )
     )
 }
-const ExtraDetails = ({ info }) => {
-    return (
-        <div className="extraDetails">
 
-            <div className="leftSec">
-                {
-                    info.left.map(inf =>
-                        <span style={{ 'opacity': '0.5' }}>{inf}:</span>
-                    )
-                }
-            </div>
-            <div className="rightSec">
-                {
-                    info.right.map(inf => {
-                        if (inf === 'In Stock')
-                            return <span style={{ 'color': 'green', 'textDecoration': 'underline' }}>{inf}</span>;
-                        else return <span>{inf}</span>;
-                    }
-                    )
-                }
-            </div>
-
-        </div>
-    )
-}
 const AddToCart = () => {
     const [pieces, setPieces] = useState(1);
     const availablePieces = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -390,11 +368,11 @@ const RelatedProducts = () => {
 
             </div>
             <div style={styling}>
-                <ProductBestSellingSection product={[{ title: "Ribs", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot },
-                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot },
-                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot },
-                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot },
-                { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: carrot }]} />
+                <ProductBlock products={[{ name: "Ribs", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot },
+                { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot },
+                { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot },
+                { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot },
+                { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot }]} />
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import CommonOptionSec from "./commonOptionSec";
+import CommonOptionSec from "../../commonComponent/CategoryMore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 

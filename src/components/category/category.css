@@ -41,6 +41,14 @@
     font-weight: bold;
 }
 
+.Title>.filters>.filter3>.leftSide>.box {
+    border-radius: 5px;
+    height: 20px;
+    width: 20px;
+    border: 2px solid rgb(182, 180, 180);
+    cursor: pointer;
+}
+
 .Title>.filters {
     display: flex;
     width: 100%;
@@ -53,20 +61,27 @@
     border: 2px solid rgb(205, 205, 205);
 }
 
-.Title>.filters>.filter1 {
+.Title>.filters>.AscDescending {
     display: flex;
     column-gap: 12px;
     align-items: center;
+    color: rgb(154, 154, 154);
 }
 
-.Title>.filters>.filter1>span {
+.Title>.filters>.AscDescending>span {
     margin-bottom: 2px;
 }
-
-.Title>.filters>.filter1>.circle {
+.Title>.filters>.AscDescending div{
+    cursor: pointer;
+}
+.Title>.filters>.AscDescending .circle {
     border: 2px solid rgb(205, 205, 205);
     border-radius: 50%;
     color: transparent;
+}
+.Title>.filters>.AscDescending .dot{
+    color: black;
+    font-size: 19px;
 }
 
 .Title>.filters>.filter2 {
@@ -74,7 +89,13 @@
     align-items: center;
     column-gap: 8px;
 }
-
+.Title>.filters>.filter2>.box{
+    border-radius: 5px;
+    height: 22px;
+    width: 20px;
+    border: 2px solid rgb(182, 180, 180);
+    cursor: pointer;
+}
 .Title>.filters>.filter2>span {
     margin-bottom: 2px;
 }
@@ -125,10 +146,11 @@
 .Title>.filters>.filter3>.selectSection>.selectArrow {
     font-size: 10px;
 }
+
 .Title>.filters>.filter3>.selectSection>.listFilters {
     position: absolute;
     display: none;
-    top:32px;
+    top: 32px;
     right: 0px;
     width: 150px;
     word-wrap: break-word;
@@ -136,23 +158,27 @@
     font-weight: bold;
     font-size: 14px;
 }
-.Title>.filters>.filter3>.selectSection:hover .listFilters{
+
+.Title>.filters>.filter3>.selectSection:hover .listFilters {
     display: block;
     background-color: rgb(255, 255, 255);
-    box-shadow: 0px 0px 10px rgb(95, 95, 95, 0.5)  ;
+    box-shadow: 0px 0px 10px rgb(95, 95, 95, 0.5);
 }
-.Title>.filters>.filter3>.selectSection>.listFilters>div{
+
+.Title>.filters>.filter3>.selectSection>.listFilters>div {
     cursor: pointer;
-    padding:10px;
+    padding: 10px;
 }
-.Title>.filters>.filter3>.selectSection>.listFilters>div:hover{
+
+.Title>.filters>.filter3>.selectSection>.listFilters>div:hover {
     color: white;
     background-color: rgb(137, 137, 137);
     border-radius: 10px;
 }
+
 .Title>.filters>.filter3>.leftSide>.squareCheck {
     color: rgb(0, 148, 99);
-    font-size: 20px
+    font-size: 22px
 }
 
 .appliedFilters {
@@ -160,7 +186,8 @@
     display: flex;
     column-gap: 8px;
 }
-.appliedFilters>.selectedFilters>i{
+
+.appliedFilters>.selectedFilters>i {
     cursor: pointer;
     color: black;
 }
@@ -208,7 +235,6 @@
     grid-template-columns: auto 35% auto;
     column-gap: 24px;
     border-radius: 10px;
-    background-color: azure;
 }
 
 .ProductDisplay>img {
@@ -422,20 +448,47 @@
 }
 
 .LeftSideFilters>.submittingFilter>.apply {
+    cursor: pointer;
     background-color: rgb(0, 146, 97);
     width: fit-content;
     padding: 6px 10px 10px 10px;
     border-radius: 10px;
-    border: 3px solid green;
+    border: 2px solid green;
     color: white;
 }
 
+.LeftSideFilters>.submittingFilter>.apply:hover {
+    animation: applyBtn 0.4s forwards ease-out;
+}
+
+@keyframes applyBtn {
+    to {
+        background-color: white;
+        color: rgb(0, 92, 61);
+        border: 2px solid rgb(0, 92, 61);
+    }
+}
+
 .LeftSideFilters>.submittingFilter>.reset {
+    cursor: pointer;
     background-color: rgb(212, 212, 212);
     padding: 10px 10px 10px 10px;
     width: fit-content;
     border-radius: 10px;
     color: rgb(101, 101, 101);
+    border: 2px solid transparent;
+}
+
+.LeftSideFilters>.submittingFilter>.reset:hover {
+    animation: reset 0.4s forwards ease-out;
+}
+
+@keyframes reset {
+    to {
+        background-color: white;
+        color: rgb(0, 92, 61);
+        border: 2px solid rgb(0, 92, 61);
+    }
 }
 
 .LeftSideFilters>.Ratings>.rating {
@@ -451,7 +504,8 @@
     border: 2px solid rgb(182, 180, 180);
     cursor: pointer;
 }
-.LeftSideFilters>.Ratings>.rating>.level>.box:hover{
+
+.LeftSideFilters>.Ratings>.rating>.level>.box:hover {
     border: 2px solid rgb(100, 100, 100);
 }
 
@@ -472,6 +526,7 @@
     flex-direction: column;
     row-gap: 10px;
 }
+
 .LeftSideFilters>.Brands {
     justify-self: center;
 }
@@ -481,11 +536,13 @@
     column-gap: 10px;
     align-items: center;
 }
+
 .LeftSideFilters>.Brands>.brand>.checkedSquare {
     cursor: pointer;
     color: rgb(0, 135, 54);
     font-size: 24px;
 }
+
 .LeftSideFilters>.Brands>.brand>.box {
     cursor: pointer;
     height: 20px;
@@ -493,6 +550,7 @@
     border: 2px solid rgb(191, 191, 191);
     border-radius: 5px;
 }
+
 .LeftSideFilters>.Brands>.brand>.box:hover {
     border: 2px solid rgb(118, 118, 118);
 }
@@ -583,69 +641,4 @@
     flex-wrap: wrap;
     column-gap: 24px;
     row-gap: 24px;
-}
-
-.productDisplayGrid>.mainBox {
-    display: flex;
-    flex-direction: column;
-    width: 260px;
-    height: fit-content;
-    border: 2px solid rgb(153, 153, 153);
-    border-radius: 10px;
-    row-gap: 10px;
-    padding-bottom: 16px;
-    align-items: center;
-}
-
-.productDisplayGrid>.mainBox>.buyingSection {
-    display: flex;
-    column-gap: 32px;
-}
-
-.productDisplayGrid>.mainBox>.buyingSection>.btn-buy {
-    padding: 8px 16px 8px 16px;
-    border-radius: 10px;
-    background-color: rgb(0, 187, 124);
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    border: 2px solid ;
-}
-.productDisplayGrid>.mainBox>.buyingSection>.btn-buy:hover{
-    animation: buyNowbtn 0.4s forwards ease-out;
-}
-@keyframes buyNowbtn {
-    to{
-        background-color: white;
-        color: rgb(0, 92, 61);
-        border: 2px solid rgb(0, 92, 61); 
-    }
-}
-
-.productDisplayGrid>.mainBox>.buyingSection>.price {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-}
-
-.productDisplayGrid>.mainBox>.buyingSection>.price>.old-price {
-    text-decoration: line-through;
-    font-size: 12px;
-}
-
-.productDisplayGrid>.mainBox>.description {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-}
-.productDisplayGrid>.mainBox>.description>.title{
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
-}
-.productDisplayGrid>.mainBox>img {
-    margin-top: 10px;
-    width: 90%;
-    border-radius: 10px;
 }

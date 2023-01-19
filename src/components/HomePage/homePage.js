@@ -1,10 +1,10 @@
 import './homePage.css';
 import Testimonials from './Testimonials/testimonials';
 import BlogPost from './BlogPost/blogPost';
-import CategoryMenu from './categoryBestSelling/categoryMenu';
-import BestSellingProducts from './categoryBestSelling/BestSellingProducts';
-import BestFromFarmers from './categoryBestSelling/BestFromFarmers';
-import SectionHeadlines from './categoryBestSelling/sectionHeadlines';
+import CategoryMenu from './BestSelling/categoryMenu';
+import BestSellingProducts from './BestSelling/BestSellingProducts';
+import BestFromFarmers from './BestSelling/BestFromFarmers';
+import SectionHeadlines from './BestSelling/sectionHeadlines';
 
 import productIm2 from './bonelessRibeyes.jpg';
 import productIm from './naturalProduct.jpg';
@@ -21,18 +21,18 @@ class HomePage extends React.Component {
                 <BestSellingProducts
                     categories={["Kitchen", "Meat and Fish",
                         "Special nutrition", "Pharmacy", "Kitchen"]}
-                    products={[{ title: "Butter", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm },
-                    { title: "Butter", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm },
-                    { title: "Butter", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm },
-                    { title: "Butter", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm }]}
+                    products={[{ name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 1.48, previousPrice: 131.2}, image: productIm },
+                    { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 1.48, previousPrice: 131.2} ,image: productIm },
+                    { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 1.48, previousPrice: 131.2} ,image: productIm },
+                    { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 1.48, previousPrice: 131.2}, image: productIm }]}
                 />
                 <BestFromFarmers
                     categories={["Carrots", "Tommatoes",
                         "Potatoes", "Chicken", "Pork"]}
-                    products={[{ title: "Ribs", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: productIm2 },
-                    { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: productIm2 },
-                    { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: productIm2 },
-                    { title: "Butter", description: "very tasty you wanna have more", price: 10.48, oldPrice: 131.2, img: productIm2 }]}
+                    products={[{ name: "Ribs", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: productIm2 },
+                    { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: productIm2 },
+                    { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: productIm2 },
+                    { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: productIm2 }]}
                 />
                 <Testimonials
                     testimonies={[
@@ -78,11 +78,11 @@ class HomePage extends React.Component {
                             nameSurname: `Name and Surname`
                         }]}
                 />
-                <SectionHeadlines products={[{ title: "Essential oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 131.2, img: productIm3 },
-                { title: "MGD Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 231.2, img: productIm3 },
-                { title: "Best Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 431.2, img: productIm3 },
-                { title: "Good Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 531.2, img: productIm3 },
-                { title: "Good Oil", description: "very tasty you wanna have more", price: 1.48, oldPrice: 531.2, img: productIm3 }]} />
+                <SectionHeadlines products={[{ name: "Essential oil", description: "very tasty you wanna have more", price:{currentPrice: 1.48, previousPrice: 131.2}, image: productIm3 },
+                { name: "MGD Oil", description: "very tasty you wanna have more", price:{currentPrice: 1.48, previousPrice: 231.2}, image: productIm3 },
+                { name: "Best Oil", description: "very tasty you wanna have more", price:{currentPrice: 1.48, previousPrice: 431.2},image: productIm3 },
+                { name: "Good Oil", description: "very tasty you wanna have more", price:{currentPrice: 1.48, previousPrice: 531.2}, image: productIm3 },
+                { name: "Good Oil", description: "very tasty you wanna have more", price:{currentPrice: 1.48, previousPrice: 531.2}, image: productIm3 }]} />
                 <BlogPost />
                 
             </div>

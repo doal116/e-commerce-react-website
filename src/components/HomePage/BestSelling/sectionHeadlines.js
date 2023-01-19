@@ -1,4 +1,4 @@
-import ProductBestSellingSection from "./ProductBestSellingSection";
+import ProductBlock from "../../commonComponent/ProductBlock";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +13,7 @@ const SectionHeadlines = ({products}) => {
                 </div>
             </div>
             <div className='productSec'>
-                <ProductBestSellingSection product={products}/>
+                <ProductBlock products={products}/>
             </div>
 
         </div>
