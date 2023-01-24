@@ -1,0 +1,129 @@
+.homepage {
+    width: 100%;
+    resize: none;
+    overflow-x: auto;
+
+    .CategoryMenu {
+        margin-top: 180px;
+        display: flex;
+        column-gap: 24px;
+
+        .CommonOptionSec {
+            width: 300px;
+            height: 280px;
+            margin-left: 80px;
+
+            .categories {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+
+                a {
+                    color: rgb(0, 165, 110);
+                }
+            }
+
+            .title {
+                margin: 16px 0px 16px 0px;
+
+                span {
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+            }
+
+            button {
+                border: none;
+                height: 40px;
+                border-radius: 10px;
+                margin-top: 32px;
+
+                span {
+                    font-size: 16px;
+                    font-weight: bold;
+                    margin-left: 8px;
+                }
+
+                .icon {
+                    margin: 0px 8px 0px 8px;
+                }
+            }
+
+            button:hover {
+                animation: moreInfo 0.2s;
+                animation-fill-mode: forwards;
+                animation-timing-function: ease-out;
+                cursor: pointer;
+            }
+
+            @keyframes moreInfo {
+                100% {
+                    background-color: rgb(62, 62, 62);
+                    color: rgb(255, 255, 255);
+                }
+            }
+        }
+
+        .BannerSubFocus {
+            border-radius: 16px;
+            background-color: aquamarine;
+            width: 360px;
+            height: 280px;
+            display: grid;
+            grid-template-rows: auto auto;
+
+            button {
+                align-self: end;
+                background-color: transparent;
+                border: 3px solid rgb(56, 56, 56);
+                height: 40px;
+                border-radius: 10px;
+                margin: 16px 0px 32px 16px;
+                width: fit-content;
+                color: rgb(56, 56, 56);
+
+                a {
+                    margin: 0px 0px 0px 4px;
+                    text-decoration: none;
+                    color: inherit;
+                    font-weight: bold;
+                }
+
+                .icon {
+                    margin: 0px 8px 0px 8px;
+                }
+            }
+
+            button:hover {
+                animation-name: bannerButton;
+                cursor: pointer;
+                animation-duration: 0.8s;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes bannerButton {
+                100% {
+                    background-color: rgb(29, 96, 97);
+                    border: transparent;
+                    color: rgb(255, 255, 255);
+                }
+            }
+
+            .txt-area {
+                display: flex;
+                flex-direction: column;
+                row-gap: 6px;
+                margin: 40px 0px 0px 16px;
+                .primary-txt {
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+    .BestSellingProducts {
+        margin-top: 48px;
+        display: flex;
+        column-gap: 24px;
+    }
+}

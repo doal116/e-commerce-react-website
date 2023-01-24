@@ -1,0 +1,349 @@
+.productDisplay {
+    display: grid;
+    grid-template-columns: auto 55%;
+    padding-left: 100px;
+
+    .descriptionSec {
+        .shortDescription {
+            width: 650px;
+            font-size: 18px;
+        }
+
+        .moreDescription {
+            display: flex;
+            column-gap: 48px;
+        }
+
+        .addToCart {
+            margin-top: 24px;
+            display: flex;
+            height: 72px;
+            width: 500px;
+            border: 2px solid rgb(240, 240, 240);
+            border-radius: 10px;
+            column-gap: 64px;
+
+            .price {
+                display: flex;
+                flex-direction: column;
+                align-self: center;
+                margin-left: 16px;
+
+                .currentPrice {
+                    color: rgb(0, 139, 28);
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                .oldPrice {
+                    font-weight: bold;
+                    text-decoration: line-through;
+                    opacity: 0.5;
+                    font-size: 11px;
+                }
+            }
+
+            .addToCartOptions {
+                align-self: center;
+                position: relative;
+                display: flex;
+                column-gap: 24px;
+
+                .btnAddToCart {
+                    background-color: rgb(76, 139, 0);
+                    height: fit-content;
+                    padding: 6px 16px 8px 16px;
+                    border-radius: 10px;
+                    color: white;
+                    font-weight: bold;
+                    border: 3px solid rgb(36, 99, 0);
+
+                    span {
+                        font-size: 20px;
+                    }
+                }
+
+                .btnAddToCart:hover {
+                    cursor: pointer;
+                    animation: btnAddToCart;
+                    animation-duration: 0.4s;
+                    animation-fill-mode: forwards;
+                    animation-timing-function: ease-out;
+                }
+
+                @keyframes btnAddToCart {
+                    100% {
+                        background-color: white;
+                        color: rgb(0, 92, 61);
+                        border: 3px solid rgb(0, 92, 61);
+                    }
+                }
+
+                .piecesToAddSec {
+                    .piecesToAdd {
+                        border: 1px solid rgb(189, 189, 189);
+                        background-color: rgb(239, 239, 239);
+                        border-radius: 10px;
+                        width: 100px;
+                        height: 100%;
+                        display: grid;
+                        grid-template-columns: auto auto auto;
+                        column-gap: 10px;
+                        padding-left: 20px;
+
+                        span {
+                            align-self: center;
+
+                        }
+
+                        .pieces {
+                            align-self: center;
+                            align-items: center;
+                            font-weight: bold;
+                            display: flex;
+                            column-gap: 6px;
+                            cursor: pointer;
+
+                            .arrowDown {
+                                font-size: 12px;
+                            }
+                        }
+                    }
+
+                    .numPieces {
+                        background-color: rgb(239, 239, 239);
+                        display: none;
+                        position: absolute;
+                        width: 48px;
+                        height: 200px;
+                        left: 20%;
+                        border-bottom-right-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                        box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.5);
+                        overflow-y: auto;
+
+                        .num {
+                            cursor: pointer;
+                            padding-left: 6px;
+                        }
+
+                        .num:hover {
+                            background-color: rgb(51, 51, 51);
+                            color: white;
+                        }
+                    }
+                }
+
+                .piecesToAddSec:hover .numPieces {
+                    display: block;
+                }
+            }
+        }
+
+        .addToWishList {
+            margin-top: 24px;
+            display: flex;
+            column-gap: 16px;
+            margin-bottom: 24px;
+
+            .wishList {
+                .heartIcon {
+                    width: 20px;
+                }
+
+                span {
+                    font-size: 19px;
+                    font-weight: bold;
+                }
+            }
+
+            .compare {
+                span {
+                    font-size: 19px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .ReviewDescripQuestion {
+            width: 600px;
+
+            .questions {
+                margin-top: 16px;
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+
+                .question {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    align-items: center;
+                    width: 100%;
+                    background-color: rgb(93, 93, 93);
+                    border-radius: 10px;
+                    cursor: pointer;
+
+                    i {
+                        justify-self: end;
+                        margin-right: 10px;
+                        color: white;
+                        font-weight: bold;
+                    }
+
+                    p {
+                        margin-left: 24px;
+                        color: white;
+                        font-weight: bold;
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .reviews {
+                .userInfo {
+                    display: flex;
+                    column-gap: 16px;
+
+                    img {
+                        width: 100px;
+                        height: fit-content;
+                        border-radius: 50%;
+                        align-self: center;
+                        margin-left: 10px;
+                        border: 3px solid rgb(2, 173, 2);
+                    }
+
+                    .userReview {
+                        margin: 20px 0px 0px 0px;
+
+                        .userName {
+                            font-weight: bold;
+                            font-size: 16px;
+                        }
+
+                        p {
+                            font-size: 14px;
+                        }
+
+                        .date {
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+
+            nav {
+                display: grid;
+                grid-template-columns: auto auto auto;
+                height: 34px;
+                align-items: start;
+                padding-left: 20px;
+                font-size: 18px;
+                font-weight: bold;
+
+                div {
+                    cursor: pointer;
+                    height: inherit;
+                }
+
+                .greenSlider {
+                    animation-name: greenSlider;
+                    animation-duration: 0.5s;
+                    animation-fill-mode: forwards;
+                    animation-timing-function: ease;
+                }
+
+                .graySlider {
+                    border-bottom: 1px solid rgb(214, 214, 214);
+                }
+
+                @keyframes greenSlider {
+                    from {
+                        border-bottom: 1px solid rgb(214, 214, 214);
+                    }
+
+                    to {
+                        border-bottom: 2px solid rgb(0, 208, 80);
+                    }
+                }
+            }
+
+            table {
+                width: 100%;
+            }
+
+            td,
+            th {
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                border-bottom: 1px solid rgb(214, 214, 214);
+            }
+        }
+    }
+
+    .pictureSec {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+        margin-bottom: 24px;
+
+        .productPic {
+            background-color: gray;
+            width: 80%;
+            border-radius: 10px;
+
+            img {
+                height: auto;
+                max-width: 80%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+
+        }
+
+        .grid {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 10px;
+            row-gap: 10px;
+
+            img {
+                max-width: 150px;
+                height: fit-content;
+                border-radius: 10px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgb(47, 47, 47);
+            }
+        }
+    }
+
+
+}
+
+.RelatedProducts {
+    width: 100%;
+
+    .upperSec {
+        width: 90%;
+        height: 50px;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        margin: 0px 80px 0px;
+
+        button {
+            justify-self: end;
+            width: fit-content;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}

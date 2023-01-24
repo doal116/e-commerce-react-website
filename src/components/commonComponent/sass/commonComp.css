@@ -1,0 +1,23 @@
+.extraDetails {
+  display: flex;
+  -moz-column-gap: 32px;
+       column-gap: 32px;
+}
+.extraDetails .leftSec {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.extraDetails .rightSec {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.box {
+  cursor: pointer;
+  height: 20px;
+  width: 18px;
+  border: 2px solid rgb(205, 205, 205);
+  border-radius: 5px;
+}/*# sourceMappingURL=commonComp.css.map */

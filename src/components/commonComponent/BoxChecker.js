@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faSquareCheck
 } from "@fortawesome/free-solid-svg-icons";
+import './sass/commonComp.css';
+
 const BoxChecker = () => {
     const [checked, setBoxChecked] = React.useState(false);
     const boxCheckedStyle = {
-        'color': 'rgb(0, 135, 54)',
-        'fontSize': '25px',
+        'color': 'rgb(16, 155, 109)',
+        'fontSize': '23px',
         'cursor': 'pointer'
     }
     return (

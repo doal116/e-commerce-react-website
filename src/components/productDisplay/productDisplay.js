@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import './productDisplay.css';
+import './sass/productDisplay.css';
 import {
     faStar, faPlus
     , faChevronDown,
@@ -237,7 +237,7 @@ const ReviewDescripQuestion = ({ table }) => {
 
     return (
         <div className="ReviewDescripQuestion">
-            <div className="nav">
+            <nav>
                 {
                     description ?
                         <div onClick={() => descriptionV()} className="greenSlider">Description</div> :
@@ -253,7 +253,7 @@ const ReviewDescripQuestion = ({ table }) => {
                         <div onClick={() => questionVal()} className="greenSlider">Questions</div> :
                         <div onClick={() => questionVal()} className="graySlider">Questions</div>
                 }
-            </div>
+            </nav>
             {
                 description ? <Descrip table={table} /> :
                     review ? <Review usersInfo={

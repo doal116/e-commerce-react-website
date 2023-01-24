@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faStar
 } from "@fortawesome/free-solid-svg-icons";
-import BoxChecker from "./BoxChecker";
 
 const Ratings = ({ stars }) => {
     const yellowStarStyling = {
@@ -16,7 +15,6 @@ const Ratings = ({ stars }) => {
         stars.map(
             (star, i) =>
                 <div key={i.toString()} className="level">
-                    <BoxChecker />
                     <div className="stars">
                         {
                             [...Array(star)].map(

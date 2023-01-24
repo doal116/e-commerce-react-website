@@ -1,0 +1,134 @@
+.homepage {
+  width: 100%;
+  resize: none;
+  overflow-x: auto;
+}
+.homepage .CategoryMenu {
+  margin-top: 180px;
+  display: flex;
+  -moz-column-gap: 24px;
+       column-gap: 24px;
+}
+.homepage .CategoryMenu .CommonOptionSec {
+  width: 300px;
+  height: 280px;
+  margin-left: 80px;
+}
+.homepage .CategoryMenu .CommonOptionSec .categories {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.homepage .CategoryMenu .CommonOptionSec .categories a {
+  color: rgb(0, 165, 110);
+}
+.homepage .CategoryMenu .CommonOptionSec .title {
+  margin: 16px 0px 16px 0px;
+}
+.homepage .CategoryMenu .CommonOptionSec .title span {
+  font-weight: bold;
+  font-size: 20px;
+}
+.homepage .CategoryMenu .CommonOptionSec button {
+  border: none;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 32px;
+}
+.homepage .CategoryMenu .CommonOptionSec button span {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+.homepage .CategoryMenu .CommonOptionSec button .icon {
+  margin: 0px 8px 0px 8px;
+}
+.homepage .CategoryMenu .CommonOptionSec button:hover {
+  -webkit-animation: moreInfo 0.2s;
+          animation: moreInfo 0.2s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  cursor: pointer;
+}
+@-webkit-keyframes moreInfo {
+  100% {
+    background-color: rgb(62, 62, 62);
+    color: rgb(255, 255, 255);
+  }
+}
+@keyframes moreInfo {
+  100% {
+    background-color: rgb(62, 62, 62);
+    color: rgb(255, 255, 255);
+  }
+}
+.homepage .CategoryMenu .BannerSubFocus {
+  border-radius: 16px;
+  background-color: aquamarine;
+  width: 360px;
+  height: 280px;
+  display: grid;
+  grid-template-rows: auto auto;
+}
+.homepage .CategoryMenu .BannerSubFocus button {
+  align-self: end;
+  background-color: transparent;
+  border: 3px solid rgb(56, 56, 56);
+  height: 40px;
+  border-radius: 10px;
+  margin: 16px 0px 32px 16px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: rgb(56, 56, 56);
+}
+.homepage .CategoryMenu .BannerSubFocus button a {
+  margin: 0px 0px 0px 4px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+.homepage .CategoryMenu .BannerSubFocus button .icon {
+  margin: 0px 8px 0px 8px;
+}
+.homepage .CategoryMenu .BannerSubFocus button:hover {
+  -webkit-animation-name: bannerButton;
+          animation-name: bannerButton;
+  cursor: pointer;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+@-webkit-keyframes bannerButton {
+  100% {
+    background-color: rgb(29, 96, 97);
+    border: transparent;
+    color: rgb(255, 255, 255);
+  }
+}
+@keyframes bannerButton {
+  100% {
+    background-color: rgb(29, 96, 97);
+    border: transparent;
+    color: rgb(255, 255, 255);
+  }
+}
+.homepage .CategoryMenu .BannerSubFocus .txt-area {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  margin: 40px 0px 0px 16px;
+}
+.homepage .CategoryMenu .BannerSubFocus .txt-area .primary-txt {
+  font-weight: bold;
+  font-size: 20px;
+}
+.homepage .BestSellingProducts {
+  margin-top: 48px;
+  display: flex;
+  -moz-column-gap: 24px;
+       column-gap: 24px;
+}/*# sourceMappingURL=homePage.css.map */

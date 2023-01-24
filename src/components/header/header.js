@@ -3,7 +3,7 @@ import shoppingCart from './shopping-cart.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import './header.css';
+import './sass/header.css';
 import { Link } from 'react-router-dom';
 
 const BottomPart = ({ Options }) => {

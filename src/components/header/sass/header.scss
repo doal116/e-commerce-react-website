@@ -1,0 +1,164 @@
+$marginLeftRight: 80px;
+
+header {
+    width: 100%;
+    height: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+    .Upper-part {
+        width: 100%;
+        height: 20%;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        box-shadow: 0px 1px 1px 0px rgba(68, 68, 68, 0.2);
+
+        .upper-part-left {
+            margin-left: $marginLeftRight;
+            display: flex;
+            margin-bottom: 4px;
+
+            .UpperPart-elm-left {
+                margin-right: 30px;
+            }
+        }
+
+        .upper-part-right {
+            color: rgb(0, 165, 110);
+            margin-right: $marginLeftRight;
+            justify-self: end;
+            display: flex;
+            margin-bottom: 4px;
+
+            .UpperPart-elm-right {
+                margin-left: 30px;
+            }
+        }
+    }
+
+    .Middle-part {
+        width: 100%;
+        height: 50%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        align-items: center;
+
+        .Name {
+            margin-left: $marginLeftRight;
+        }
+
+        .search-tool {
+            border: 2px solid rgb(197, 197, 197);
+            background-color: rgb(242, 242, 242);
+            padding: 5px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            height: 30px;
+            width: 420px;
+
+            .category {
+                width: fit-content;
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+                margin-bottom: 2px;
+                margin-left: 10px;
+
+                .all-category-icon {
+                    font-size: 12px;
+                    color: rgb(0, 172, 115);
+                    margin-left: 5px;
+                }
+            }
+
+            input {
+                width: 250px;
+                background-color: inherit;
+                text-decoration: none;
+                border: none;
+            }
+
+            input:focus {
+                outline: none;
+            }
+        }
+
+        .middlepart-icons {
+            margin-right: $marginLeftRight;
+            justify-self: end;
+
+            .profileIcon {
+                width: 20px;
+                margin-right: 16px;
+            }
+
+            .shoppingCartIcon {
+                width: 24px;
+            }
+        }
+    }
+
+    .Bottom-part {
+        justify-self: flex-end;
+        width: 100%;
+        height: 48px;
+        padding-left: $marginLeftRight;
+        background-color: rgb(233, 233, 233);
+        display: flex;
+        flex-direction: row;
+        column-gap: 65px;
+
+        .elem {
+            height: fit-content;
+            padding: 12px 8px 12px 8px;
+            position: relative;
+
+            .dropDownNavigation {
+                display: none;
+                position: absolute;
+                width: fit-content;
+                left: 0;
+                margin-top: 12px;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+                .dropDownLink {
+                    text-decoration: none;
+                    color: black;
+                    height: 100%;
+                    padding: 12px 24px 10px 8px;
+
+                }
+
+                .dropDownLink:hover {
+                    background-color: rgb(161, 248, 212);
+                    border-radius: 10px;
+                }
+            }
+
+            .Bottom-icons {
+                font-size: 12px;
+                color: rgb(0, 130, 86);
+                margin-left: 5px;
+                cursor: pointer;
+            }
+        }
+
+        .elem:hover {
+            background-color: white;
+        }
+
+        .elem:hover .dropDownNavigation {
+            display: flex;
+            flex-direction: column;
+            float: none;
+            background-color: white;
+        }
+    }
+}

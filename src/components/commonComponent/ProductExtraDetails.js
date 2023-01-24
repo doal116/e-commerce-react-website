@@ -1,3 +1,4 @@
+import './sass/commonComp.css'
 const ExtraDetails = ({ info }) => {
     return (
         <div className="extraDetails">

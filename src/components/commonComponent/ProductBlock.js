@@ -1,4 +1,4 @@
-const ProductBestSellingSection = ({ products }) => {
+const ProductBlock = ({ products }) => {
     return (
         products.map((elem,i) => 
         <div key={i.toString()} className='ProductSect'>
@@ -19,4 +19,4 @@ const ProductBestSellingSection = ({ products }) => {
         )
     )
 }
-export default ProductBestSellingSection;
+export default ProductBlock;
