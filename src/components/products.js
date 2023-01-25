@@ -3,7 +3,7 @@ import chocolateCoconutCake from './productPic/chocolateCoconutCake.jpg';
 import lemonYoghurtCake from './productPic/lemonYoghurtCake.jpg';
 import orangeAlmondCake from './productPic/orangeAlmondCake.jpg';
 import vanillaCupcakes from './productPic/vanillaCupcakes.jpg';
-import dragonFruitCake from './productPic/dragonFruitCake.jpeg';
+import dragonFruitCake from './productPic/dragonFruitCake.jpg';
 
 const products = [
     {
@@ -34,7 +34,8 @@ const products = [
             previousPrice: 48.56
         },
         image: bananaCake,
-        rating: 5
+        rating: 5,
+        arrivalDate:'12/12/2021'
     },
     {
         name: "Chocolate coconut cake",
@@ -64,7 +65,8 @@ const products = [
             previousPrice: 48.56
         },
         image: chocolateCoconutCake,
-        rating: 3
+        rating: 3,
+        arrivalDate:'12/11/2022'
     },
     {
         name: "Lemon yoghurt cake with syrup",
@@ -94,7 +96,8 @@ const products = [
             previousPrice: 48.56
         },
         image: lemonYoghurtCake,
-        rating: 5
+        rating: 5,
+        arrivalDate:'01/10/2020'
     }, {
         name: "Flourless orange cake",
         description: "I make this cake for morning teas at work. It’s really easy and because it’s gluten free, everyone can enjoy it.",
@@ -123,7 +126,8 @@ const products = [
             previousPrice: 48.56
         },
         image: orangeAlmondCake,
-        rating: 2
+        rating: 2,
+        arrivalDate:'02/10/2020'
     }, {
         name: "Vanilla cupcakes",
         description: "These festive cakes are gluten, dairy, egg and nut free, and are great for kids’ parties or a special treat.",
@@ -152,7 +156,8 @@ const products = [
             previousPrice: 48.56
         },
         image: vanillaCupcakes,
-        rating: 5
+        rating: 5,
+        arrivalDate:'01/01/2020'
     }
     , {
         name: "Dragon Fruit cake",
@@ -182,7 +187,39 @@ const products = [
             previousPrice: 48.56
         },
         image: dragonFruitCake,
-        rating: 3
+        rating: 3,
+        arrivalDate:'10/09/2020'
+    },
+    {
+        name: "Croissants",
+        description: "A type of puff pastry from France, croissants are a rich, flaky roll named for their distinct crescent shape.",
+        brand: 'Boua',
+        extraInfo:
+        {
+            right: [
+                'fresheness',
+                'farm',
+                'delivery',
+                'stock'
+            ],
+            left: [
+                "New(Extra fresh)",
+                "Grocery Tarm Fields",
+                "Europe",
+                "320 pcs"
+            ]
+        }
+        , shipping: {
+            status: "free shipping",
+            delay: "Delivery in 1 day"
+        },
+        price: {
+            currentPrice: 5.86,
+            previousPrice: 48.56
+        },
+        image: '',
+        rating: 3,
+        arrivalDate:'10/09/2020'
     }
 ];
 export default products

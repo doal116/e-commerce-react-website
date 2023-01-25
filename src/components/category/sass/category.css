@@ -200,7 +200,7 @@
   height: -moz-fit-content;
   height: fit-content;
   display: grid;
-  grid-template-columns: auto 70%;
+  grid-template-columns: auto 75%;
 }
 .SearchSection .ProductSearchResults {
   margin-right: 40px;

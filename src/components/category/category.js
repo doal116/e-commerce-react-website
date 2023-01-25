@@ -18,7 +18,6 @@ import BoxChecker from "../commonComponent/BoxChecker";
 import ProductBlock from "../commonComponent/ProductBlock";
 import ExtraDetails from "../commonComponent/ProductExtraDetails";
 import products from "../products";
-import { filter } from "d3";
 
 //-----------Upper Filter ------------//
 const AppliedFilters = ({ filterList }) => {
@@ -100,6 +99,10 @@ const Title = ({ categoryName,
 
     const filterListDisplay = (index) => {
         const newFilterList = [...filterList]
+
+        if (newFilterList[index]['name'] === 'Price: Low to High') newFilterList[index + 1]['active'] = false;
+        else if (newFilterList[index]['name'] === 'Price: High to Low') newFilterList[index - 1]['active'] = false;
+
         newFilterList[index].active = !newFilterList[index].active;
         setFilterList(newFilterList);
     }
@@ -184,31 +187,49 @@ const Title = ({ categoryName,
 
 
 //-----------Left Side filter------------//
-const PriceRange = () => {
+const PriceRange = ({ priceRange, setPriceRange }) => {
+    const handleChange = event => {
+        if (event.target.className === 'minPriceRange') {
+
+            setPriceRange({
+                minPrice: parseInt(event.target.value)
+                , maxPrice: priceRange['maxPrice']
+            })
+        } else {
+
+            setPriceRange({
+                minPrice: priceRange['minPrice']
+                , maxPrice: parseInt(event.target.value)
+            })
+        }
+    };
     return (
         <div className="priceSettings">
             <h3>Price</h3>
             <div className="PriceRange">
                 <div className="minPrice">
                     <span>Min</span>
-                    <input type="number" min={1} max={1000000000}></input>
+                    <input type="number"
+                        className="minPriceRange"
+                        value={priceRange['minPrice']}
+                        min={1}
+                        max={priceRange['maxPrice']}
+                        onChange={handleChange}></input>
                 </div>
                 <div className="maxPrice">
                     <span>Max</span>
-                    <input type="number" min={1} max={1000000000}></input>
+                    <input type="number"
+                        className="maxPriceRange"
+                        value={priceRange['maxPrice']}
+                        min={priceRange['minPrice']}
+                        max={1000000}
+                        onChange={handleChange}></input>
                 </div>
             </div>
         </div>
     )
 }
-const ApplyReset = () => {
-    return (
-        <div className="submittingFilter">
-            <div className="apply">Apply</div>
-            <div className="reset">Reset</div>
-        </div>
-    )
-}
+
 const Rating = ({ stars, setStars }) => {
 
     return (
@@ -271,7 +292,7 @@ const Brands = ({ selectedBrands, setSelectedBrands }) => {
         </div>
     )
 }
-const LeftSideFilters = ({ selectedBrands, setSelectedBrands, setStars, stars }) => {
+const LeftSideFilters = ({ selectedBrands, setSelectedBrands, setStars, stars, priceRange, setPriceRange }) => {
     return (
         <div className="LeftSideFilters">
             <Categories categories={
@@ -296,8 +317,7 @@ const LeftSideFilters = ({ selectedBrands, setSelectedBrands, setStars, stars })
             } />
             <Brands selectedBrands={selectedBrands} setSelectedBrands={setSelectedBrands} />
             <Rating stars={stars} setStars={setStars} />
-            <PriceRange />
-            <ApplyReset />
+            <PriceRange priceRange={priceRange} setPriceRange={setPriceRange} />
         </div>
     )
 }
@@ -321,7 +341,7 @@ const ProductDisplayList = ({ products }) => {
                     (product, i) =>
                         <div key={i.toString()} className="ProductDisplay">
 
-                            <img src={product['image']} alt="product sold"></img>
+                            <img src={product['image']} alt="product"></img>
                             <div className="middleSection">
                                 <div className="productNameRating">
                                     <span className="productTitle">
@@ -366,7 +386,7 @@ const ProductDisplayList = ({ products }) => {
 
     )
 }
-const SearchSection = ({ products, listGridDisplay, selectedBrands, setSelectedBrands, stars, setStars }) => {
+const SearchSection = ({ products, listGridDisplay, selectedBrands, setSelectedBrands, stars, setStars, priceRange, setPriceRange }) => {
     return (
         <div className="SearchSection">
             <LeftSideFilters
@@ -374,6 +394,9 @@ const SearchSection = ({ products, listGridDisplay, selectedBrands, setSelectedB
                 setSelectedBrands={setSelectedBrands}
                 stars={stars}
                 setStars={setStars}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+
             />
             {
                 listGridDisplay ? <ProductDisplayList products={products} /> :
@@ -408,10 +431,10 @@ const BottomNavigation = () => {
 
 function Category() {
 
-    const [listGridDisplay, setlistGridDisplay] = useState(true);
-
     const location = useLocation();
     const { name } = location.state;
+    const [listGridDisplay, setlistGridDisplay] = useState(false);
+
     //-------------------------------------------------//
     //------Ascending & Descending order filters-------//
     const [ascDesc, setAscDesc] = useState(true);
@@ -467,8 +490,8 @@ function Category() {
     const selectedBrandlist = (brandlist, products) => {
 
         const availableProducts = [];
-        const selectedBrands = brandlist.filter(elem => elem.active);
-
+        const selectedBrands = brandlist.filter(elem => elem['active']);
+        if (selectedBrands.length === 0) return products;
         selectedBrands.forEach(
             brand => {
                 products.forEach(
@@ -478,6 +501,7 @@ function Category() {
                 )
             }
         );
+        console.log(availableProducts)
         return availableProducts;
 
     }
@@ -496,6 +520,7 @@ function Category() {
         const availableProducts = [];
         const selectedStars = stars.filter(star => star['active']);
 
+        if (selectedStars.length === 0) return products;
         selectedStars.forEach(
             stars => {
                 products.forEach(
@@ -505,60 +530,134 @@ function Category() {
                 )
             }
         );
+
         return availableProducts;
     }
     //------------------------------------------------//
-    //------------------ price Filter ----------------//
+    //----------------- upper Filter -----------------//
     const [filterList, setFilterList] = useState([
         { name: "Price: Low to High", active: false },
         { name: "Price: High to Low", active: false },
         { name: "Newest Arrivals", active: false },
-        { name: "Avg. Customer Review", active: false }
+        { name: "Avg. Customer Rating", active: false }
     ]);
-    const filterSelected = (filterList, products) => {
+    const upperFilterSelected = (filterList, products) => {
         let result = [...products];
 
         filterList.forEach(
             filter => {
                 if (filter['name'] === 'Price: Low to High' && filter['active']) {
-                    for (let i = 0; i < result.length; i++) {
-                        for (let j = 0; j < result.length - 1; j++) {
-                            if (result[j]['price']['currentPrice'] > result[j + 1]['price']['currentPrice']) {
-                                let valHolder = result[j]['price']['currentPrice'];
-                                result[j]['price']['currentPrice'] = result[j + 1]['price']['currentPrice'];
-                                result[j + 1]['price']['currentPrice'] = valHolder;
+                    result.forEach(() => {
+                        result.forEach((elm, j) => {
+                            if (j !== result.length - 1) {
+                                if (result[j]['price']['currentPrice'] > result[j + 1]['price']['currentPrice']) {
+                                    let valHolder = result[j];
+                                    result[j] = result[j + 1];
+                                    result[j + 1] = valHolder;
+                                }
                             }
-                        }
-                    }
-                } else if (filter['name'] === 'Price: High to Low' && filter['active']) {
-                    for (let i = 0; i < result.length; i++) {
-                        for (let j = 0; j < result.length - 1; j++) {
-                            if (result[j]['price']['currentPrice'] < result[j + 1]['price']['currentPrice']) {
-                                let valHolder = result[j]['price']['currentPrice'];
-                                result[j]['price']['currentPrice'] = result[j + 1]['price']['currentPrice'];
-                                result[j + 1]['price']['currentPrice'] = valHolder;
+                        })
+                    })
+                }
+                if (filter['name'] === 'Price: High to Low' && filter['active']) {
+                    result.forEach(() => {
+                        result.forEach((elm, j) => {
+                            if (j !== result.length - 1) {
+                                if (result[j]['price']['currentPrice'] < result[j + 1]['price']['currentPrice']) {
+                                    let valHolder = result[j];
+                                    result[j] = result[j + 1];
+                                    result[j + 1] = valHolder;
+                                }
                             }
-                        }
-                    }
+                        })
+                    })
+                }
+                if (filter['name'] === 'Newest Arrivals' && filter['active']) {
+                    result.forEach(() => {
+                        result.forEach((elem, j) => {
+                            if (j !== result.length - 1) {
+                                const date1 = result[j]['arrivalDate'].split('/');
+                                const day1 = parseInt(date1[0]);
+                                const month1 = parseInt(date1[1]);
+                                const year1 = parseInt(date1[2]);
+
+                                const date2 = result[j + 1]['arrivalDate'].split('/');
+                                const day2 = parseInt(date2[0]);
+                                const month2 = parseInt(date2[1]);
+                                const year2 = parseInt(date2[2]);
+
+                                if (year1 < year2) {
+                                    let valHolder = result[j];
+                                    result[j] = result[j + 1];
+                                    result[j + 1] = valHolder;
+                                } else {
+                                    if (month1 < month2 && year1 === year2) {
+                                        let valHolder = result[j];
+                                        result[j] = result[j + 1];
+                                        result[j + 1] = valHolder;
+                                    } else {
+                                        if (day1 < day2 && month1 === month2 && year1 === year2) {
+                                            let valHolder = result[j];
+                                            result[j] = result[j + 1];
+                                            result[j + 1] = valHolder;
+                                        }
+                                    }
+                                }
+                            }
+
+                        })
+
+                    })
+
+
+                }
+                if (filter['name'] === 'Avg. Customer Rating' && filter['active']) {
+                    let sumOfRating = 0;
+                    let avgRating = 0;
+                    result.forEach((elem) => {
+                        sumOfRating += elem['rating'];
+                    });
+                    avgRating = Math.round(sumOfRating / result.length);
+                    result = result.filter(elem => elem['rating'] >= avgRating)
                 }
             })
         return result;
     }
     //------------------------------------------------//
-    //---------------- final filtration --------------//
-    const finalList = (products) => {
+    //----------- price range Filter -----------------//
+    const [priceRange, setPriceRange] = useState(
+        { minPrice: 1, maxPrice: 1000000000 }
+    );
+    const priceRangeFilter = (priceRange, products) => {
         let newList = [];
-        if (ascDesc) newList = ascOrder(
-            starsSelected(stars,
-                selectedBrandlist(selectedBrands,
-                    filterSelected(filterList, products))));
-        else newList = descOrder(
-            starsSelected(stars,
-                selectedBrandlist(selectedBrands,
-                    filterSelected(filterList, products))));
+        newList = products.filter(product =>
+            product['price']['currentPrice'] <= priceRange['maxPrice'] && product['price']['currentPrice'] >= priceRange['minPrice']);
+
         return newList;
     }
     //------------------------------------------------//
+    //---------------- final filtration --------------//
+    const finalList = (products) => {
+        let newList = [];
+        if (ascDesc) {
+            newList = ascOrder(
+                priceRangeFilter(priceRange,
+                    selectedBrandlist(selectedBrands,
+                        starsSelected(stars,
+                            upperFilterSelected(filterList, products)))));
+
+        }
+        else newList = descOrder(
+            priceRangeFilter(priceRange,
+                selectedBrandlist(selectedBrands,
+                    starsSelected(stars,
+                        upperFilterSelected(filterList, products)))));
+        return newList;
+    }
+    //------------------------------------------------//
+    //--------------- Number of Product per pages-----//
+    const [productPage, setProductPage] = useState(5);
+     //------------------------------------------------//
     return (
         <div>
             <Title
@@ -576,7 +675,10 @@ function Category() {
                 listGridDisplay={listGridDisplay}
                 products={finalList(products)}
                 stars={stars}
-                setStars={setStars} />
+                setStars={setStars}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+            />
             <BottomNavigation />
 
         </div>
