@@ -10,6 +10,7 @@ import {
     faHeart, faChevronRight,
     faSortAlphaUp, faSortAlphaDesc, faChevronUp, faThLarge
 } from "@fortawesome/free-solid-svg-icons";
+
 import { Link, useLocation } from "react-router-dom";
 
 import Ratings from "../commonComponent/Ratings";
@@ -349,12 +350,17 @@ const ProductDisplayList = ({ products }) => {
                 products.map(
                     (product, i) =>
                         <div key={i.toString()} className="ProductDisplay">
+                            {console.log('yo', product.id)}
                             <img src={product['image']} className='imgBlurBackground' alt="product"></img>
                             <img src={product['image']} alt="product"></img>
                             <div className="middleSection">
                                 <div className="productNameRating">
                                     <span className="productTitle">
-                                        <Link style={{ 'textDecoration': 'none', 'color': 'black' }} to={'/product'}>
+                                        <Link
+                                            style={{ 'textDecoration': 'none', 'color': 'black' }}
+                                            to="/product"
+                                            state={{ productId: product['id'] }}
+                                        >
                                             {product['name']}
                                         </Link>
                                     </span>

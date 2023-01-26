@@ -1,32 +1,37 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import './sass/productDisplay.css';
-import { faPlus
+import {
+    faPlus
     , faChevronDown,
     faListSquares,
     faChevronRight
-
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import heart from './heart.png';
-import carrot from './carrots.png';
-import ribs from './bonelessRibeyes.jpg';
 import profilePic from './profilePic.png';
 import ProductBlock from "../commonComponent/ProductBlock";
 import ExtraDetails from "../commonComponent/ProductExtraDetails";
 import Ratings from "../commonComponent/Ratings";
 
+import { useLocation } from "react-router-dom";
+import products from "../products.js"
 
-
-const AddToCart = () => {
+const AddToCart = ({ product }) => {
     const [pieces, setPieces] = useState(1);
-    const availablePieces = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const availablePieces = () => {
+        let numPieces = [];
+        for (let i = 1; i < product['availableUnits']; i++) {
+            numPieces.push(i);
+        }
+        return numPieces;
+    }
     const line = {
         'width': '2px',
         'height': '16px',
-        'background-color': 'black',
+        'backgroundColor': 'black',
         'opacity': '0.4',
-        'border-radius': '10px',
-        'align-self': 'center'
+        'borderRadius': '10px',
+        'alignSelf': 'center'
     }
 
 
@@ -35,8 +40,8 @@ const AddToCart = () => {
         <div className="addToCart">
 
             <div className="price">
-                <span className="currentPrice">36.23 USD</span>
-                <span className="oldPrice">48.56 USD</span>
+                <span className="currentPrice">{product['price']['currentPrice']} USD</span>
+                <span className="oldPrice">{product['price']['previousPrice']} USD</span>
             </div>
 
             <div className="addToCartOptions">
@@ -56,10 +61,10 @@ const AddToCart = () => {
 
                     <div className="numPieces" >
                         {
-                            availablePieces.map(
+                            availablePieces().map(
                                 (elem, i) => {
-                                    if (i > 0) return <div className="num" onClick={() => setPieces(old => i)}>{i}</div>
-                                    return <></>
+                                    if (i > 0) return <div key={i.toString()} className="num" onClick={() => setPieces(old => i)}>{i}</div>
+                                    return <div key={i.toString()} ></div>
                                 }
 
                             )
@@ -107,21 +112,24 @@ const Descrip = ({ table }) => {
             <div className="vitamins">
                 <h4>Full of Vitamins</h4>
                 <table>
-                    <tr>
-                        <th>Vitamins</th>
-                        <th>Quantity</th>
-                        <th>% DV</th>
-                    </tr>
-                    {
-                        table.map(
-                            row =>
-                                <tr>
-                                    <td>{row.vitamin}</td>
-                                    <td>{row.quantity}</td>
-                                    <td>{row.dv}</td>
-                                </tr>
-                        )
-                    }
+                    <thead>
+                        <tr>
+                            <th>Vitamins</th>
+                            <th>Quantity</th>
+                            <th>% DV</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            table.map(
+                                (row, i) =>
+                                    <tr key={i.toString()}>
+                                        <td>{row.vitamin}</td>
+                                        <td>{row.quantity}</td>
+                                        <td>{row.dv}</td>
+                                    </tr>
+                            )
+                        }</tbody>
                 </table>
             </div>
         </div>
@@ -132,8 +140,8 @@ const Review = ({ usersInfo }) => {
         <div className="reviews">
             {
                 usersInfo.map(
-                    user =>
-                        <div className="userInfo">
+                    (user, i) =>
+                        <div className="userInfo" key={i.toString()}>
                             <img src={user.profile} alt="user's profilee"></img>
                             <div className="userReview">
                                 <span className="userName">{user.name}</span>
@@ -272,26 +280,26 @@ const ReviewDescripQuestion = ({ table }) => {
         </div>
     )
 }
-const DescriptionSec = () => {
+const DescriptionSec = ({ product }) => {
     return (
         <div className="descriptionSec">
 
-            <h1>Carrots from Tomissy Farm</h1>
+            <h1>{product['name']}</h1>
             <div className="legend" >
-                <Ratings stars={[4]} />
+                <Ratings stars={[product['rating']]} />
                 <span style={{ opacity: '0.4', textDecoration: 'underline' }}>(1 customer review)</span>
             </div>
 
             <div className="shortDescription">
-                <p>Carrots from Tomissy Farm are one of the best on the market. Tomisso and his family are giving a full love to his Bio products. Tomisso’s carrots are growing on the fields naturally.</p>
+                <p>{product['description']}</p>
             </div>
 
             <div className="moreDescription">
-                <ExtraDetails info={{ left: ['SKU', 'Category', 'Stock', 'Farm'], right: ['76645', 'Vegetables', 'In Stock', 'Grocery Tarm Fields'] }} />
+                <ExtraDetails info={{ left: product['extraInfo']['left'], right: product['extraInfo']['right'] }} />
                 <ExtraDetails info={{ left: ['Freshness', 'Buy by', 'Delivery', 'Delivery area'], right: ['1 days old', 'pcs,kgs,box,pack', 'In 2 days', 'Czech republic'] }} />
             </div>
 
-            <AddToCart />
+            <AddToCart product={product} />
             <AddToWishList />
             <ReviewDescripQuestion
                 table={[{ vitamin: "Vitamin A equiv.", quantity: "735 μg", dv: "104 %" },
@@ -314,7 +322,7 @@ const PictureSec = ({ images }) => {
             <div className="grid">
                 {
                     images.map(
-                        (image, i) => <img src={image} alt="" onClick={() => setSelectImg(val => i)}></img>
+                        (image, i) => <img key={i.toString()} src={image} alt="" onClick={() => setSelectImg(val => i)}></img>
                     )
                 }
             </div>
@@ -322,7 +330,7 @@ const PictureSec = ({ images }) => {
         </div>
     )
 }
-const RelatedProducts = () => {
+const RelatedProducts = ({relatedProducts}) => {
     const styling = {
         'display': 'flex',
         'marginBottom': '48px',
@@ -340,32 +348,33 @@ const RelatedProducts = () => {
 
             </div>
             <div style={styling}>
-                <ProductBlock products={[{ name: "Ribs", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot },
-                { name: "Butter", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot },
-                { name: "Butter", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot },
-                { name: "Butter", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot },
-                { name: "Butter", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot }]} />
+                <ProductBlock products={relatedProducts} />
             </div>
         </div>
     )
 }
-class ProductDisplay extends Component {
-    render() {
-        return (
-            <div >
-                <div style={{ 'margin-top': '180px', 'margin-left': '80px' }}>
-                    <span style={{ 'opacity': '0.4' }}>Homepage</span>
-                    <span style={{ 'opacity': '0.4' }}> / Fruit and vegetables / </span>
-                    <span>Carrots from Tomissy Farm</span>
-                </div>
-                <div className="productDisplay">
-                    <PictureSec images={[carrot, carrot, carrot, carrot, carrot, ribs]} />
-                    <DescriptionSec />
-                </div>
-                <RelatedProducts />
+function ProductDisplay() {
+    const location = useLocation();
+    const { productId } = location.state;
+
+    const product = products.filter(product => product['id'] === productId)[0];
+    const relatedProducts = products.filter(product => product['category'] === product['category']).slice(0, 5);
+
+    return (
+        <div>
+            <div style={{ 'marginTop': '180px', 'marginLeft': '80px' }}>
+                <span style={{ 'opacity': '0.4' }}>Homepage</span>
+                <span style={{ 'opacity': '0.4' }}> / {product['category']} / </span>
+                <span>{product['name']}</span>
             </div>
-        )
-    }
+            <div className="productDisplay">
+                <PictureSec images={[product['image'], product['image'], product['image'], product['image'], product['image'], product['image']]} />
+                <DescriptionSec product={product} />
+            </div>
+            <RelatedProducts relatedProducts={relatedProducts} />
+        </div>
+    )
+
 }
 
 export default ProductDisplay;

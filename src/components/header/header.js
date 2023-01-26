@@ -10,18 +10,18 @@ const BottomPart = ({ Options }) => {
     return (
         <div className="Bottom-part">
             {
-                Options.map((elem,i) =>
+                Options.map((elem, i) =>
                     <div className="elem" key={i.toString()}>
                         <Link
                             style={{ 'textDecoration': 'none', 'color': 'black' }}
-                            to = "/category"
-                            state= {{ name: elem.name }}
+                            to="/category"
+                            state={{ name: elem.name }}
                         >{elem.name}
                         </Link>
                         <div className='dropDownNavigation'>
                             {
                                 elem.section.map(
-                                    (sec,i) => <Link key={i.toString()} className="dropDownLink" to={""}>{sec}</Link>
+                                    (sec, i) => <Link key={i.toString()} className="dropDownLink" to={""}>{sec}</Link>
                                 )
                             }
                         </div>
@@ -60,12 +60,12 @@ const UpperPart = ({ Options1, Options2 }) => {
         <div className="Upper-part">
             <div className="upper-part-left">
                 {
-                    Options1.map((elem,i) => <div key={i.toString()}className="UpperPart-elm-left">{elem}</div>)
+                    Options1.map((elem, i) => <div key={i.toString()} className="UpperPart-elm-left">{elem}</div>)
                 }
             </div>
             <div className="upper-part-right">
                 {
-                    Options2.map((elem,i) => <div key={i.toString()}className="UpperPart-elm-right">{elem}</div>)
+                    Options2.map((elem, i) => <div key={i.toString()} className="UpperPart-elm-right">{elem}</div>)
                 }
             </div>
         </div>

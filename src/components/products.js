@@ -16,7 +16,7 @@ import sourdough from './productPic/sourdough.jpeg';
 const products = [
     {
         id: 0,
-        category:'bakery',
+        category: 'Bakery',
         name: "Banana cake with cream cheese",
         description: "Use up over-ripe bananas to create a crowd-pleasing afternoon-tea cake.",
         brand: 'Air Heads',
@@ -47,11 +47,12 @@ const products = [
         },
         image: bananaCake,
         rating: 5,
-        arrivalDate: '12/12/2021'
+        arrivalDate: '12/12/2021',
+        availableUnits: 11
     },
     {
         id: 1,
-        category:'bakery',
+        category: 'Bakery',
         name: "Chocolate coconut cake",
         description: "A hint of coconut takes this moist chocolate cake to a whole new level.",
         brand: 'Betty Crocker',
@@ -85,7 +86,7 @@ const products = [
     },
     {
         id: 2,
-        category:'bakery',
+        category: 'Bakery',
         name: "Lemon yoghurt cake with syrup",
         description: "The use of yoghurt in this recipe makes for a fluffier baked cake.",
         brand: 'Black Forest',
@@ -119,7 +120,7 @@ const products = [
     },
     {
         id: 3,
-        category:'bakery',
+        category: 'Bakery',
         name: "Flourless orange cake",
         description: "I make this cake for morning teas at work. It’s really easy and because it’s gluten free, everyone can enjoy it.",
         brand: 'Dare',
@@ -153,7 +154,7 @@ const products = [
     },
     {
         id: 4,
-        category:'bakery',
+        category: 'Bakery',
         name: "Vanilla cupcakes",
         description: "These festive cakes are gluten, dairy, egg and nut free, and are great for kids’ parties or a special treat.",
         brand: 'Dare',
@@ -188,7 +189,7 @@ const products = [
     ,
     {
         id: 5,
-        category:'bakery',
+        category: 'Bakery',
         name: "Dragon Fruit cake",
         description: "Dragon fruit won't win any awards for what it looks like on the outside, but the inside is a beauty.",
         brand: 'Dare',
@@ -222,7 +223,7 @@ const products = [
     },
     {
         id: 6,
-        category:'bakery',
+        category: 'Bakery',
         name: "Pain Au Chocolat",
         description: "This type of croissant has the goodness of two tasty ingredients - butter and chocolate.",
         brand: 'Boua',
@@ -256,7 +257,7 @@ const products = [
     },
     {
         id: 7,
-        category:'bakery',
+        category: 'Bakery',
         name: "Croissant Aux Amandes",
         description: "Also known as almond croissants, they are made with a filling of almond cream and garnished with sliced almonds.",
         brand: 'Boua',
@@ -291,7 +292,7 @@ const products = [
     ,
     {
         id: 8,
-        category:'bakery',
+        category: 'Bakery',
         name: "Pain Aux Raisins",
         description: "This type of croissant comes with raisins or a filling of custard or almond cream. It is a sweet, flaky pastry that can be enjoyed as is, or with a warm beverage like tea or coffee.",
         brand: 'Boua',
@@ -326,7 +327,7 @@ const products = [
     ,
     {
         id: 9,
-        category:'bakery',
+        category: 'Bakery',
         name: "Croissant Ordinaire",
         description: "This type of croissant comes with raisins or a filling of custard or almond cream. It is a sweet, flaky pastry that can be enjoyed as is, or with a warm beverage like tea or coffee.",
         brand: 'Boua',
@@ -361,7 +362,7 @@ const products = [
     ,
     {
         id: 10,
-        category:'bakery',
+        category: 'Bakery',
         name: "Sourdough",
         description: "Sourdough is one of the most popular alternatives to traditional white or brown bread for many meals.",
         brand: 'bongoss',
@@ -396,7 +397,7 @@ const products = [
     ,
     {
         id: 11,
-        category:'bakery',
+        category: 'Bakery',
         name: "Baguette",
         description: "Baguettes are long French bread with a hard outer crust while remaining soft and chewy inside.",
         brand: 'bongoss',
@@ -431,7 +432,7 @@ const products = [
     ,
     {
         id: 12,
-        category:'bakery',
+        category: 'Bakery',
         name: "Brioche",
         description: "Although brioche is another French bread alternative, it does contain a high level of eggs and butter with enriched flour.",
         brand: 'bongoss',
@@ -466,7 +467,7 @@ const products = [
     ,
     {
         id: 13,
-        category:'bakery',
+        category: 'Bakery',
         name: "focaccia",
         description: "focaccia is an Italian flat oven-baked leavened bread, similar to pizza dough. But, it contains more yeast, making it rise and produce a fluffy appearance.",
         brand: 'bongoss',

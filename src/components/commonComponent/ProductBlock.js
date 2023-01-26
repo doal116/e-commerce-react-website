@@ -7,7 +7,7 @@ const ProductBlock = ({ products }) => {
             <img src={elem['image']} alt={"product from mother nature"} />
 
             <div className='titleDescription'>
-                <Link className='productTitle' to={'/product'}>{elem['name']}</Link>
+                <Link className='productTitle' to={'/product'} state={{ productId: elem['id'] }}>{elem['name']}</Link>
                 <span className='productDescrip'>{elem['description']}</span>
             </div>
             <div className='buyingSection'>
