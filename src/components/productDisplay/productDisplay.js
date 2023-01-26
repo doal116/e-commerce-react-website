@@ -1,7 +1,6 @@
 import React, { Component, useState } from "react";
 import './sass/productDisplay.css';
-import {
-    faStar, faPlus
+import { faPlus
     , faChevronDown,
     faListSquares,
     faChevronRight
@@ -10,40 +9,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import heart from './heart.png';
 import carrot from './carrots.png';
-import ribs  from './bonelessRibeyes.jpg';
+import ribs from './bonelessRibeyes.jpg';
 import profilePic from './profilePic.png';
 import ProductBlock from "../commonComponent/ProductBlock";
 import ExtraDetails from "../commonComponent/ProductExtraDetails";
+import Ratings from "../commonComponent/Ratings";
 
 
-const Ratings = ({ stars }) => {
-    const yellowStarStyling = {
-        color: 'rgb(255, 162, 0)'
-    };
-    const grayStarStyling = {
-        color: 'rgb(207, 207, 207)'
-    };
-    return (
-        stars.map(
-            star =>
-                <div className="level">
-                    <div className="box"></div>
-                    <div className="stars">
-                        {
-                            [...Array(star)].map(
-                                () => <i style={yellowStarStyling}><FontAwesomeIcon icon={faStar} /></i>
-                            )
-                        }
-                        {
-                            [...Array(5 - star)].map(
-                                () => <i style={grayStarStyling}><FontAwesomeIcon icon={faStar} /></i>
-                            )
-                        }
-                    </div>
-                </div>
-        )
-    )
-}
 
 const AddToCart = () => {
     const [pieces, setPieces] = useState(1);
@@ -305,7 +277,7 @@ const DescriptionSec = () => {
         <div className="descriptionSec">
 
             <h1>Carrots from Tomissy Farm</h1>
-            <div style={{ display: 'flex', columnGap: '10px' }}>
+            <div className="legend" >
                 <Ratings stars={[4]} />
                 <span style={{ opacity: '0.4', textDecoration: 'underline' }}>(1 customer review)</span>
             </div>
@@ -332,7 +304,7 @@ const DescriptionSec = () => {
     )
 }
 const PictureSec = ({ images }) => {
-    const [selectImg, setSelectImg] =useState(0);
+    const [selectImg, setSelectImg] = useState(0);
 
     return (
         <div className="pictureSec">
@@ -342,7 +314,7 @@ const PictureSec = ({ images }) => {
             <div className="grid">
                 {
                     images.map(
-                        (image, i) => <img src={image} alt="" onClick={()=>setSelectImg(val=>i)}></img>
+                        (image, i) => <img src={image} alt="" onClick={() => setSelectImg(val => i)}></img>
                     )
                 }
             </div>
@@ -368,11 +340,11 @@ const RelatedProducts = () => {
 
             </div>
             <div style={styling}>
-                <ProductBlock products={[{ name: "Ribs", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot },
-                { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot },
-                { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot },
-                { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot },
-                { name: "Butter", description: "very tasty you wanna have more", price:{currentPrice: 10.48, previousPrice: 131.2}, image: carrot }]} />
+                <ProductBlock products={[{ name: "Ribs", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot },
+                { name: "Butter", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot },
+                { name: "Butter", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot },
+                { name: "Butter", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot },
+                { name: "Butter", description: "very tasty you wanna have more", price: { currentPrice: 10.48, previousPrice: 131.2 }, image: carrot }]} />
             </div>
         </div>
     )

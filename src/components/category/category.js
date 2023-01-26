@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import './sass/category.css';
-import gridDisplay from './gridDisplaySelected.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faList,
@@ -9,7 +8,7 @@ import {
     faChevronDown, faGripLinesVertical,
     faX,
     faHeart, faChevronRight,
-    faSortAlphaUp, faSortAlphaDesc
+    faSortAlphaUp, faSortAlphaDesc, faChevronUp, faThLarge
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 
@@ -27,22 +26,35 @@ const AppliedFilters = ({ filterList }) => {
     })
     return num;
 }
-const Filters = ({ filterList, ascDesc, setAscDesc, additionalFilters, filterListDisplay }) => {
+const Filters = ({ filterList, ascDesc, setAscDesc, additionalFilters, filterListDisplay, setFilterList }) => {
+
     const ascDescendingBtn = (ascDesc) => {
+
         if (ascDesc) return <FontAwesomeIcon className="dot" icon={faDotCircle} />;
         else return <FontAwesomeIcon className="circle" icon={faCircle} />;
     }
-
+    const unChecker = () => {
+        setFilterList([
+            { name: "Price: Low to High", active: false },
+            { name: "Price: High to Low", active: false },
+            { name: "Newest Arrivals", active: false },
+            { name: "Avg. Customer Rating", active: false }
+        ])
+    }
     return (
         <div className="filters">
 
             <div className="AscDescending">
-                <div onClick={() => { if (!ascDesc) setAscDesc(!ascDesc) }}>
-                    {ascDescendingBtn(ascDesc)}
+                <div onClick={() => {
+                    setAscDesc({ asc: !ascDesc['asc'], desc: false });
+                }}>
+                    {ascDescendingBtn(ascDesc['asc'])}
                 </div>
                 <FontAwesomeIcon icon={faSortAlphaUp} />
-                <div onClick={() => { if (ascDesc) setAscDesc(!ascDesc) }}>
-                    {ascDescendingBtn(!ascDesc)}
+                <div onClick={() => {
+                    setAscDesc({ asc: false, desc: !ascDesc['desc'] });
+                }}>
+                    {ascDescendingBtn(ascDesc['desc'])}
                 </div>
                 <FontAwesomeIcon icon={faSortAlphaDesc} />
             </div>
@@ -61,7 +73,8 @@ const Filters = ({ filterList, ascDesc, setAscDesc, additionalFilters, filterLis
                 <div className="leftSide">
                     {
                         AppliedFilters({ filterList }) > 0 ?
-                            <FontAwesomeIcon className="squareCheck" icon={faSquareCheck} /> :
+                            <FontAwesomeIcon className="squareCheck" icon={faSquareCheck}
+                                onClick={() => { unChecker() }} /> :
                             <div className="box"></div>
                     }
                     <span>Filter</span>
@@ -94,7 +107,7 @@ const Filters = ({ filterList, ascDesc, setAscDesc, additionalFilters, filterLis
 const Title = ({ categoryName,
     listGridDisplay, setlistGridDisplay,
     filterList, setFilterList
-    , ascDesc, setAscDesc }) => {
+    , ascDesc, setAscDesc, numAvailableProducts }) => {
 
 
     const filterListDisplay = (index) => {
@@ -123,10 +136,10 @@ const Title = ({ categoryName,
                         }>
                         {
                             !listGridDisplay ?
-                                <img src={gridDisplay} style={{ 'maxWidth': '20px', 'marginRight': '6px' }} alt="Gridicon"></img> :
-                                <img src={gridDisplay} style={{ 'maxWidth': '20px', 'marginRight': '6px' }} alt="Gridicon"></img>
+                                <FontAwesomeIcon icon={faThLarge} style={{ 'color': 'rgb(0, 187, 124)' }} /> :
+                                <FontAwesomeIcon icon={faThLarge} />
                         }
-                        Gird view</p>
+                        <span> Gird view</span></p>
                     <p className="listView" onClick={
                         () => {
                             if (!listGridDisplay) return setlistGridDisplay(!listGridDisplay)
@@ -137,8 +150,8 @@ const Title = ({ categoryName,
                                 <FontAwesomeIcon icon={faList} style={{ 'color': 'rgb(0, 187, 124)' }} /> :
                                 <FontAwesomeIcon icon={faList} />
                         }
-                        List View</p>
-                    <p className="productAvailable"><span>123</span> Products</p>
+                        <span> List View</span></p>
+                    <p className="productAvailable"><span>{numAvailableProducts}</span> Products</p>
                 </div>
             </div>
 
@@ -229,7 +242,6 @@ const PriceRange = ({ priceRange, setPriceRange }) => {
         </div>
     )
 }
-
 const Rating = ({ stars, setStars }) => {
 
     return (
@@ -255,17 +267,33 @@ const Rating = ({ stars, setStars }) => {
         </div>
     )
 }
-const Categories = ({ categories }) => {
+const Categories = ({ products }) => {
+
+    const availableTypeBakery = () => {
+        let listTypes = [];
+        products.forEach((product) => {
+            const index = listTypes.findIndex((type) => type['type'] === product['type']);
+            if (index < 0) {
+                listTypes.push({ type: product['type'], num: 1 });
+            } else {
+                listTypes[index]['num'] += 1;
+            }
+        });
+        return listTypes;
+    }
+
     return (
         <div className="categories">
             <h3>Categories</h3>
-            {categories.map(
-                (category, i) =>
-                    <div key={i.toString()} className="category">
-                        <span className="categoryName">{category.name}</span>
-                        <span className="availableElm">{category.number}</span>
-                    </div>
-            )}
+            {
+                availableTypeBakery().map(
+                    (type, i) =>
+                        <div className="category" key={i.toString()}>
+                            <span className="categoryName">{type['type']}</span>
+                            <span className="availableElm">{type['num']}</span>
+                        </div>
+                )
+            }
         </div>
     )
 }
@@ -292,29 +320,10 @@ const Brands = ({ selectedBrands, setSelectedBrands }) => {
         </div>
     )
 }
-const LeftSideFilters = ({ selectedBrands, setSelectedBrands, setStars, stars, priceRange, setPriceRange }) => {
+const LeftSideFilters = ({ selectedBrands, setSelectedBrands, setStars, stars, priceRange, setPriceRange, products }) => {
     return (
         <div className="LeftSideFilters">
-            <Categories categories={
-                [
-                    {
-                        name: "Wedding Cake",
-                        number: 12
-                    },
-                    {
-                        name: "Bread",
-                        number: 8
-                    },
-                    {
-                        name: "Gourment",
-                        number: 28
-                    },
-                    {
-                        name: "Pastry",
-                        number: 2
-                    }
-                ]
-            } />
+            <Categories products={products} />
             <Brands selectedBrands={selectedBrands} setSelectedBrands={setSelectedBrands} />
             <Rating stars={stars} setStars={setStars} />
             <PriceRange priceRange={priceRange} setPriceRange={setPriceRange} />
@@ -340,7 +349,7 @@ const ProductDisplayList = ({ products }) => {
                 products.map(
                     (product, i) =>
                         <div key={i.toString()} className="ProductDisplay">
-
+                            <img src={product['image']} className='imgBlurBackground' alt="product"></img>
                             <img src={product['image']} alt="product"></img>
                             <div className="middleSection">
                                 <div className="productNameRating">
@@ -386,10 +395,12 @@ const ProductDisplayList = ({ products }) => {
 
     )
 }
-const SearchSection = ({ products, listGridDisplay, selectedBrands, setSelectedBrands, stars, setStars, priceRange, setPriceRange }) => {
+const SearchSection = ({ products, listGridDisplay, selectedBrands, setSelectedBrands, stars, setStars, priceRange, setPriceRange, moreProduct }) => {
+
     return (
         <div className="SearchSection">
             <LeftSideFilters
+                products={products}
                 selectedBrands={selectedBrands}
                 setSelectedBrands={setSelectedBrands}
                 stars={stars}
@@ -399,8 +410,8 @@ const SearchSection = ({ products, listGridDisplay, selectedBrands, setSelectedB
 
             />
             {
-                listGridDisplay ? <ProductDisplayList products={products} /> :
-                    <ProductDisplayGrid products={products} />
+                listGridDisplay ? <ProductDisplayList products={moreProduct ? products.slice(0, 8) : products} /> :
+                    <ProductDisplayGrid products={moreProduct ? products.slice(0, 8) : products} />
             }
         </div>
     )
@@ -408,7 +419,7 @@ const SearchSection = ({ products, listGridDisplay, selectedBrands, setSelectedB
 //--------------------------------//
 
 
-const BottomNavigation = () => {
+const BottomNavigation = ({ moreProduct, setMoreProduct, numAvailableProducts }) => {
     return (
         <div className="BottomNavigation">
             <div className="page">
@@ -416,13 +427,17 @@ const BottomNavigation = () => {
                 <span>1</span>
             </div>
 
-            <div className="moreProducts">
+            <div className="moreProducts" onClick={() => { setMoreProduct(!moreProduct) }}>
                 <span>Show more products</span>
-                <i><FontAwesomeIcon icon={faChevronDown} /></i>
+                {
+                    moreProduct ?
+                        <i><FontAwesomeIcon icon={faChevronDown} /></i> :
+                        <i><FontAwesomeIcon icon={faChevronUp} /></i>
+                }
             </div>
 
             <div className="allProductFound">
-                <span className="num">356</span>
+                <span className="num">{numAvailableProducts}</span>
                 <span className="product">Products</span>
             </div>
         </div>
@@ -437,7 +452,7 @@ function Category() {
 
     //-------------------------------------------------//
     //------Ascending & Descending order filters-------//
-    const [ascDesc, setAscDesc] = useState(true);
+    const [ascDesc, setAscDesc] = useState({ asc: false, desc: false });
     const descOrder = (products) => {
 
         const newArr = [...products];
@@ -543,7 +558,6 @@ function Category() {
     ]);
     const upperFilterSelected = (filterList, products) => {
         let result = [...products];
-
         filterList.forEach(
             filter => {
                 if (filter['name'] === 'Price: Low to High' && filter['active']) {
@@ -626,7 +640,7 @@ function Category() {
     //------------------------------------------------//
     //----------- price range Filter -----------------//
     const [priceRange, setPriceRange] = useState(
-        { minPrice: 1, maxPrice: 1000000000 }
+        { minPrice: 1, maxPrice: 10000 }
     );
     const priceRangeFilter = (priceRange, products) => {
         let newList = [];
@@ -636,28 +650,25 @@ function Category() {
         return newList;
     }
     //------------------------------------------------//
+    //--------------- More Product -------------------//
+    const [moreProduct, setMoreProduct] = useState(true);
+    //------------------------------------------------//
+    //------------------------------------------------//
     //---------------- final filtration --------------//
     const finalList = (products) => {
         let newList = [];
-        if (ascDesc) {
-            newList = ascOrder(
-                priceRangeFilter(priceRange,
-                    selectedBrandlist(selectedBrands,
-                        starsSelected(stars,
-                            upperFilterSelected(filterList, products)))));
 
-        }
-        else newList = descOrder(
-            priceRangeFilter(priceRange,
+        newList = priceRangeFilter(priceRange,
+            upperFilterSelected(filterList,
                 selectedBrandlist(selectedBrands,
-                    starsSelected(stars,
-                        upperFilterSelected(filterList, products)))));
+                    starsSelected(stars, products))));
+
+        if (ascDesc['asc']) newList = ascOrder([...newList]);
+        if (ascDesc['desc']) newList = descOrder([...newList]);
         return newList;
     }
-    //------------------------------------------------//
-    //--------------- Number of Product per pages-----//
-    const [productPage, setProductPage] = useState(5);
-     //------------------------------------------------//
+
+
     return (
         <div>
             <Title
@@ -668,6 +679,7 @@ function Category() {
                 setFilterList={setFilterList}
                 ascDesc={ascDesc}
                 setAscDesc={setAscDesc}
+                numAvailableProducts={finalList(products).length}
             />
             <SearchSection
                 selectedBrands={selectedBrands}
@@ -678,8 +690,12 @@ function Category() {
                 setStars={setStars}
                 priceRange={priceRange}
                 setPriceRange={setPriceRange}
+                moreProduct={moreProduct}
             />
-            <BottomNavigation />
+            <BottomNavigation
+                moreProduct={moreProduct}
+                setMoreProduct={setMoreProduct}
+                numAvailableProducts={finalList(products).length} />
 
         </div>
     );

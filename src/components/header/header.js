@@ -84,7 +84,7 @@ class Header extends React.Component {
                     Options={[
                         {
                             name: "Bakery", section: [
-                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                                'Gourmet', 'Bread', 'Cake', 'Wedding Cake', 'Pastry'
                             ]
                         }, {
                             name: "Fruits and Vegetables", section: [

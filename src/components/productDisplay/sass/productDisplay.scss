@@ -9,6 +9,11 @@
             font-size: 18px;
         }
 
+        .legend {
+            display: flex;
+            column-gap: 10px;
+        }
+
         .moreDescription {
             display: flex;
             column-gap: 48px;

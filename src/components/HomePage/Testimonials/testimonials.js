@@ -18,11 +18,7 @@ const TestimonyBox = ({ testimonies }) => {
     return (
         <div className='Testimonysec' >
 
-            <div className='arrowLeft'>
-                <div className='arrowBox' onClick={gotToLeft}>
-                    <FontAwesomeIcon className='arrow' icon={faChevronLeft} />
-                </div>
-            </div>
+
 
             <div className='Testimonies' id="Testimonies" >
                 {
@@ -35,7 +31,11 @@ const TestimonyBox = ({ testimonies }) => {
                     )
                 }
             </div>
-
+            <div className='arrowLeft'>
+                <div className='arrowBox' onClick={gotToLeft}>
+                    <FontAwesomeIcon className='arrow' icon={faChevronLeft} />
+                </div>
+            </div>
             <div className='arrowRight'>
                 <div className='arrowBox' onClick={gotToRight}>
                     <FontAwesomeIcon className='arrow' icon={faChevronRight} />
@@ -49,7 +49,7 @@ const TestimonyBox = ({ testimonies }) => {
     );
 }
 const Testimonials = ({ testimonies }) => {
-    
+
 
     return (
         <div className="Testimonials" >

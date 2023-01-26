@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ProductBlock = ({ products }) => {
     return (
         products.map((elem,i) => 
@@ -5,7 +7,7 @@ const ProductBlock = ({ products }) => {
             <img src={elem['image']} alt={"product from mother nature"} />
 
             <div className='titleDescription'>
-                <a href={'hey'} className='productTitle'>{elem['name']}</a>
+                <Link className='productTitle' to={'/product'}>{elem['name']}</Link>
                 <span className='productDescrip'>{elem['description']}</span>
             </div>
             <div className='buyingSection'>

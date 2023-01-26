@@ -7,6 +7,11 @@
   width: 650px;
   font-size: 18px;
 }
+.productDisplay .descriptionSec .legend {
+  display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}
 .productDisplay .descriptionSec .moreDescription {
   display: flex;
   -moz-column-gap: 48px;
