@@ -2,7 +2,10 @@ import ProductBlock from "../../commonComponent/ProductBlock";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-const SectionHeadlines = ({products}) => {
+const SectionHeadlines = ({ products }) => {
+    const sectionHeadlinesCalc = (products) => {
+        return products.slice(0, 5);
+    }
     return (
         <div className="SectionHeadlines">
             <div className='smallHeader'>
@@ -13,7 +16,7 @@ const SectionHeadlines = ({products}) => {
                 </div>
             </div>
             <div className='productSec'>
-                <ProductBlock products={products}/>
+                <ProductBlock products={sectionHeadlinesCalc(products)} />
             </div>
 
         </div>

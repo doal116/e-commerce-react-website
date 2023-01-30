@@ -297,6 +297,7 @@
   row-gap: 10px;
 }
 .productDisplay .pictureSec .grid img {
+  cursor: pointer;
   max-width: 150px;
   height: -webkit-fit-content;
   height: -moz-fit-content;

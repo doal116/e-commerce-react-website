@@ -330,7 +330,7 @@ const PictureSec = ({ images }) => {
         </div>
     )
 }
-const RelatedProducts = ({relatedProducts}) => {
+const RelatedProducts = ({ relatedProducts }) => {
     const styling = {
         'display': 'flex',
         'marginBottom': '48px',
@@ -353,13 +353,20 @@ const RelatedProducts = ({relatedProducts}) => {
         </div>
     )
 }
+const scrollUp = () => {
+    window.scrollTo({
+        left: 0,
+        top: 0,
+        behavior: 'smooth'
+    })
+}
 function ProductDisplay() {
     const location = useLocation();
     const { productId } = location.state;
 
     const product = products.filter(product => product['id'] === productId)[0];
-    const relatedProducts = products.filter(product => product['category'] === product['category']).slice(0, 5);
-
+    const relatedProducts = products.filter(elem => elem['category'] === product['category']).slice(0, 5);
+    scrollUp();
     return (
         <div>
             <div style={{ 'marginTop': '180px', 'marginLeft': '80px' }}>

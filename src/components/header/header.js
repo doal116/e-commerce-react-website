@@ -7,6 +7,9 @@ import './sass/header.css';
 import { Link } from 'react-router-dom';
 
 const BottomPart = ({ Options }) => {
+    const pathName = (category) => {
+        return '/category/' + category
+    }
     return (
         <div className="Bottom-part">
             {
@@ -14,8 +17,13 @@ const BottomPart = ({ Options }) => {
                     <div className="elem" key={i.toString()}>
                         <Link
                             style={{ 'textDecoration': 'none', 'color': 'black' }}
-                            to="/category"
-                            state={{ name: elem.name }}
+                            to={{
+                                pathname: pathName(elem['category']),
+                            }}
+                            state={{
+                                name: elem['name'],
+                                category: elem['category']
+                            }}
                         >{elem.name}
                         </Link>
                         <div className='dropDownNavigation'>
@@ -29,7 +37,7 @@ const BottomPart = ({ Options }) => {
                     </div>
                 )
             }
-        </div>
+        </div >
     )
 }
 const MiddlePart = () => {
@@ -83,37 +91,45 @@ class Header extends React.Component {
                 <BottomPart
                     Options={[
                         {
-                            name: "Bakery", section: [
+                            name: "Bakery", category: 'Bakery',
+                            section: [
                                 'Gourmet', 'Bread', 'Cake', 'Wedding Cake', 'Pastry'
                             ]
                         }, {
-                            name: "Fruits and Vegetables", section: [
+                            name: "Fruits and Vegetables", category: 'FruitsAndVegetables',
+                            section: [
                                 'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
                             ]
                         },
                         {
-                            name: "Meat and fish", section: [
+                            name: "Meat and fish", category: 'MeatAndFish',
+                            section: [
                                 'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
                             ]
                         }, {
-                            name: "Drinks", section: [
+                            name: "Drinks", category: 'Drinks'
+                            , section: [
                                 'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
                             ]
                         }, {
-                            name: "Kitchen", section: [
+                            name: "Kitchen", category: 'Kitchen'
+                            , section: [
                                 'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
                             ]
                         },
                         {
-                            name: "Special Nutrition", section: [
+                            name: "Special Nutrition", category: 'SpecialNutrition'
+                            , section: [
                                 'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
                             ]
                         }, {
-                            name: "Baby", section: [
+                            name: "Baby", category: 'Baby'
+                            , section: [
                                 'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
                             ]
                         }, {
-                            name: "Pharmacy", section: [
+                            name: "Pharmacy", category: 'Pharmacy'
+                            , section: [
                                 'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
                             ]
                         }]}

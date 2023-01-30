@@ -9,6 +9,7 @@ import Category from './components/category/category.js'
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
 import ProductDisplay from './components/productDisplay/productDisplay';
+import Billing from './components/billing/billing';
 
 const footerData = [{
     title: "Get in touch", option: [
@@ -52,6 +53,11 @@ const footerTags = [
     "meat", "fish", "fresh food",
     "seo Tag", "broccoli"
 ]
+const categoryPage = <>
+    <Header />
+    <Category />
+    <Footer sec1={footerData} Tags={footerTags} />
+</>;
 function App() {
     return (
         <BrowserRouter>
@@ -61,14 +67,28 @@ function App() {
                     <HomePage />
                     <Footer sec1={footerData} Tags={footerTags} />
                 </>} />
-                <Route path="/category" element={<>
-                    <Header />
-                    <Category />
-                    <Footer sec1={footerData} Tags={footerTags} /></>} />
+                <Route path="/category" element={categoryPage}>
+                    <Route path="Bakery" element={categoryPage} />
+                    <Route path="FruitsAndVegetables" element={categoryPage} />
+                    <Route path="MeatAndFish" element={categoryPage} />
+                    <Route path="Drinks" element={categoryPage} />
+                    <Route path="Kitchen" element={categoryPage} />
+                    <Route path="SpecialNutrition" element={categoryPage} />
+                    <Route path="Baby" element={categoryPage} />
+                    <Route path='Pharmacy' element={categoryPage} />
+                </Route>
                 <Route path="/product" element={<>
                     <Header />
                     <ProductDisplay />
-                    <Footer sec1={footerData} Tags={footerTags} /></>} />
+                    <Footer sec1={footerData} Tags={footerTags} /></>}
+                />
+                <Route path="/billing" element={
+                    <>
+                        <Header />
+                        <Billing />
+                        <Footer sec1={footerData} Tags={footerTags} />
+                    </>
+                } />
             </Routes>
         </BrowserRouter>
     );

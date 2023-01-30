@@ -350,7 +350,6 @@ const ProductDisplayList = ({ products }) => {
                 products.map(
                     (product, i) =>
                         <div key={i.toString()} className="ProductDisplay">
-                            {console.log('yo', product.id)}
                             <img src={product['image']} className='imgBlurBackground' alt="product"></img>
                             <img src={product['image']} alt="product"></img>
                             <div className="middleSection">
@@ -451,11 +450,16 @@ const BottomNavigation = ({ moreProduct, setMoreProduct, numAvailableProducts })
 }
 
 function Category() {
-
     const location = useLocation();
-    const { name } = location.state;
-    const [listGridDisplay, setlistGridDisplay] = useState(false);
+    const { name, category } = location.state;
 
+    const [routeInfo, setRouteInfo] = useState({
+        name: name,
+        category: category
+    });
+
+    
+    const [listGridDisplay, setlistGridDisplay] = useState(false);
     //-------------------------------------------------//
     //------Ascending & Descending order filters-------//
     const [ascDesc, setAscDesc] = useState({ asc: false, desc: false });
@@ -492,39 +496,38 @@ function Category() {
     }
     //------------------------------------------------//
     //------------Brand selection filter ------------//
-    const brandsList = (products) => {
-        const newArr = [...products];
+    const brandsList = (products, category) => {
+        const newArr = [...(products.filter(product => product['category'] === category))];
         const brandList = [];
-        for (let i = 0; i < newArr.length; i++) {
+
+        newArr.forEach((cell, i) => {
             let elemPresence = brandList.some(brand => brand['name'] === newArr[i]['brand']);
-            if (!elemPresence) {
-                brandList.push(
-                    { name: newArr[i]['brand'], active: false }
-                );
-            }
+            if (!elemPresence) brandList.push({ name: newArr[i]['brand'], active: false });
         }
+        )
         return brandList;
     }
     const [selectedBrands, setSelectedBrands] = useState(
-        [...brandsList(products)]
+        [...brandsList(products, category)]
     );
-    const selectedBrandlist = (brandlist, products) => {
-
+    const selectedBrandlist = (selectedBrands, products) => {
         const availableProducts = [];
-        const selectedBrands = brandlist.filter(elem => elem['active']);
-        if (selectedBrands.length === 0) return products;
-        selectedBrands.forEach(
-            brand => {
-                products.forEach(
-                    product => {
-                        if (product['brand'] === brand['name']) availableProducts.push(product);
-                    }
-                )
-            }
+        const brandlist = selectedBrands.filter(elem => elem['active']);
+        if (brandlist.length === 0) return products;
+        brandlist.forEach(brand => {
+            products.forEach(
+                product => {
+                    if (product['brand'] === brand['name']) availableProducts.push(product);
+                }
+            )
+        }
         );
-        console.log(availableProducts)
         return availableProducts;
 
+    }
+    if (category !== routeInfo['category']) {
+        setRouteInfo({ name: name, category: category });
+        setSelectedBrands([...brandsList(products, category)])
     }
     //------------------------------------------------//
     //---------------- stars filter ------------------//
@@ -659,6 +662,10 @@ function Category() {
     //--------------- More Product -------------------//
     const [moreProduct, setMoreProduct] = useState(true);
     //------------------------------------------------//
+    const filteringPerCategory = (products, category) => {
+        const newList = products.filter(product => product['category'] === category);
+        return newList;
+    }
     //------------------------------------------------//
     //---------------- final filtration --------------//
     const finalList = (products) => {
@@ -667,7 +674,8 @@ function Category() {
         newList = priceRangeFilter(priceRange,
             upperFilterSelected(filterList,
                 selectedBrandlist(selectedBrands,
-                    starsSelected(stars, products))));
+                    starsSelected(stars,
+                        filteringPerCategory(products, category)))));
 
         if (ascDesc['asc']) newList = ascOrder([...newList]);
         if (ascDesc['desc']) newList = descOrder([...newList]);
