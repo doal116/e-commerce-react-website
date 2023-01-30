@@ -1,14 +1,209 @@
-.Checkout{
+.Checkout {
     margin-top: 200px;
     display: grid;
-    grid-template-columns: auto 40%;
+    display: flex;
     margin-left: 80px;
-    .billingSec{
-        .billingInfo{
-            .title{
-                font-size: 20px;
-                font-weight: bold;
+    column-gap: 32px;
+
+    %titleLegend {
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .legend {
+            opacity: 0.5;
+            font-size: 12px;
+        }
+    }
+
+    .billingSec {
+        width: 700px;
+
+        .billingInfo {
+            @extend %titleLegend;
+
+            .info {
+                margin-top: 24px;
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 18px;
+                row-gap: 32px;
+
+                .inputFields {
+                    display: flex;
+                    flex-direction: column;
+
+                    span {
+                        font-weight: bold;
+                    }
+                }
+
+                input {
+                    width: 330px;
+                    height: 48px;
+                    border-radius: 16px;
+                    outline: none;
+                    border: 2px solid rgb(189, 189, 189);
+                }
+
+            }
+
+            button {
+                border-radius: 10px;
+                border: 2px solid rgb(204, 204, 204);
+                padding: 15px;
+                margin-top: 24px;
+                background-color: rgba(220, 220, 220, 0.5);
+                display: flex;
+                align-items: flex-end;
+                column-gap: 8px;
+
+                span {
+                    font-size: 15px;
+                }
             }
         }
+    }
+
+    .shippingMethod {
+        margin-top: 24px;
+        @extend %titleLegend;
+
+        .options {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 16px;
+
+            .shippingOption {
+                width: 90%;
+                border: 2px solid rgb(241, 241, 241);
+                border-radius: 16px;
+                height: 48px;
+                display: grid;
+                grid-template-columns: auto auto auto;
+                align-items: center;
+                padding: 0px 24px 0px 24px;
+
+                img {
+                    justify-self: end;
+                    max-width: 60px;
+                }
+
+                .companyName {
+                    display: flex;
+                    column-gap: 16px;
+                    align-items: center;
+
+                    .circle {
+                        border: 2px solid rgb(204, 204, 204);
+                        border-radius: 50%;
+                        color: transparent;
+                    }
+                }
+
+                .price {
+                    display: flex;
+                    column-gap: 16px;
+
+                    .addedMoney {
+                        color: rgb(0, 168, 25);
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .payementMethod {
+
+        margin-top: 24px;
+        @extend %titleLegend;
+
+        .card {
+            border: 1px solid rgb(190, 190, 190);
+            border-radius: 10px;
+            width: 500px;
+
+            .upperPart {
+                display: grid;
+                grid-template-columns: auto auto;
+                padding: 19px 16px 19px 16px;
+
+                img {
+                    justify-self: flex-end;
+                }
+
+                .textArea {
+                    display: flex;
+                    column-gap: 8px;
+                    align-items: center;
+
+                    .circle {
+                        border: 2px solid rgb(204, 204, 204);
+                        border-radius: 50%;
+                        color: transparent;
+                    }
+                }
+            }
+
+            .cardNumberSec {
+                margin: 0px 18px 0px 18px;
+
+                .cardNumber {
+                    width: 100%;
+                    height: 32px;
+                    border-radius: 10px;
+                    border: 2px solid rgb(190, 190, 190);
+                    outline: none;
+                }
+
+                span {
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+
+            .bottomPart {
+                margin: 12px 12px 19px 18px;
+                display: grid;
+                grid-template-columns: auto auto auto;
+                input{
+                    height: 32px;
+                    border-radius: 10px;
+                    outline: none;
+                    border: 2px solid rgb(190, 190, 190);
+                }
+                .cardHolderSec{
+                    
+                    span{
+                        font-size: 12px;
+                        font-weight: bold;
+                    }
+                    .cardHolder{
+                        width: 250px;
+                    }
+                    
+                }
+                .expirationDateSec{
+                    span{
+                        font-size: 12px;
+                        font-weight: bold;
+                    }
+                }
+                .cvcSec{
+                    span{
+                        font-size: 12px;
+                        font-weight: bold;
+                    }
+                    .Cvc{
+                        width: 50px;
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -1,71 +1,144 @@
 import './billing.css';
+import fedex from './fedex.png';
+import visaCard from './visaCard.svg';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faCircle
+} from "@fortawesome/free-solid-svg-icons";
 
-
+import BoxChecker from '../commonComponent/BoxChecker';
 
 const BillingInfo = () => {
     return (
         <div className='billingInfo'>
-            <span className='title'>Billing info</span><br></br>
+            <span className='title'>Billing info</span>
+            <br></br>
             <span className='legend'>Please enter your billing info</span>
             <div className='info'>
-                <label for="firstName">First name</label>
-                <input type="text" placeholder="First name" id="firstName"></input>
-                <label for="lastName">Last name</label>
-                <input type="text" placeholder="Last name" id="lastName"></input>
-                <label for="emailAddress">Email address</label>
-                <input type="text" placeholder="Email address" id="emailAddress"></input>
-                <label for="phoneNumber">Phone Number</label>
-                <input type="text" placeholder="Phone Number" id="phoneNumber"></input>
-                <label for="address">Address</label>
-                <input type="text" placeholder="Address" id="address"></input>
-                <label for="townCity">Town / City</label>
-                <input type="text" placeholder="Town or city" id="townCity"></input>
-                <label for="stateCountry">State / Country</label>
-                <input placeholder="Choose a state or country" id="stateCountry"></input>
-                <label for="zipPostalcode">Zip/Postal code</label>
-                <input type="text" placeholder="Postal code or ZIP" id="zipPostalcode"></input>
+
+                <div className='inputFields'>
+                    <span>First name</span>
+                    <input type="text" placeholder="First name" id="firstName"></input>
+                </div>
+
+                <div className='inputFields'>
+                    <span>Last name</span>
+                    <input type="text" placeholder="Last name" id="lastName"></input>
+                </div>
+
+                <div className='inputFields'>
+                    <span>Email address</span>
+                    <input type="text" placeholder="Email address" id="emailAddress"></input>
+                </div>
+
+                <div className='inputFields'>
+                    <span>Phone Number</span>
+                    <input type="text" placeholder="Phone Number" id="phoneNumber"></input>
+                </div>
+
+                <div className='inputFields'>
+                    <span>Address</span>
+                    <input type="text" placeholder="Address" id="address"></input>
+                </div>
+
+                <div className='inputFields'>
+                    <span>Town / City</span>
+                    <input type="text" placeholder="Town or city" id="townCity"></input>
+                </div>
+
+                <div className='inputFields'>
+                    <span>State / Country</span>
+                    <input type="text" placeholder="Choose a state or country" id="stateCountry"></input>
+                </div>
+
+                <div className='inputFields'>
+                    <span>Zip / Postal code</span>
+                    <input type="text" placeholder="Postal code or ZIP" id="zipPostalcode"></input>
+                </div>
+
             </div>
-            <button>Ship to a different address</button>
+            <button>
+                <BoxChecker />
+                <span> Ship to a different address?</span>
+            </button>
         </div>
     )
 }
 const ShippingMethod = () => {
     return (
-        <div className='billingMethod'>
-            <h3>shipping method</h3>
-            <span>Please enter your payement method</span>
-            <div>
-                <div>FedEx</div>
-                <div>Addition price</div>
-                <div>Logo</div>
+        <div className='shippingMethod'>
+            <span className='title'>Shipping method</span><br></br>
+            <span className='legend'>Please enter your payement method</span>
+            <div className='options'>
+                <div className='shippingOption'>
+                    <div className='companyName'>
+                        <FontAwesomeIcon className="circle" icon={faCircle} />
+                        <span>FedEx</span>
+                    </div>
+                    <div className='price'>
+                        <span className='addedMoney'>+32 USD</span>
+                        <span>Addition price</span>
+                    </div>
+                    <img src={fedex} alt="fedex Logo"></img>
+                </div>
+                <div className='shippingOption'>
+                    <div className='companyName'>
+                        <FontAwesomeIcon className="circle" icon={faCircle} />
+                        <span>FedEx</span>
+                    </div>
+                    <div className='price'>
+                        <span className='addedMoney'>+32 USD</span>
+                        <span>Addition price</span>
+                    </div>
+                    <img src={fedex} alt="fedex Logo"></img>
+                </div>
             </div>
+
+
         </div>
     )
 }
 const PayementMethod = () => {
     return (
         <div className='payementMethod'>
-            <h3>Payement Method</h3>
-            <span>Please enter your payment method</span>
-            <div className='visaCard'>
-                <div>
-                    <div>Credit card</div>
-                    <div> Logo</div>
+            <span className='title'>Payement Method</span><br></br>
+            <span className='legend'>Please enter your payment method</span>
+
+            <div className='card'>
+                <div className='upperPart'>
+                    <div className='textArea'><FontAwesomeIcon icon={faCircle} className="circle" />Credit card</div>
+                    <img src={visaCard} alt="visacard logo" ></img>
                 </div>
-                <input className='cardNumber'></input>
-                <div>
-                    <input className='Card Holder'></input>
-                    <input className='expirationDate'></input>
-                    <input className='Cvc'></input>
+                <div className='cardNumberSec'>
+                    <span>Card Number</span><br></br>
+                    <input className='cardNumber' placeholder='Card number'></input>
+                </div>
+                <div className='bottomPart'>
+                    <div className='cardHolderSec'>
+                        <span>Card holder</span>
+                        <br></br>
+                        <input className='cardHolder'></input>
+                    </div>
+                    <div className='expirationDateSec'>
+                        <span>Expiration date</span>
+                        <br></br>
+                        <input className='expirationDate' type="date"></input>
+                    </div>
+                    <div className='cvcSec'>
+                        <span>Cvc</span>
+                        <br></br>
+                        <input className='Cvc' type='number'></input>
+                    </div>
                 </div>
             </div>
+
             <div className='payPal'></div>
             <div className='bitcoin'></div>
         </div>
     )
 }
 const AdditionalInfo = () => {
-    return(
+    return (
         <div className='AdditionalInfo'>
             <h3>Additional informations</h3>
             <span>Need something else? We will make it for you!</span>
@@ -74,7 +147,7 @@ const AdditionalInfo = () => {
     )
 }
 const Confirmation = () => {
-    return(
+    return (
         <div className='confirmation'>
             <h3>Confirmation</h3>
             <span>We are getting to the end. just a few clicks and your order is ready!</span>
@@ -83,15 +156,15 @@ const Confirmation = () => {
         </div>
     )
 }
-const ProductsInBasket = ()=>{
-    return(
+const ProductsInBasket = () => {
+    return (
         <div className='products'>
 
         </div>
     )
 }
 const OrderSummary = () => {
-    return(
+    return (
         <div className='orderSummary'>
             <ProductsInBasket />
             <div className='subTotal'>

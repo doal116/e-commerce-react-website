@@ -1,10 +1,168 @@
 .Checkout {
   margin-top: 200px;
   display: grid;
-  grid-template-columns: auto 40%;
+  display: flex;
   margin-left: 80px;
+  -moz-column-gap: 32px;
+       column-gap: 32px;
 }
-.Checkout .billingSec .billingInfo .title {
-  font-size: 20px;
+.Checkout .payementMethod .title, .Checkout .shippingMethod .title, .Checkout .billingSec .billingInfo .title {
+  font-size: 24px;
   font-weight: bold;
+}
+.Checkout .payementMethod .legend, .Checkout .shippingMethod .legend, .Checkout .billingSec .billingInfo .legend {
+  opacity: 0.5;
+  font-size: 12px;
+}
+.Checkout .billingSec {
+  width: 700px;
+}
+.Checkout .billingSec .billingInfo .info {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  -moz-column-gap: 18px;
+       column-gap: 18px;
+  row-gap: 32px;
+}
+.Checkout .billingSec .billingInfo .info .inputFields {
+  display: flex;
+  flex-direction: column;
+}
+.Checkout .billingSec .billingInfo .info .inputFields span {
+  font-weight: bold;
+}
+.Checkout .billingSec .billingInfo .info input {
+  width: 330px;
+  height: 48px;
+  border-radius: 16px;
+  outline: none;
+  border: 2px solid rgb(189, 189, 189);
+}
+.Checkout .billingSec .billingInfo button {
+  border-radius: 10px;
+  border: 2px solid rgb(204, 204, 204);
+  padding: 15px;
+  margin-top: 24px;
+  background-color: rgba(220, 220, 220, 0.5);
+  display: flex;
+  align-items: flex-end;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
+}
+.Checkout .billingSec .billingInfo button span {
+  font-size: 15px;
+}
+.Checkout .shippingMethod {
+  margin-top: 24px;
+}
+.Checkout .shippingMethod .options {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+.Checkout .shippingMethod .options .shippingOption {
+  width: 90%;
+  border: 2px solid rgb(241, 241, 241);
+  border-radius: 16px;
+  height: 48px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  padding: 0px 24px 0px 24px;
+}
+.Checkout .shippingMethod .options .shippingOption img {
+  justify-self: end;
+  max-width: 60px;
+}
+.Checkout .shippingMethod .options .shippingOption .companyName {
+  display: flex;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+  align-items: center;
+}
+.Checkout .shippingMethod .options .shippingOption .companyName .circle {
+  border: 2px solid rgb(204, 204, 204);
+  border-radius: 50%;
+  color: transparent;
+}
+.Checkout .shippingMethod .options .shippingOption .price {
+  display: flex;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+}
+.Checkout .shippingMethod .options .shippingOption .price .addedMoney {
+  color: rgb(0, 168, 25);
+  font-weight: bold;
+}
+.Checkout .payementMethod {
+  margin-top: 24px;
+}
+.Checkout .payementMethod .card {
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 10px;
+  width: 500px;
+}
+.Checkout .payementMethod .card .upperPart {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 19px 16px 19px 16px;
+}
+.Checkout .payementMethod .card .upperPart img {
+  justify-self: flex-end;
+}
+.Checkout .payementMethod .card .upperPart .textArea {
+  display: flex;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
+  align-items: center;
+}
+.Checkout .payementMethod .card .upperPart .textArea .circle {
+  border: 2px solid rgb(204, 204, 204);
+  border-radius: 50%;
+  color: transparent;
+}
+.Checkout .payementMethod .card .cardNumberSec {
+  margin: 0px 18px 0px 18px;
+}
+.Checkout .payementMethod .card .cardNumberSec .cardNumber {
+  width: 100%;
+  height: 32px;
+  border-radius: 10px;
+  border: 2px solid rgb(190, 190, 190);
+  outline: none;
+}
+.Checkout .payementMethod .card .cardNumberSec span {
+  font-size: 12px;
+  font-weight: bold;
+}
+.Checkout .payementMethod .card .bottomPart {
+  margin: 12px 12px 19px 18px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.Checkout .payementMethod .card .bottomPart input {
+  height: 32px;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid rgb(190, 190, 190);
+}
+.Checkout .payementMethod .card .bottomPart .cardHolderSec span {
+  font-size: 12px;
+  font-weight: bold;
+}
+.Checkout .payementMethod .card .bottomPart .cardHolderSec .cardHolder {
+  width: 250px;
+}
+.Checkout .payementMethod .card .bottomPart .expirationDateSec span {
+  font-size: 12px;
+  font-weight: bold;
+}
+.Checkout .payementMethod .card .bottomPart .cvcSec span {
+  font-size: 12px;
+  font-weight: bold;
+}
+.Checkout .payementMethod .card .bottomPart .cvcSec .Cvc {
+  width: 50px;
 }/*# sourceMappingURL=billing.css.map */
