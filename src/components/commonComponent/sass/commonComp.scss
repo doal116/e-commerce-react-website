@@ -24,3 +24,11 @@ $borderColor: rgb(205, 205, 205);
     border: 2px solid $borderColor;
     border-radius: 5px;
 }
+
+.circle{
+    cursor: pointer;
+    font-size: 22px;
+    border: 1px solid $borderColor;
+    color: transparent;
+    border-radius: 50%;
+}

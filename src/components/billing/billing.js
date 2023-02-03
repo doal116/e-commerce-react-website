@@ -1,19 +1,30 @@
 import './billing.css';
+
 import fedex from './fedex.png';
 import visaCard from './visaCard.svg';
+import payPal from './payPal.svg';
+import bitcoin from './bitcoin.svg';
+import heart from './heart.svg';
+import compareIcon from './compareIcon.svg';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faCircle
+    faChevronDown,
+    faX
 } from "@fortawesome/free-solid-svg-icons";
 
 import BoxChecker from '../commonComponent/BoxChecker';
-
+import CircleChecker from '../commonComponent/circleChecker';
+import Ratings from '../commonComponent/Ratings';
+import baguette from './baguette.jpg';
 const BillingInfo = () => {
     return (
         <div className='billingInfo'>
-            <span className='title'>Billing info</span>
-            <br></br>
-            <span className='legend'>Please enter your billing info</span>
+            <div className='titleSec'>
+                <span className='title'>Billing info</span>
+                <span className='legend'>Please enter your billing info</span>
+            </div>
+
             <div className='info'>
 
                 <div className='inputFields'>
@@ -67,12 +78,14 @@ const BillingInfo = () => {
 const ShippingMethod = () => {
     return (
         <div className='shippingMethod'>
-            <span className='title'>Shipping method</span><br></br>
-            <span className='legend'>Please enter your payement method</span>
+            <div className='titleSec'>
+                <span className='title'>Shipping method</span><br></br>
+                <span className='legend'>Please enter your payement method</span>
+            </div>
             <div className='options'>
                 <div className='shippingOption'>
                     <div className='companyName'>
-                        <FontAwesomeIcon className="circle" icon={faCircle} />
+                        <CircleChecker />
                         <span>FedEx</span>
                     </div>
                     <div className='price'>
@@ -83,7 +96,7 @@ const ShippingMethod = () => {
                 </div>
                 <div className='shippingOption'>
                     <div className='companyName'>
-                        <FontAwesomeIcon className="circle" icon={faCircle} />
+                        <CircleChecker />
                         <span>FedEx</span>
                     </div>
                     <div className='price'>
@@ -99,66 +112,122 @@ const ShippingMethod = () => {
     )
 }
 const PayementMethod = () => {
+
     return (
         <div className='payementMethod'>
-            <span className='title'>Payement Method</span><br></br>
-            <span className='legend'>Please enter your payment method</span>
+            <div className='titleSec'>
+                <span className='title'>Payement Method</span><br></br>
+                <span className='legend'>Please enter your payment method</span>
+            </div>
+
 
             <div className='card'>
                 <div className='upperPart'>
-                    <div className='textArea'><FontAwesomeIcon icon={faCircle} className="circle" />Credit card</div>
+                    <div className='textArea'>
+                        <CircleChecker />
+                        <span>Credit card</span>
+                    </div>
                     <img src={visaCard} alt="visacard logo" ></img>
                 </div>
                 <div className='cardNumberSec'>
-                    <span>Card Number</span><br></br>
-                    <input className='cardNumber' placeholder='Card number'></input>
+                    <label for='cardNumber'>Card Number</label>
+                    <input id='cardNumber' placeholder='Card number'></input>
                 </div>
                 <div className='bottomPart'>
                     <div className='cardHolderSec'>
-                        <span>Card holder</span>
-                        <br></br>
-                        <input className='cardHolder'></input>
+                        <label for='cardHolder'>Card holder</label>
+                        <input id='cardHolder' type="text" placeholder="Card holder"></input>
                     </div>
                     <div className='expirationDateSec'>
-                        <span>Expiration date</span>
-                        <br></br>
-                        <input className='expirationDate' type="date"></input>
+                        <label for='expirationDate'>Expiration date</label>
+                        <input id='expirationDate' type="date" ></input>
                     </div>
                     <div className='cvcSec'>
-                        <span>Cvc</span>
-                        <br></br>
-                        <input className='Cvc' type='number'></input>
+                        <label for='Cvc'>CVC</label>
+                        <input id='Cvc' type='number' placeholder='CVC'></input>
                     </div>
                 </div>
             </div>
 
-            <div className='payPal'></div>
-            <div className='bitcoin'></div>
+            <div className='payPal'>
+                <div className='textArea'>
+                    <CircleChecker />
+                    <span>PayPal</span>
+                </div>
+                <img src={payPal} alt="Paypal logo"></img>
+            </div>
+            <div className='bitcoin'>
+                <div className='textArea'>
+                    <CircleChecker />
+                    <span>Bitcoin</span>
+                </div>
+                <img src={bitcoin} alt="Bitcoin logo"></img>
+            </div>
         </div>
     )
 }
 const AdditionalInfo = () => {
     return (
         <div className='AdditionalInfo'>
-            <h3>Additional informations</h3>
-            <span>Need something else? We will make it for you!</span>
-            <input id="orderNotes" type="text" placeholder="Need a specific deliver day? send a gift? Let's say ..."></input>
+            <div className='titleSec'>
+                <span className='title'>Additional informations</span><br></br>
+                <span className='legend'>Need something else? We will make it for you!</span>
+            </div>
+
+            <textarea placeholder="Need a specific deliver day? send a gift? Let's say ..."></textarea>
         </div>
     )
 }
 const Confirmation = () => {
     return (
         <div className='confirmation'>
-            <h3>Confirmation</h3>
-            <span>We are getting to the end. just a few clicks and your order is ready!</span>
-            <div>I agree with sending an Marketing and newsletter emails. No spam, promissed!</div>
-            <div>I agree with our terms and conditions and privacy policy.</div>
+            <div className='titleSec'>
+                <span className='title'>Confirmation</span><br></br>
+                <span className='legend'>We are getting to the end. just a few clicks and your order is ready!</span>
+            </div>
+            <div className='termsToCheck'>
+                <div className='marketingEmails'><BoxChecker /><span>I agree with sending an Marketing and newsletter emails. No spam, promissed!</span></div>
+                <div className='termCondition'><BoxChecker /><span>I agree with our terms and conditions and privacy policy.</span></div>
+            </div>
         </div>
+
     )
 }
 const ProductsInBasket = () => {
     return (
         <div className='products'>
+
+            <div className='leftSec'>
+                <img src={baguette} alt="product in basket" className='baguette'></img>
+                <div className='controlBtns'>
+                    <div><img src={heart} alt="heart icon"></img><span>Wishlist</span></div>
+                    <div><img src={compareIcon} alt="comparison icon" ></img><span>Compare</span></div>
+                    <div><FontAwesomeIcon icon={faX} className='xIcon' /><span >Remove</span></div>
+                </div>
+            </div>
+
+            <div className='rightSec'>
+                <span className='title'>Product title</span>
+                <div className='extraDetails'>
+                    <span>Farm: Tharamis Farm</span>
+                    <span>Freshness: 1 day old</span>
+                </div>
+                <Ratings stars={[4]} />
+                <div className='pricingPieces'>
+                    <div className='price'>
+                        <span className='currentPrice'>39.98 USD</span>
+                        <span className='oldPrice'>100.98 USD</span>
+                    </div>
+                    <div className='pieces'>
+                        <span className='numPieces'>1pcs</span>
+                        <div className='line'></div>
+                        <div>
+                            <span className='pcs'>Pcs</span>
+                            <i><FontAwesomeIcon icon={faChevronDown} className="arrowIcon" /></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     )
@@ -166,20 +235,30 @@ const ProductsInBasket = () => {
 const OrderSummary = () => {
     return (
         <div className='orderSummary'>
+            <div className='titleSec'>
+                <span className='title'>Order Summary</span>
+                <span className='legend'>Price can change depending on shipping method and taxes of your state.</span>
+            </div>
             <ProductsInBasket />
             <div className='subTotal'>
-                <div>Subtotal</div>
-                <div>Tax</div>
-                <div>Shipping</div>
+                <div><span>Subtotal</span><span className='numericalVal'>73.98 USD</span></div>
+                <div><span>Tax</span><span className='numericalVal'>17% 16.53 USD</span></div>
+                <div><span>Shipping</span><span className='numericalVal'>0 USD</span></div>
             </div>
             <div className='applyPromo'>
-                <input type="text"></input>
+                <input type="text" placeholder='Apply promo code'></input>
+                <div>Apply now</div>
             </div>
             <div className='totalOrder'>
-                <span>Total Order</span>
-                <span>Guaranteed delivery day: june 12, 2020</span>
+                
+                <div>
+                    <span>Total Order</span>
+                    <span>Guaranteed delivery day: june 12, 2020</span>
+                </div>
+
                 <span>89.84</span>
             </div>
+
         </div>
     )
 }
@@ -192,8 +271,7 @@ const BillingSec = () => {
             <PayementMethod />
             <AdditionalInfo />
             <Confirmation />
-            <OrderSummary />
-            <button>Complete order</button>
+            <button className='btncompleted'>Complete order</button>
         </div>
     )
 }

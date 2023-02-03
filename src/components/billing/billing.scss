@@ -1,32 +1,38 @@
 .Checkout {
     margin-top: 200px;
-    display: grid;
     display: flex;
     margin-left: 80px;
     column-gap: 32px;
 
     %titleLegend {
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-        }
+        .titleSec {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
 
-        .legend {
-            opacity: 0.5;
-            font-size: 12px;
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .legend {
+                opacity: 0.5;
+                font-size: 12px;
+            }
         }
     }
 
     .billingSec {
-        width: 700px;
+        width: fit-content;
+        padding-bottom: 48px;
 
         .billingInfo {
             @extend %titleLegend;
 
             .info {
+                display: grid;
+                grid-template-columns: auto auto;
                 margin-top: 24px;
-                display: flex;
-                flex-wrap: wrap;
                 column-gap: 18px;
                 row-gap: 32px;
 
@@ -40,7 +46,8 @@
                 }
 
                 input {
-                    width: 330px;
+                    padding: 0px 16px;
+                    width: 319px;
                     height: 48px;
                     border-radius: 16px;
                     outline: none;
@@ -64,146 +71,413 @@
                 }
             }
         }
-    }
 
-    .shippingMethod {
-        margin-top: 24px;
-        @extend %titleLegend;
-
-        .options {
+        .shippingMethod {
             margin-top: 24px;
-            display: flex;
-            flex-direction: column;
-            row-gap: 16px;
+            @extend %titleLegend;
 
-            .shippingOption {
-                width: 90%;
-                border: 2px solid rgb(241, 241, 241);
-                border-radius: 16px;
-                height: 48px;
-                display: grid;
-                grid-template-columns: auto auto auto;
-                align-items: center;
-                padding: 0px 24px 0px 24px;
+            .options {
+                margin-top: 24px;
+                display: flex;
+                flex-direction: column;
+                row-gap: 16px;
 
-                img {
-                    justify-self: end;
-                    max-width: 60px;
-                }
-
-                .companyName {
-                    display: flex;
-                    column-gap: 16px;
+                .shippingOption {
+                    width: 90%;
+                    border: 2px solid rgb(241, 241, 241);
+                    border-radius: 16px;
+                    height: 48px;
+                    display: grid;
+                    grid-template-columns: auto auto auto;
                     align-items: center;
+                    padding: 0px 24px 0px 24px;
 
-                    .circle {
-                        border: 2px solid rgb(204, 204, 204);
-                        border-radius: 50%;
-                        color: transparent;
+                    img {
+                        justify-self: end;
+                        max-width: 60px;
                     }
-                }
 
-                .price {
-                    display: flex;
-                    column-gap: 16px;
+                    .companyName {
+                        display: flex;
+                        column-gap: 16px;
+                        align-items: center;
 
-                    .addedMoney {
-                        color: rgb(0, 168, 25);
-                        font-weight: bold;
+                        .circle {
+                            border: 2px solid rgb(204, 204, 204);
+                            border-radius: 50%;
+                            color: transparent;
+                        }
+                    }
+
+                    .price {
+                        display: flex;
+                        column-gap: 16px;
+
+                        .addedMoney {
+                            color: rgb(0, 168, 25);
+                            font-weight: bold;
+                        }
                     }
                 }
             }
+
         }
 
-    }
+        .payementMethod {
+            display: flex;
+            flex-direction: column;
+            row-gap: 16px;
+            margin-top: 24px;
+            @extend %titleLegend;
 
-    .payementMethod {
+            label {
+                font-size: 12px;
+                font-weight: bold;
+            }
 
-        margin-top: 24px;
-        @extend %titleLegend;
+            $carWidht: 500px;
+            $paddingLeftRight: 16px;
 
-        .card {
-            border: 1px solid rgb(190, 190, 190);
-            border-radius: 10px;
-            width: 500px;
+            .card {
+                %inputField {
+                    border-radius: 10px;
+                    height: 32px;
+                    border: 2px solid rgb(190, 190, 190);
+                    outline: none;
+                    background-color: #F9F9F9;
+                    padding: 0px 16px;
+                }
 
-            .upperPart {
+                %inputField:focus {
+                    background-color: transparent;
+                }
+
+                width: $carWidht;
+                border-radius: 10px;
+                display: flex;
+                row-gap: 10px;
+                flex-direction: column;
+                padding: $paddingLeftRight 19px $paddingLeftRight 19px;
+                border: 1px solid rgb(190, 190, 190);
+
+                .upperPart {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    width: 100%;
+
+                    img {
+                        justify-self: flex-end;
+                    }
+
+                    .textArea {
+                        display: flex;
+                        column-gap: 8px;
+                        align-items: center;
+                    }
+                }
+
+                .cardNumberSec {
+                    width: 100%;
+
+                    input {
+                        width: $carWidht - ($paddingLeftRight*2);
+                        @extend %inputField;
+                    }
+
+
+                }
+
+                .bottomPart {
+                    display: flex;
+                    width: 100%;
+
+                    input {
+                        @extend %inputField;
+                    }
+
+
+                    .cardHolderSec {
+                        input {
+                            width: $carWidht/2.2;
+                        }
+                    }
+
+                    .expirationDateSec {
+                        align-self: center;
+                        margin-left: 8px;
+
+                        input {
+                            width: 100px;
+                        }
+                    }
+
+                    .cvcSec {
+                        input {
+                            width: 48px;
+                        }
+                    }
+                }
+            }
+
+            .payPal {
+                border: 1px solid rgb(190, 190, 190);
+                ;
+                border-radius: 10px;
+                height: 48px;
                 display: grid;
                 grid-template-columns: auto auto;
-                padding: 19px 16px 19px 16px;
+                align-items: center;
+                width: 500px;
+                padding: 0px 16px 0px 16px;
+
+                .textArea {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 8px;
+                }
 
                 img {
                     justify-self: flex-end;
                 }
+            }
+        }
 
-                .textArea {
+        .AdditionalInfo {
+            @extend %titleLegend;
+            display: flex;
+            flex-direction: column;
+            row-gap: 16px;
+
+            textarea {
+                width: 100%;
+                height: 120px;
+                border-radius: 10px;
+                border: 1px solid rgb(190, 190, 190);
+                outline: none;
+                resize: none;
+                padding: 8px;
+            }
+        }
+
+        .confirmation {
+            %emailOption {
+                display: flex;
+                column-gap: 8px;
+                background-color: #F9F9F9;
+                border: 1px solid rgb(190, 190, 190);
+                border-radius: 10px;
+                padding: 8px 16px 8px 16px;
+                width: fit-content
+            }
+
+            @extend %titleLegend;
+
+            .termsToCheck {
+                margin-top: 24px;
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+
+                .marketingEmails {
+                    @extend %emailOption;
+                }
+
+                .termCondition {
+                    @extend %emailOption;
+                }
+            }
+
+        }
+
+        .btncompleted {
+            margin-top: 24px;
+            width: 218px;
+            height: 56px;
+            border-radius: 12px;
+            border: 2px solid #46760A;
+            background-color: #6A983C;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btncompleted:hover {
+            animation: btnComplete 0.5s forwards ease-in-out;
+        }
+
+        @keyframes btnComplete {
+            to {
+                background-color: #ffffff;
+                color: #46760A;
+            }
+        }
+    }
+
+    .orderSummary {
+        @extend %titleLegend;
+        border: 1px solid #D1D1D1;
+        border-radius: 12px;
+        padding: 24px 16px 24px 16px;
+        height: fit-content;
+
+        .titleSec {
+            margin: 0px 0px 24px 0px
+        }
+
+        .products {
+            display: flex;
+            column-gap: 16px;
+            height: 170px;
+            width: 436px;
+            border-bottom: 1px solid #F9F9F9;
+            padding-bottom: 16px;
+
+            .leftSec {
+                .baguette {
+                    max-width: 100px;
+                    border-radius: 10px;
+                }
+
+                .controlBtns {
                     display: flex;
-                    column-gap: 8px;
-                    align-items: center;
+                    flex-direction: column;
 
-                    .circle {
-                        border: 2px solid rgb(204, 204, 204);
-                        border-radius: 50%;
-                        color: transparent;
+                    img {
+                        max-width: 15px;
+                    }
+
+                    .xIcon {
+                        font-size: 12px;
+                    }
+
+                    div {
+                        display: flex;
+                        column-gap: 6px;
+                        align-items: center;
                     }
                 }
             }
 
-            .cardNumberSec {
-                margin: 0px 18px 0px 18px;
+            .rightSec {
+                display: flex;
+                flex-direction: column;
+                row-gap: 14px;
+                width: 100%;
 
-                .cardNumber {
-                    width: 100%;
-                    height: 32px;
-                    border-radius: 10px;
-                    border: 2px solid rgb(190, 190, 190);
-                    outline: none;
-                }
-
-                span {
-                    font-size: 12px;
+                .title {
                     font-weight: bold;
+                    font-size: 18px;
                 }
-            }
 
-            .bottomPart {
-                margin: 12px 12px 19px 18px;
-                display: grid;
-                grid-template-columns: auto auto auto;
-                input{
-                    height: 32px;
-                    border-radius: 10px;
-                    outline: none;
-                    border: 2px solid rgb(190, 190, 190);
-                }
-                .cardHolderSec{
-                    
-                    span{
-                        font-size: 12px;
+                .pricingPieces {
+                    display: grid;
+                    width: 100%;
+                    grid-template-columns: auto auto;
+
+                    .price {
+                        display: flex;
+                        flex-direction: column;
                         font-weight: bold;
+
+                        .currentPrice {
+                            font-size: 18px;
+                            color: #6A983C;
+                        }
+
+                        .oldPrice {
+                            font-size: 11px;
+                            text-decoration: line-through;
+                        }
                     }
-                    .cardHolder{
-                        width: 250px;
+
+                    .pieces {
+                        width: 92px;
+                        height: 32px;
+                        justify-self: end;
+                        align-items: center;
+                        border-radius: 12px;
+                        background-color: #F9F9F9;
+                        border: 1px solid #D1D1D1;
+                        display: grid;
+                        grid-template-columns: auto auto auto;
+
+                        .numPieces {
+                            color: #D1D1D1;
+                            justify-self: center;
+                        }
+
+                        .line {
+                            height: 80%;
+                            width: 1px;
+                            background-color: #D1D1D1;
+                        }
+
+                        i {
+
+                            font-size: 10px;
+                        }
+
+                        .pcs {
+                            margin-right: 4px;
+                            font-weight: bold;
+                        }
                     }
-                    
                 }
-                .expirationDateSec{
-                    span{
-                        font-size: 12px;
-                        font-weight: bold;
-                    }
-                }
-                .cvcSec{
-                    span{
-                        font-size: 12px;
-                        font-weight: bold;
-                    }
-                    .Cvc{
-                        width: 50px;
-                    }
+
+                .extraDetails {
+                    display: flex;
+                    flex-direction: column;
                 }
             }
         }
 
+        .subTotal {
+            width: 100%;
+            font-weight: bold;
+            margin-top: 16px;
+
+            div {
+                display: grid;
+                grid-template-columns: auto auto;
+
+                .numericalVal {
+                    justify-self: end;
+                }
+            }
+        }
+
+        .applyPromo {
+            margin:16px 0px 16px 0px;
+            height: 32px;
+            display: grid;
+            grid-template-columns: 75% auto;
+            background-color: #F9F9F9;
+            border: 1px solid #D1D1D1;
+            border-radius: 12px;
+            input{
+                background-color: transparent;
+                outline: none;
+                border: none;
+                padding: 0px 0px 0px 21px;
+            }
+            div{
+                align-self: center;
+                font-weight: bold;
+                margin: 0px 16px 0px 0px;
+                justify-self: flex-end;
+                cursor: pointer;
+            }
+        }
+
+        .totalOrder{
+            display: grid;
+            grid-template-columns: auto auto;
+            div{
+                display: flex;
+                flex-direction: column;
+            }
+        }
     }
+
 }

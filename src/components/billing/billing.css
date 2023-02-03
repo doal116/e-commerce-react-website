@@ -1,26 +1,33 @@
 .Checkout {
   margin-top: 200px;
-  display: grid;
   display: flex;
   margin-left: 80px;
   -moz-column-gap: 32px;
        column-gap: 32px;
 }
-.Checkout .payementMethod .title, .Checkout .shippingMethod .title, .Checkout .billingSec .billingInfo .title {
+.Checkout .orderSummary .titleSec, .Checkout .billingSec .confirmation .titleSec, .Checkout .billingSec .AdditionalInfo .titleSec, .Checkout .billingSec .payementMethod .titleSec, .Checkout .billingSec .shippingMethod .titleSec, .Checkout .billingSec .billingInfo .titleSec {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.Checkout .orderSummary .titleSec .title, .Checkout .billingSec .confirmation .titleSec .title, .Checkout .billingSec .AdditionalInfo .titleSec .title, .Checkout .billingSec .payementMethod .titleSec .title, .Checkout .billingSec .shippingMethod .titleSec .title, .Checkout .billingSec .billingInfo .titleSec .title {
   font-size: 24px;
   font-weight: bold;
 }
-.Checkout .payementMethod .legend, .Checkout .shippingMethod .legend, .Checkout .billingSec .billingInfo .legend {
+.Checkout .orderSummary .titleSec .legend, .Checkout .billingSec .confirmation .titleSec .legend, .Checkout .billingSec .AdditionalInfo .titleSec .legend, .Checkout .billingSec .payementMethod .titleSec .legend, .Checkout .billingSec .shippingMethod .titleSec .legend, .Checkout .billingSec .billingInfo .titleSec .legend {
   opacity: 0.5;
   font-size: 12px;
 }
 .Checkout .billingSec {
-  width: 700px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-bottom: 48px;
 }
 .Checkout .billingSec .billingInfo .info {
+  display: grid;
+  grid-template-columns: auto auto;
   margin-top: 24px;
-  display: flex;
-  flex-wrap: wrap;
   -moz-column-gap: 18px;
        column-gap: 18px;
   row-gap: 32px;
@@ -33,7 +40,8 @@
   font-weight: bold;
 }
 .Checkout .billingSec .billingInfo .info input {
-  width: 330px;
+  padding: 0px 16px;
+  width: 319px;
   height: 48px;
   border-radius: 16px;
   outline: none;
@@ -53,16 +61,16 @@
 .Checkout .billingSec .billingInfo button span {
   font-size: 15px;
 }
-.Checkout .shippingMethod {
+.Checkout .billingSec .shippingMethod {
   margin-top: 24px;
 }
-.Checkout .shippingMethod .options {
+.Checkout .billingSec .shippingMethod .options {
   margin-top: 24px;
   display: flex;
   flex-direction: column;
   row-gap: 16px;
 }
-.Checkout .shippingMethod .options .shippingOption {
+.Checkout .billingSec .shippingMethod .options .shippingOption {
   width: 90%;
   border: 2px solid rgb(241, 241, 241);
   border-radius: 16px;
@@ -72,97 +80,314 @@
   align-items: center;
   padding: 0px 24px 0px 24px;
 }
-.Checkout .shippingMethod .options .shippingOption img {
+.Checkout .billingSec .shippingMethod .options .shippingOption img {
   justify-self: end;
   max-width: 60px;
 }
-.Checkout .shippingMethod .options .shippingOption .companyName {
+.Checkout .billingSec .shippingMethod .options .shippingOption .companyName {
   display: flex;
   -moz-column-gap: 16px;
        column-gap: 16px;
   align-items: center;
 }
-.Checkout .shippingMethod .options .shippingOption .companyName .circle {
+.Checkout .billingSec .shippingMethod .options .shippingOption .companyName .circle {
   border: 2px solid rgb(204, 204, 204);
   border-radius: 50%;
   color: transparent;
 }
-.Checkout .shippingMethod .options .shippingOption .price {
+.Checkout .billingSec .shippingMethod .options .shippingOption .price {
   display: flex;
   -moz-column-gap: 16px;
        column-gap: 16px;
 }
-.Checkout .shippingMethod .options .shippingOption .price .addedMoney {
+.Checkout .billingSec .shippingMethod .options .shippingOption .price .addedMoney {
   color: rgb(0, 168, 25);
   font-weight: bold;
 }
-.Checkout .payementMethod {
+.Checkout .billingSec .payementMethod {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
   margin-top: 24px;
 }
-.Checkout .payementMethod .card {
-  border: 1px solid rgb(190, 190, 190);
-  border-radius: 10px;
-  width: 500px;
+.Checkout .billingSec .payementMethod label {
+  font-size: 12px;
+  font-weight: bold;
 }
-.Checkout .payementMethod .card .upperPart {
+.Checkout .billingSec .payementMethod .card {
+  width: 500px;
+  border-radius: 10px;
+  display: flex;
+  row-gap: 10px;
+  flex-direction: column;
+  padding: 16px 19px 16px 19px;
+  border: 1px solid rgb(190, 190, 190);
+}
+.Checkout .billingSec .payementMethod .card .bottomPart input, .Checkout .billingSec .payementMethod .card .cardNumberSec input {
+  border-radius: 10px;
+  height: 32px;
+  border: 2px solid rgb(190, 190, 190);
+  outline: none;
+  background-color: #F9F9F9;
+  padding: 0px 16px;
+}
+.Checkout .billingSec .payementMethod .card .bottomPart input:focus, .Checkout .billingSec .payementMethod .card .cardNumberSec input:focus {
+  background-color: transparent;
+}
+.Checkout .billingSec .payementMethod .card .upperPart {
   display: grid;
   grid-template-columns: auto auto;
-  padding: 19px 16px 19px 16px;
+  width: 100%;
 }
-.Checkout .payementMethod .card .upperPart img {
+.Checkout .billingSec .payementMethod .card .upperPart img {
   justify-self: flex-end;
 }
-.Checkout .payementMethod .card .upperPart .textArea {
+.Checkout .billingSec .payementMethod .card .upperPart .textArea {
   display: flex;
   -moz-column-gap: 8px;
        column-gap: 8px;
   align-items: center;
 }
-.Checkout .payementMethod .card .upperPart .textArea .circle {
-  border: 2px solid rgb(204, 204, 204);
-  border-radius: 50%;
-  color: transparent;
-}
-.Checkout .payementMethod .card .cardNumberSec {
-  margin: 0px 18px 0px 18px;
-}
-.Checkout .payementMethod .card .cardNumberSec .cardNumber {
+.Checkout .billingSec .payementMethod .card .cardNumberSec {
   width: 100%;
-  height: 32px;
-  border-radius: 10px;
-  border: 2px solid rgb(190, 190, 190);
-  outline: none;
 }
-.Checkout .payementMethod .card .cardNumberSec span {
+.Checkout .billingSec .payementMethod .card .cardNumberSec input {
+  width: 468px;
+}
+.Checkout .billingSec .payementMethod .card .bottomPart {
+  display: flex;
+  width: 100%;
+}
+.Checkout .billingSec .payementMethod .card .bottomPart .cardHolderSec input {
+  width: 227.2727272727px;
+}
+.Checkout .billingSec .payementMethod .card .bottomPart .expirationDateSec {
+  align-self: center;
+  margin-left: 8px;
+}
+.Checkout .billingSec .payementMethod .card .bottomPart .expirationDateSec input {
+  width: 100px;
+}
+.Checkout .billingSec .payementMethod .card .bottomPart .cvcSec input {
+  width: 48px;
+}
+.Checkout .billingSec .payementMethod .payPal {
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 10px;
+  height: 48px;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  width: 500px;
+  padding: 0px 16px 0px 16px;
+}
+.Checkout .billingSec .payementMethod .payPal .textArea {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
+}
+.Checkout .billingSec .payementMethod .payPal img {
+  justify-self: flex-end;
+}
+.Checkout .billingSec .AdditionalInfo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+.Checkout .billingSec .AdditionalInfo textarea {
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid rgb(190, 190, 190);
+  outline: none;
+  resize: none;
+  padding: 8px;
+}
+.Checkout .billingSec .confirmation .termsToCheck .termCondition, .Checkout .billingSec .confirmation .termsToCheck .marketingEmails {
+  display: flex;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
+  background-color: #F9F9F9;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 10px;
+  padding: 8px 16px 8px 16px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.Checkout .billingSec .confirmation .termsToCheck {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.Checkout .billingSec .btncompleted {
+  margin-top: 24px;
+  width: 218px;
+  height: 56px;
+  border-radius: 12px;
+  border: 2px solid #46760A;
+  background-color: #6A983C;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+.Checkout .billingSec .btncompleted:hover {
+  -webkit-animation: btnComplete 0.5s forwards ease-in-out;
+          animation: btnComplete 0.5s forwards ease-in-out;
+}
+@-webkit-keyframes btnComplete {
+  to {
+    background-color: #ffffff;
+    color: #46760A;
+  }
+}
+@keyframes btnComplete {
+  to {
+    background-color: #ffffff;
+    color: #46760A;
+  }
+}
+.Checkout .orderSummary {
+  border: 1px solid #D1D1D1;
+  border-radius: 12px;
+  padding: 24px 16px 24px 16px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.Checkout .orderSummary .titleSec {
+  margin: 0px 0px 24px 0px;
+}
+.Checkout .orderSummary .products {
+  display: flex;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+  height: 170px;
+  width: 436px;
+  border-bottom: 1px solid #F9F9F9;
+  padding-bottom: 16px;
+}
+.Checkout .orderSummary .products .leftSec .baguette {
+  max-width: 100px;
+  border-radius: 10px;
+}
+.Checkout .orderSummary .products .leftSec .controlBtns {
+  display: flex;
+  flex-direction: column;
+}
+.Checkout .orderSummary .products .leftSec .controlBtns img {
+  max-width: 15px;
+}
+.Checkout .orderSummary .products .leftSec .controlBtns .xIcon {
   font-size: 12px;
+}
+.Checkout .orderSummary .products .leftSec .controlBtns div {
+  display: flex;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
+  align-items: center;
+}
+.Checkout .orderSummary .products .rightSec {
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+  width: 100%;
+}
+.Checkout .orderSummary .products .rightSec .title {
+  font-weight: bold;
+  font-size: 18px;
+}
+.Checkout .orderSummary .products .rightSec .pricingPieces {
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto auto;
+}
+.Checkout .orderSummary .products .rightSec .pricingPieces .price {
+  display: flex;
+  flex-direction: column;
   font-weight: bold;
 }
-.Checkout .payementMethod .card .bottomPart {
-  margin: 12px 12px 19px 18px;
+.Checkout .orderSummary .products .rightSec .pricingPieces .price .currentPrice {
+  font-size: 18px;
+  color: #6A983C;
+}
+.Checkout .orderSummary .products .rightSec .pricingPieces .price .oldPrice {
+  font-size: 11px;
+  text-decoration: line-through;
+}
+.Checkout .orderSummary .products .rightSec .pricingPieces .pieces {
+  width: 92px;
+  height: 32px;
+  justify-self: end;
+  align-items: center;
+  border-radius: 12px;
+  background-color: #F9F9F9;
+  border: 1px solid #D1D1D1;
   display: grid;
   grid-template-columns: auto auto auto;
 }
-.Checkout .payementMethod .card .bottomPart input {
+.Checkout .orderSummary .products .rightSec .pricingPieces .pieces .numPieces {
+  color: #D1D1D1;
+  justify-self: center;
+}
+.Checkout .orderSummary .products .rightSec .pricingPieces .pieces .line {
+  height: 80%;
+  width: 1px;
+  background-color: #D1D1D1;
+}
+.Checkout .orderSummary .products .rightSec .pricingPieces .pieces i {
+  font-size: 10px;
+}
+.Checkout .orderSummary .products .rightSec .pricingPieces .pieces .pcs {
+  margin-right: 4px;
+  font-weight: bold;
+}
+.Checkout .orderSummary .products .rightSec .extraDetails {
+  display: flex;
+  flex-direction: column;
+}
+.Checkout .orderSummary .subTotal {
+  width: 100%;
+  font-weight: bold;
+  margin-top: 16px;
+}
+.Checkout .orderSummary .subTotal div {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.Checkout .orderSummary .subTotal div .numericalVal {
+  justify-self: end;
+}
+.Checkout .orderSummary .applyPromo {
+  margin: 16px 0px 16px 0px;
   height: 32px;
-  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 75% auto;
+  background-color: #F9F9F9;
+  border: 1px solid #D1D1D1;
+  border-radius: 12px;
+}
+.Checkout .orderSummary .applyPromo input {
+  background-color: transparent;
   outline: none;
-  border: 2px solid rgb(190, 190, 190);
+  border: none;
+  padding: 0px 0px 0px 21px;
 }
-.Checkout .payementMethod .card .bottomPart .cardHolderSec span {
-  font-size: 12px;
+.Checkout .orderSummary .applyPromo div {
+  align-self: center;
   font-weight: bold;
+  margin: 0px 16px 0px 0px;
+  justify-self: flex-end;
+  cursor: pointer;
 }
-.Checkout .payementMethod .card .bottomPart .cardHolderSec .cardHolder {
-  width: 250px;
+.Checkout .orderSummary .totalOrder {
+  display: grid;
+  grid-template-columns: auto auto;
 }
-.Checkout .payementMethod .card .bottomPart .expirationDateSec span {
-  font-size: 12px;
-  font-weight: bold;
-}
-.Checkout .payementMethod .card .bottomPart .cvcSec span {
-  font-size: 12px;
-  font-weight: bold;
-}
-.Checkout .payementMethod .card .bottomPart .cvcSec .Cvc {
-  width: 50px;
+.Checkout .orderSummary .totalOrder div {
+  display: flex;
+  flex-direction: column;
 }/*# sourceMappingURL=billing.css.map */

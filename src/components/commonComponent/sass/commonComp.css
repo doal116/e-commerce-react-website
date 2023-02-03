@@ -20,4 +20,12 @@
   width: 18px;
   border: 2px solid rgb(205, 205, 205);
   border-radius: 5px;
+}
+
+.circle {
+  cursor: pointer;
+  font-size: 22px;
+  border: 1px solid rgb(205, 205, 205);
+  color: transparent;
+  border-radius: 50%;
 }/*# sourceMappingURL=commonComp.css.map */
