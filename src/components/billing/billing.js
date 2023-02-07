@@ -1,6 +1,5 @@
 import './billing.css';
-
-import fedex from './fedex.png';
+import fedex from './fedex.svg';
 import visaCard from './visaCard.svg';
 import payPal from './payPal.svg';
 import bitcoin from './bitcoin.svg';
@@ -17,6 +16,7 @@ import BoxChecker from '../commonComponent/BoxChecker';
 import CircleChecker from '../commonComponent/circleChecker';
 import Ratings from '../commonComponent/Ratings';
 import baguette from './baguette.jpg';
+
 const BillingInfo = () => {
     return (
         <div className='billingInfo'>
@@ -79,7 +79,7 @@ const ShippingMethod = () => {
     return (
         <div className='shippingMethod'>
             <div className='titleSec'>
-                <span className='title'>Shipping method</span><br></br>
+                <span className='title'>Shipping method</span>
                 <span className='legend'>Please enter your payement method</span>
             </div>
             <div className='options'>
@@ -116,7 +116,7 @@ const PayementMethod = () => {
     return (
         <div className='payementMethod'>
             <div className='titleSec'>
-                <span className='title'>Payement Method</span><br></br>
+                <span className='title'>Payement Method</span>
                 <span className='legend'>Please enter your payment method</span>
             </div>
 
@@ -170,7 +170,7 @@ const AdditionalInfo = () => {
     return (
         <div className='AdditionalInfo'>
             <div className='titleSec'>
-                <span className='title'>Additional informations</span><br></br>
+                <span className='title'>Additional informations</span>
                 <span className='legend'>Need something else? We will make it for you!</span>
             </div>
 
@@ -182,7 +182,7 @@ const Confirmation = () => {
     return (
         <div className='confirmation'>
             <div className='titleSec'>
-                <span className='title'>Confirmation</span><br></br>
+                <span className='title'>Confirmation</span>
                 <span className='legend'>We are getting to the end. just a few clicks and your order is ready!</span>
             </div>
             <div className='termsToCheck'>
@@ -241,22 +241,31 @@ const OrderSummary = () => {
             </div>
             <ProductsInBasket />
             <div className='subTotal'>
-                <div><span>Subtotal</span><span className='numericalVal'>73.98 USD</span></div>
-                <div><span>Tax</span><span className='numericalVal'>17% 16.53 USD</span></div>
-                <div><span>Shipping</span><span className='numericalVal'>0 USD</span></div>
+                <div>
+                    <span>Subtotal</span>
+                    <span className='numericalVal'>73.98 USD</span>
+                </div>
+                <div>
+                    <span>Tax</span>
+                    <span className='numericalVal'>17% 16.53 USD</span>
+                </div>
+                <div>
+                    <span>Shipping</span>
+                    <span className='numericalVal'>0 USD</span>
+                </div>
             </div>
             <div className='applyPromo'>
                 <input type="text" placeholder='Apply promo code'></input>
                 <div>Apply now</div>
             </div>
             <div className='totalOrder'>
-                
+
                 <div>
                     <span>Total Order</span>
-                    <span>Guaranteed delivery day: june 12, 2020</span>
+                    <span className='guarantee'>Guaranteed delivery day: june 12, 2020</span>
                 </div>
 
-                <span>89.84</span>
+                <span className='totalPrice'>89.84 USD</span>
             </div>
 
         </div>

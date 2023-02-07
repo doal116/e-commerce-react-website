@@ -6,7 +6,6 @@
 
     %titleLegend {
         .titleSec {
-            margin-top: 32px;
             display: flex;
             flex-direction: column;
 
@@ -51,17 +50,17 @@
                     height: 48px;
                     border-radius: 16px;
                     outline: none;
-                    border: 2px solid rgb(189, 189, 189);
+                    border: 2px solid #D1D1D1;
                 }
 
             }
 
             button {
                 border-radius: 10px;
-                border: 2px solid rgb(204, 204, 204);
+                border: 2px solid #D1D1D1;
                 padding: 15px;
                 margin-top: 24px;
-                background-color: rgba(220, 220, 220, 0.5);
+                background-color: #F9F9F9;
                 display: flex;
                 align-items: flex-end;
                 column-gap: 8px;
@@ -84,7 +83,8 @@
 
                 .shippingOption {
                     width: 90%;
-                    border: 2px solid rgb(241, 241, 241);
+                    border: 2px solid #D1D1D1;
+                    background-color: #F9F9F9;
                     border-radius: 16px;
                     height: 48px;
                     display: grid;
@@ -318,7 +318,7 @@
         @extend %titleLegend;
         border: 1px solid #D1D1D1;
         border-radius: 12px;
-        padding: 24px 16px 24px 16px;
+        padding: 32px 16px 32px 16px;
         height: fit-content;
 
         .titleSec {
@@ -434,8 +434,12 @@
 
         .subTotal {
             width: 100%;
+            display: flex;
+            flex-direction: column;
             font-weight: bold;
             margin-top: 16px;
+            row-gap: 10px;
+            font-size: 12px;
 
             div {
                 display: grid;
@@ -444,24 +448,27 @@
                 .numericalVal {
                     justify-self: end;
                 }
+
             }
         }
 
         .applyPromo {
-            margin:16px 0px 16px 0px;
-            height: 32px;
+            margin: 16px 0px 16px 0px;
+            height: 42px;
             display: grid;
             grid-template-columns: 75% auto;
             background-color: #F9F9F9;
             border: 1px solid #D1D1D1;
             border-radius: 12px;
-            input{
+
+            input {
                 background-color: transparent;
                 outline: none;
                 border: none;
                 padding: 0px 0px 0px 21px;
             }
-            div{
+
+            div {
                 align-self: center;
                 font-weight: bold;
                 margin: 0px 16px 0px 0px;
@@ -470,12 +477,25 @@
             }
         }
 
-        .totalOrder{
+        .totalOrder {
             display: grid;
             grid-template-columns: auto auto;
-            div{
+
+            div {
                 display: flex;
                 flex-direction: column;
+
+                .guarantee {
+                    color: #6A983C;
+                }
+            }
+
+            .totalPrice {
+                font-size: 26px;
+                align-self: flex-end;
+                justify-self: end;
+                font-weight: bold;
+                color: #6A983C;
             }
         }
     }
