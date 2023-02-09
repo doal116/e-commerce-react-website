@@ -70,6 +70,7 @@
   row-gap: 16px;
 }
 .Checkout .billingSec .shippingMethod .options .shippingOption {
+  cursor: pointer;
   width: 90%;
   border: 2px solid #D1D1D1;
   background-color: #F9F9F9;
@@ -114,15 +115,6 @@
   font-size: 12px;
   font-weight: bold;
 }
-.Checkout .billingSec .payementMethod .card {
-  width: 500px;
-  border-radius: 10px;
-  display: flex;
-  row-gap: 10px;
-  flex-direction: column;
-  padding: 16px 19px 16px 19px;
-  border: 1px solid rgb(190, 190, 190);
-}
 .Checkout .billingSec .payementMethod .card .bottomPart input, .Checkout .billingSec .payementMethod .card .cardNumberSec input {
   border-radius: 10px;
   height: 32px;
@@ -133,6 +125,15 @@
 }
 .Checkout .billingSec .payementMethod .card .bottomPart input:focus, .Checkout .billingSec .payementMethod .card .cardNumberSec input:focus {
   background-color: transparent;
+}
+.Checkout .billingSec .payementMethod .card {
+  width: 500px;
+  border-radius: 10px;
+  display: flex;
+  row-gap: 10px;
+  flex-direction: column;
+  padding: 16px 19px 16px 19px;
+  border: 1px solid rgb(190, 190, 190);
 }
 .Checkout .billingSec .payementMethod .card .upperPart {
   display: grid;
@@ -151,6 +152,11 @@
 .Checkout .billingSec .payementMethod .card .cardNumberSec {
   width: 100%;
 }
+.Checkout .billingSec .payementMethod .card .cardNumberSec input::-webkit-outer-spin-button,
+.Checkout .billingSec .payementMethod .card .cardNumberSec input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .Checkout .billingSec .payementMethod .card .cardNumberSec input {
   width: 468px;
 }
@@ -168,32 +174,148 @@
 .Checkout .billingSec .payementMethod .card .bottomPart .expirationDateSec input {
   width: 100px;
 }
+.Checkout .billingSec .payementMethod .card .bottomPart .cvcSec input::-webkit-outer-spin-button,
+.Checkout .billingSec .payementMethod .card .bottomPart .cvcSec input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .Checkout .billingSec .payementMethod .card .bottomPart .cvcSec input {
   width: 48px;
 }
-.Checkout .billingSec .payementMethod .payPal {
-  border: 1px solid rgb(190, 190, 190);
+.Checkout .billingSec .payementMethod .paypal {
+  width: 500px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #D1D1D1;
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
-  height: 48px;
+  padding: 16px 16px 16px 16px;
+}
+.Checkout .billingSec .payementMethod .paypal .inputSec {
+  margin: 16px 0px 16px 0px;
+  display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}
+.Checkout .billingSec .payementMethod .paypal .inputSec input {
+  padding: 0px 0px 0px 16px;
+  width: 200px;
+  outline: none;
+  border-radius: 10px;
+  height: 32px;
+  border: 2px solid #D1D1D1;
+}
+.Checkout .billingSec .payementMethod .paypal .upperPart {
+  width: 100%;
   display: grid;
   grid-template-columns: auto auto;
-  align-items: center;
-  width: 500px;
-  padding: 0px 16px 0px 16px;
 }
-.Checkout .billingSec .payementMethod .payPal .textArea {
+.Checkout .billingSec .payementMethod .paypal .upperPart img {
+  justify-self: flex-end;
+}
+.Checkout .billingSec .payementMethod .paypal button {
+  width: 120px;
+  margin: 0px auto 0px auto;
+  border: 2px solid #46760A;
+  outline: none;
+  background-color: rgb(16, 155, 109);
+  color: #ffffff;
+  border-radius: 10px;
+  height: 32px;
+  cursor: pointer;
+}
+.Checkout .billingSec .payementMethod .bitcoin {
+  width: 500px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+  padding: 16px 16px 16px 16px;
+}
+.Checkout .billingSec .payementMethod .bitcoin .upperPart {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 100%;
+}
+.Checkout .billingSec .payementMethod .bitcoin .upperPart img {
+  justify-self: flex-end;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo {
+  margin: 0px auto 0px auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .title {
+  opacity: 0.7;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .walletAddress, .Checkout .billingSec .payementMethod .bitcoin .walletInfo .amounToPay {
+  width: 300px;
+  border: 2px solid #D1D1D1;
+  border-radius: 10px;
+  background-color: #F9F9F9;
+  cursor: pointer;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .amounToPay {
+  margin-bottom: 16px;
+  padding: 8px 0px 8px 0px;
+  display: grid;
+  grid-template-columns: 60% 30% 10%;
+  align-items: center;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .amounToPay .btcValue {
+  justify-self: center;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .amounToPay .usdValue {
+  color: rgb(16, 155, 109);
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .walletAddress {
+  padding: 8px 0px 8px 0px;
+  display: grid;
+  grid-template-columns: 90% 10%;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .walletAddress span {
+  justify-self: center;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .timer {
+  text-align: center;
+  margin: 8px 0px 0px 0px;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .timer .time {
+  font-weight: bold;
+}
+.Checkout .billingSec .payementMethod .bitcoin .walletInfo .timer .legend {
+  opacity: 0.5;
+}
+.Checkout .billingSec .payementMethod .barDesign {
+  height: 48px;
+  width: 500px;
+  display: grid;
+  align-items: center;
+  border-radius: 10px;
+  padding: 0px 16px 0px 16px;
+  grid-template-columns: auto auto;
+  border: 1px solid rgb(190, 190, 190);
+  cursor: pointer;
+}
+.Checkout .billingSec .payementMethod .barDesign .textArea {
   display: flex;
   align-items: center;
   -moz-column-gap: 8px;
        column-gap: 8px;
 }
-.Checkout .billingSec .payementMethod .payPal img {
+.Checkout .billingSec .payementMethod .barDesign img {
   justify-self: flex-end;
 }
 .Checkout .billingSec .AdditionalInfo {
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+  margin-top: 24px;
 }
 .Checkout .billingSec .AdditionalInfo textarea {
   width: 100%;

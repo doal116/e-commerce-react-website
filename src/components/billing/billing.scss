@@ -82,6 +82,7 @@
                 row-gap: 16px;
 
                 .shippingOption {
+                    cursor: pointer;
                     width: 90%;
                     border: 2px solid #D1D1D1;
                     background-color: #F9F9F9;
@@ -138,19 +139,21 @@
             $carWidht: 500px;
             $paddingLeftRight: 16px;
 
-            .card {
-                %inputField {
-                    border-radius: 10px;
-                    height: 32px;
-                    border: 2px solid rgb(190, 190, 190);
-                    outline: none;
-                    background-color: #F9F9F9;
-                    padding: 0px 16px;
-                }
+            %inputField {
+                border-radius: 10px;
+                height: 32px;
+                border: 2px solid rgb(190, 190, 190);
+                outline: none;
+                background-color: #F9F9F9;
+                padding: 0px 16px;
+            }
 
-                %inputField:focus {
-                    background-color: transparent;
-                }
+            %inputField:focus {
+                background-color: transparent;
+            }
+
+            .card {
+
 
                 width: $carWidht;
                 border-radius: 10px;
@@ -178,6 +181,12 @@
 
                 .cardNumberSec {
                     width: 100%;
+
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
 
                     input {
                         width: $carWidht - ($paddingLeftRight*2);
@@ -212,6 +221,11 @@
                     }
 
                     .cvcSec {
+                        input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
                         input {
                             width: 48px;
                         }
@@ -219,16 +233,142 @@
                 }
             }
 
-            .payPal {
-                border: 1px solid rgb(190, 190, 190);
-                ;
+            .paypal {
+                width: $carWidht;
+                height: fit-content;
+                border: 1px solid #D1D1D1;
+                display: flex;
+                flex-direction: column;
                 border-radius: 10px;
+                padding: 16px $paddingLeftRight 16px $paddingLeftRight;
+
+                .inputSec {
+                    margin: 16px 0px 16px 0px;
+                    display: flex;
+                    column-gap: 10px;
+
+                    input {
+                        padding: 0px 0px 0px 16px;
+                        width: 200px;
+                        outline: none;
+                        border-radius: 10px;
+                        height: 32px;
+                        border: 2px solid #D1D1D1;
+                    }
+                }
+
+                .upperPart {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: auto auto;
+
+                    img {
+                        justify-self: flex-end;
+                    }
+                }
+
+                button {
+                    width: 120px;
+                    margin: 0px auto 0px auto;
+                    border: 2px solid #46760A;
+                    outline: none;
+                    background-color: rgb(16, 155, 109);
+                    color: #ffffff;
+                    border-radius: 10px;
+                    height: 32px;
+                    cursor: pointer;
+                }
+            }
+
+            .bitcoin {
+                width: $carWidht;
+                height: fit-content;
+                border: 1px solid #D1D1D1;
+                border-radius: 10px;
+                padding: 16px $paddingLeftRight 16px $paddingLeftRight;
+
+                .upperPart {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    width: 100%;
+
+                    img {
+                        justify-self: flex-end;
+                    }
+                }
+
+                .walletInfo {
+                    margin: 0px auto 0px auto;
+                    width: fit-content;
+
+                    .title {
+                        opacity: 0.7;
+                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    }
+
+                    %infoSec {
+                        width: 300px;
+                        border: 2px solid #D1D1D1;
+                        border-radius: 10px;
+                        background-color: #F9F9F9;
+                        cursor: pointer;
+                    }
+
+                    .amounToPay {
+                        @extend %infoSec;
+                        margin-bottom: 16px;
+                        padding: 8px 0px 8px 0px;
+                        display: grid;
+                        grid-template-columns: 60% 30% 10%;
+                        align-items: center;
+
+                        .btcValue {
+                            justify-self: center;
+                        }
+
+                        .usdValue {
+                            color: rgb(16, 155, 109);
+                        }
+
+
+                    }
+
+                    .walletAddress {
+                        @extend %infoSec;
+                        padding: 8px 0px 8px 0px;
+                        display: grid;
+                        grid-template-columns: 90% 10%;
+
+                        span {
+                            justify-self: center;
+                        }
+                    }
+
+                    .timer {
+                        text-align: center;
+                        margin: 8px 0px 0px 0px;
+
+                        .time {
+                            font-weight: bold;
+                        }
+
+                        .legend {
+                            opacity: 0.5;
+                        }
+                    }
+                }
+            }
+
+            .barDesign {
                 height: 48px;
-                display: grid;
-                grid-template-columns: auto auto;
-                align-items: center;
                 width: 500px;
+                display: grid;
+                align-items: center;
+                border-radius: 10px;
                 padding: 0px 16px 0px 16px;
+                grid-template-columns: auto auto;
+                border: 1px solid rgb(190, 190, 190);
+                cursor: pointer;
 
                 .textArea {
                     display: flex;
@@ -247,6 +387,7 @@
             display: flex;
             flex-direction: column;
             row-gap: 16px;
+            margin-top: 24px;
 
             textarea {
                 width: 100%;

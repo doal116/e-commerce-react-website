@@ -4,18 +4,20 @@ import visaCard from './visaCard.svg';
 import payPal from './payPal.svg';
 import bitcoin from './bitcoin.svg';
 import heart from './heart.svg';
+import dhl from './dhl.svg';
 import compareIcon from './compareIcon.svg';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faChevronDown,
-    faX
+    faX, faCircleCheck,
+    faCircle, faCopy
 } from "@fortawesome/free-solid-svg-icons";
 
 import BoxChecker from '../commonComponent/BoxChecker';
-import CircleChecker from '../commonComponent/circleChecker';
 import Ratings from '../commonComponent/Ratings';
 import baguette from './baguette.jpg';
+import { useState } from 'react';
 
 const BillingInfo = () => {
     return (
@@ -76,6 +78,56 @@ const BillingInfo = () => {
     )
 }
 const ShippingMethod = () => {
+    const circleStyling = {
+        circle: {
+            'cursor': 'pointer',
+            'fontSize': '22px',
+            'border': '1px solid rgb(205, 205, 205)',
+            'color': 'transparent',
+            'borderRadius': '50%'
+        },
+        circleChecked: {
+            'color': 'rgb(16, 155, 109)',
+            'fontSize': '22px',
+            'cursor': 'pointer',
+            'border': '1px solid transparent'
+        }
+    }
+    const [shippingMethod, setShippingMethod] = useState([
+        { name: 'dhl', state: true, image: dhl, addPrice: 32 },
+        { name: 'fedex', state: false, image: fedex, addPrice: 24 }
+    ]);
+    const cardOption = (method, i) => {
+        return (
+            <div className='shippingOption' key={i.toString()}
+                onClick={() => {
+                    const newShippingState = [...shippingMethod];
+                    newShippingState.forEach(elem => {
+                        if (elem['name'] === method['name']) {
+                            elem['state'] = !elem['state']
+                        } else elem['state'] = false;
+                    });
+
+                    setShippingMethod(newShippingState);
+                }}
+            >
+                <div className='companyName'>
+                    {
+                        method['state'] ?
+                            <FontAwesomeIcon style={circleStyling.circleChecked} icon={faCircleCheck} /> :
+                            <FontAwesomeIcon style={circleStyling.circle} icon={faCircle} />
+                    }
+                    <span>{method['name']}</span>
+                </div>
+                <div className='price'>
+                    <span className='addedMoney'>{method['addPrice']} USD</span>
+                    <span>Addition price</span>
+                </div>
+                <img src={method['image']} alt={method['name'] + 'Logo'} ></img>
+            </div>
+        )
+
+    }
     return (
         <div className='shippingMethod'>
             <div className='titleSec'>
@@ -83,28 +135,10 @@ const ShippingMethod = () => {
                 <span className='legend'>Please enter your payement method</span>
             </div>
             <div className='options'>
-                <div className='shippingOption'>
-                    <div className='companyName'>
-                        <CircleChecker />
-                        <span>FedEx</span>
-                    </div>
-                    <div className='price'>
-                        <span className='addedMoney'>+32 USD</span>
-                        <span>Addition price</span>
-                    </div>
-                    <img src={fedex} alt="fedex Logo"></img>
-                </div>
-                <div className='shippingOption'>
-                    <div className='companyName'>
-                        <CircleChecker />
-                        <span>FedEx</span>
-                    </div>
-                    <div className='price'>
-                        <span className='addedMoney'>+32 USD</span>
-                        <span>Addition price</span>
-                    </div>
-                    <img src={fedex} alt="fedex Logo"></img>
-                </div>
+
+                {
+                    shippingMethod.map((elem, i) => cardOption(elem, i))
+                }
             </div>
 
 
@@ -112,6 +146,145 @@ const ShippingMethod = () => {
     )
 }
 const PayementMethod = () => {
+    const circleStyling = {
+        circle: {
+            'cursor': 'pointer',
+            'fontSize': '22px',
+            'border': '1px solid rgb(205, 205, 205)',
+            'color': 'transparent',
+            'borderRadius': '50%'
+        },
+        circleChecked: {
+            'color': 'rgb(16, 155, 109)',
+            'fontSize': '22px',
+            'cursor': 'pointer',
+            'border': '1px solid transparent'
+        }
+    }
+    const crediCardDesign = (method, i) => {
+        return <div className='card' key={i.toString()}>
+            <div className='upperPart'>
+                <div className='textArea'>
+                    {
+                        method['state'] ?
+                            <FontAwesomeIcon style={circleStyling.circleChecked} icon={faCircleCheck} /> :
+                            <FontAwesomeIcon style={circleStyling.circle} icon={faCircle} />
+                    }
+                    <span>Credit card</span>
+                </div>
+                <img src={visaCard} alt="visacard logo" ></img>
+            </div>
+            <div className='cardNumberSec'>
+                <label htmlFor='cardNumber'>Card Number</label>
+                <input id='cardNumber' type="number" placeholder='Card number'></input>
+            </div>
+            <div className='bottomPart'>
+                <div className='cardHolderSec'>
+                    <label htmlFor='cardHolder'>Card holder</label>
+                    <input id='cardHolder' type="text" placeholder="Card holder"></input>
+                </div>
+                <div className='expirationDateSec'>
+                    <label htmlFor='expirationDate'>Expiration date</label>
+                    <input id='expirationDate' type="date" ></input>
+                </div>
+                <div className='cvcSec'>
+                    <label htmlFor='Cvc'>CVC</label>
+                    <input id='Cvc' type='number' placeholder='CVC' min={0}></input>
+                </div>
+            </div>
+        </div>
+    }
+    const payPalDesign = (method, i) => {
+        return <div className='paypal' key={i.toString()}>
+            <div className='upperPart'>
+                <div className='textArea'>
+                    {
+                        method['state'] ?
+                            <FontAwesomeIcon style={circleStyling.circleChecked} icon={faCircleCheck} /> :
+                            <FontAwesomeIcon style={circleStyling.circle} icon={faCircle} />
+                    }
+                    <span> {method['name']}</span>
+                </div>
+                <img src={method['image']} alt={method['name'] + 'logo'} ></img>
+            </div>
+            <div className='inputSec'>
+                <label htmlFor='email'>Email or phone number
+                    <input type='email' id='email' placeholder='Email or phone number'></input>
+                </label>
+                <label htmlFor='password'>password
+                    <input type='password' id='password' placeholder='password'></input>
+                </label>
+            </div>
+            <button>Login</button>
+        </div>
+    }
+    const bitcoinDesign = (method, i) => {
+        return <div className="bitcoin" key={i.toString()}>
+            <div className='upperPart'>
+                <div className='textArea'>
+                    {
+                        method['state'] ?
+                            <FontAwesomeIcon style={circleStyling.circleChecked} icon={faCircleCheck} /> :
+                            <FontAwesomeIcon style={circleStyling.circle} icon={faCircle} />
+                    }
+                    <span> {method['name']}</span>
+                </div>
+                <img src={method['image']} alt="bitcoin logo"></img>
+            </div>
+            <div className='walletInfo'>
+                <span className='title'>Amount </span>
+                <div className='amounToPay'>
+                    <span className='btcValue'>0.0001412 BTC</span>
+                    <span className='usdValue'> (1.00 USD)</span>
+                    <FontAwesomeIcon className='copyBtn' icon={faCopy} />
+                </div>
+
+                <span className='title'>Bitcoin Address</span>
+                <div className='walletAddress'>
+                    <span>asdf9SDf0E238nFNef8NEnf38</span>
+                    <FontAwesomeIcon icon={faCopy} />
+                </div>
+                <div className='timer'>
+                    <span className='time'>59:23</span>
+                    <span className='legend'> Awaiting Payement</span>
+                </div>
+            </div>
+        </div>
+    }
+    const unSelectedDesign = (method, i) => {
+        return (
+            <div className='barDesign' key={i.toString()}
+                onClick={() => {
+                    const newSelection = [...payementMethod];
+                    newSelection.forEach(elem => {
+                        if (elem['name'] === method['name'] && !elem['state']) {
+                            elem['state'] = !elem['state'];
+                        } else {
+                            elem['state'] = false;
+                        }
+                    });
+                    setPayementmethod(newSelection);
+                }}
+                id={method['name']}>
+                <div className='textArea'>
+                    {
+                        method['state'] ?
+                            <FontAwesomeIcon style={circleStyling.circleChecked} icon={faCircleCheck} /> :
+                            <FontAwesomeIcon style={circleStyling.circle} icon={faCircle} />
+                    }
+                    <span>{method['name']}</span>
+                </div>
+                <img src={method['image']} alt={method['name'] + 'logo'}></img>
+            </div>
+        )
+    }
+    const [payementMethod, setPayementmethod] = useState(
+        [
+            { name: 'CreditCard', state: false, image: visaCard },
+            { name: 'PayPal', state: false, image: payPal },
+            { name: 'Bitcoin', state: false, image: bitcoin }
+        ]
+    )
 
     return (
         <div className='payementMethod'>
@@ -119,50 +292,18 @@ const PayementMethod = () => {
                 <span className='title'>Payement Method</span>
                 <span className='legend'>Please enter your payment method</span>
             </div>
-
-
-            <div className='card'>
-                <div className='upperPart'>
-                    <div className='textArea'>
-                        <CircleChecker />
-                        <span>Credit card</span>
-                    </div>
-                    <img src={visaCard} alt="visacard logo" ></img>
-                </div>
-                <div className='cardNumberSec'>
-                    <label for='cardNumber'>Card Number</label>
-                    <input id='cardNumber' placeholder='Card number'></input>
-                </div>
-                <div className='bottomPart'>
-                    <div className='cardHolderSec'>
-                        <label for='cardHolder'>Card holder</label>
-                        <input id='cardHolder' type="text" placeholder="Card holder"></input>
-                    </div>
-                    <div className='expirationDateSec'>
-                        <label for='expirationDate'>Expiration date</label>
-                        <input id='expirationDate' type="date" ></input>
-                    </div>
-                    <div className='cvcSec'>
-                        <label for='Cvc'>CVC</label>
-                        <input id='Cvc' type='number' placeholder='CVC'></input>
-                    </div>
-                </div>
-            </div>
-
-            <div className='payPal'>
-                <div className='textArea'>
-                    <CircleChecker />
-                    <span>PayPal</span>
-                </div>
-                <img src={payPal} alt="Paypal logo"></img>
-            </div>
-            <div className='bitcoin'>
-                <div className='textArea'>
-                    <CircleChecker />
-                    <span>Bitcoin</span>
-                </div>
-                <img src={bitcoin} alt="Bitcoin logo"></img>
-            </div>
+            {
+                payementMethod.map(
+                    (elem, i) => {
+                        if (elem['state']) {
+                            if (elem['name'] === 'CreditCard') return crediCardDesign(elem, i);
+                            else if (elem['name'] === 'PayPal') return payPalDesign(elem, i);
+                            else if (elem['name'] === 'Bitcoin') return bitcoinDesign(elem, i);
+                            else return unSelectedDesign(elem, i);
+                        } else return unSelectedDesign(elem, i);
+                    }
+                )
+            }
         </div>
     )
 }
@@ -173,7 +314,6 @@ const AdditionalInfo = () => {
                 <span className='title'>Additional informations</span>
                 <span className='legend'>Need something else? We will make it for you!</span>
             </div>
-
             <textarea placeholder="Need a specific deliver day? send a gift? Let's say ..."></textarea>
         </div>
     )
