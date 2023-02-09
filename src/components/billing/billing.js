@@ -161,6 +161,7 @@ const PayementMethod = () => {
             'border': '1px solid transparent'
         }
     }
+    const [cardNumber, setCardNumber] = useState('');
     const crediCardDesign = (method, i) => {
         return <div className='card' key={i.toString()}>
             <div className='upperPart'>
@@ -176,7 +177,34 @@ const PayementMethod = () => {
             </div>
             <div className='cardNumberSec'>
                 <label htmlFor='cardNumber'>Card Number</label>
-                <input id='cardNumber' type="number" placeholder='Card number'></input>
+                <input id='cardNumber'
+                    maxLength={19}
+                    type="text"
+                    placeholder='Card number'
+                    value={cardNumber}
+                    onChange={(e) => {
+
+                        const value = e.target.value;
+
+                        let text = '';
+                        for (let i = 0; i < value.length; i++) {
+                            if (value[i] !== ' ') {
+                                text += value[i];
+                            }
+                        }
+
+                        const formattedVal = text
+                            .match(/.{1,4}/g);
+
+                        let result =
+                            Array.isArray(formattedVal) ?
+                                formattedVal.join(' ') : null;
+
+                        setCardNumber(result);
+
+
+                    }}
+                ></input>
             </div>
             <div className='bottomPart'>
                 <div className='cardHolderSec'>
@@ -424,8 +452,15 @@ const BillingSec = () => {
         </div>
     )
 }
+const scrollUp = () => {
+    window.scrollTo({
+        left: 0,
+        top: 0,
+        behavior: 'smooth'
+    })
+}
 function Billing() {
-
+    scrollUp();
     return (
         <div className='Checkout'>
             <BillingSec />

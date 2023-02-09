@@ -1,4 +1,4 @@
-import CommonOptionSec from "../../commonComponent/CategoryMore";
+import CategoryMore from "../../commonComponent/CategoryMore";
 import ProductBlock from "../../commonComponent/ProductBlock";
 
 const BestSellingProducts = ({ categories, products }) => {
@@ -7,7 +7,7 @@ const BestSellingProducts = ({ categories, products }) => {
     }
     return (
         <div className="BestSellingProducts">
-            <CommonOptionSec categories={categories} nameOfSecion={"Best selling products"} buttonMoreInfo={"More products"} />
+            <CategoryMore categories={categories} nameOfSecion={"Best selling products"} buttonMoreInfo={"More products"} />
             <ProductBlock products={bestSellingCalc(products)} />
         </div>
     );

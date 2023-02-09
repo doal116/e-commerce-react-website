@@ -212,6 +212,13 @@
     align-self: center;
 }
 
+.ProductSect>.buyingSection>.btn-buy>.linkBtn {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
 .ProductSect>.buyingSection>.btn-buy:hover {
     cursor: pointer;
     animation: buyNow;
@@ -312,7 +319,7 @@
 }
 
 .arrowLeft {
-    z-index:0;
+    z-index: 0;
     position: absolute;
     top: 0;
     height: 100%;
@@ -366,7 +373,7 @@
 
 
 .SectionHeadlines {
-    height: fit-content ;
+    height: fit-content;
     margin-top: 80px;
 }
 
