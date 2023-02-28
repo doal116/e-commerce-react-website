@@ -1,10 +1,18 @@
 import profile from '../svg/accountIcon.svg';
 import shoppingCart from '../svg/shoppingCart.svg';
+import numberCartObject from '../svg/numberCartObject.svg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faSearch } from "@fortawesome/free-solid-svg-icons";
+
 import React from "react";
+import { useState } from 'react';
 import './sass/header.css';
 import { Link } from 'react-router-dom';
+
+//----- receiving context from productDisplay -----//
+import { useContext } from 'react';
+import { ItemInCart } from '../productDisplay/productDisplay';
+//-------------------------------------------------//
 
 const BottomPart = ({ Options }) => {
     const pathName = (category) => {
@@ -40,7 +48,7 @@ const BottomPart = ({ Options }) => {
         </div >
     )
 }
-const MiddlePart = () => {
+const MiddlePart = ({ itemsCart }) => {
     return (
         <div className="Middle-part">
             <div className="Name">
@@ -58,7 +66,13 @@ const MiddlePart = () => {
 
             <div className="middlepart-icons">
                 <img className="profileIcon" src={profile} alt='Account profile icon'></img>
-                <img className="shoppingCartIcon" src={shoppingCart} alt='Shopping cart icon'></img>
+                <div className='cartSec'>
+                    <img className="shoppingCartIcon" src={shoppingCart} alt='Shopping cart icon'></img>
+                    {
+                        itemsCart !== 0 ? <><img className="numItems" src={numberCartObject} alt="number of elements in cart"></img>
+                    <span className='num'>{itemsCart}</span></> :<></>}
+                </div>
+
             </div>
         </div>
     )
@@ -79,64 +93,65 @@ const UpperPart = ({ Options1, Options2 }) => {
         </div>
     )
 }
-class Header extends React.Component {
 
-    render() {
-        return (
-            <header>
-                <UpperPart
-                    Options1={["Chat with us", "+420 336 775 664", "info@freshenescom.com"]}
-                    Options2={["Blog", "About Us", "Careers"]} />
-                <MiddlePart />
-                <BottomPart
-                    Options={[
-                        {
-                            name: "Bakery", category: 'Bakery',
-                            section: [
-                                'Gourmet', 'Bread', 'Cake', 'Wedding Cake', 'Pastry'
-                            ]
-                        }, {
-                            name: "Fruits and Vegetables", category: 'FruitsAndVegetables',
-                            section: [
-                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
-                            ]
-                        },
-                        {
-                            name: "Meat and fish", category: 'MeatAndFish',
-                            section: [
-                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
-                            ]
-                        }, {
-                            name: "Drinks", category: 'Drinks'
-                            , section: [
-                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
-                            ]
-                        }, {
-                            name: "Kitchen", category: 'Kitchen'
-                            , section: [
-                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
-                            ]
-                        },
-                        {
-                            name: "Special Nutrition", category: 'SpecialNutrition'
-                            , section: [
-                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
-                            ]
-                        }, {
-                            name: "Baby", category: 'Baby'
-                            , section: [
-                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
-                            ]
-                        }, {
-                            name: "Pharmacy", category: 'Pharmacy'
-                            , section: [
-                                'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
-                            ]
-                        }]}
-                />
-            </header>
-        );
-    }
+
+function Header() {
+    const [itemsCart, setItemsCart] = useState(0);
+
+    return (
+        <header>
+            <UpperPart
+                Options1={["Chat with us", "+420 336 775 664", "info@freshenescom.com"]}
+                Options2={["Blog", "About Us", "Careers"]} />
+            <MiddlePart itemsCart={itemsCart} />
+            <BottomPart
+                Options={[
+                    {
+                        name: "Bakery", category: 'Bakery',
+                        section: [
+                            'Gourmet', 'Bread', 'Cake', 'Wedding Cake', 'Pastry'
+                        ]
+                    }, {
+                        name: "Fruits and Vegetables", category: 'FruitsAndVegetables',
+                        section: [
+                            'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                        ]
+                    },
+                    {
+                        name: "Meat and fish", category: 'MeatAndFish',
+                        section: [
+                            'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                        ]
+                    }, {
+                        name: "Drinks", category: 'Drinks'
+                        , section: [
+                            'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                        ]
+                    }, {
+                        name: "Kitchen", category: 'Kitchen'
+                        , section: [
+                            'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                        ]
+                    },
+                    {
+                        name: "Special Nutrition", category: 'SpecialNutrition'
+                        , section: [
+                            'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                        ]
+                    }, {
+                        name: "Baby", category: 'Baby'
+                        , section: [
+                            'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                        ]
+                    }, {
+                        name: "Pharmacy", category: 'Pharmacy'
+                        , section: [
+                            'Wedding cake', 'Bread', 'Gourment', 'Cupcakery', 'Pastry'
+                        ]
+                    }]}
+            />
+        </header>
+    );
 }
 
 export default Header;

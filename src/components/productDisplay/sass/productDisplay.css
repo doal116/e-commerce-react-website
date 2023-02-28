@@ -142,6 +142,9 @@
   font-size: 19px;
   font-weight: bold;
 }
+.productDisplay .descriptionSec .addToWishList .compare img {
+  width: 16px;
+}
 .productDisplay .descriptionSec .addToWishList .compare span {
   font-size: 19px;
   font-weight: bold;

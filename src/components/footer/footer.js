@@ -1,16 +1,16 @@
 import './footer.css';
-const Footer = ({ sec1, Tags }) => {
+const Footer = ({ footerData }) => {
     return (
         <footer>
             <div className='sec1'>
                 {
-                    sec1.map((elem,i) =>
+                    footerData['upperSection'].map((elem, i) =>
                         <div className='elm' key={i.toString()}>
                             <div className='title'>
                                 {elem.title}
                             </div>
                             {
-                                elem.option.map((val,i) =>
+                                elem.option.map((val, i) =>
                                     <a href='/link' key={i.toString()}>{val}</a>
                                 )
                             }
@@ -23,7 +23,7 @@ const Footer = ({ sec1, Tags }) => {
             <h3>Products Tag</h3>
             <div className='Tag'>
                 {
-                    Tags.map((tag,i) =>
+                    footerData['lowerSection'].map((tag, i) =>
                         <div key={i.toString()}>{tag}</div>
                     )
                 }

@@ -10,63 +10,25 @@ import Footer from './components/footer/footer';
 import Header from './components/header/header';
 import ProductDisplay from './components/productDisplay/productDisplay';
 import Billing from './components/billing/billing';
+import footerData from './components/footer/footerData';
 
-const footerData = [{
-    title: "Get in touch", option: [
-        "About Us",
-        "Careers",
-        "Press Releases",
-        "Blog"
-    ]
-},
-{
-    title: "Connections", option: [
-        "Facebook",
-        "Twitter",
-        "Instagram",
-        "Youtube"
-    ]
-},
-{
-    title: "Earnings", option: [
-        "Become an Affiliate",
-        "Advertise your product",
-        "Sell on Market"
-    ]
-},
-{
-    title: "Account", option: [
-        "Your account",
-        "Returns Centre",
-        "100% purchase protection",
-        "Chat with us",
-        "Help"
-    ]
-}];
-const footerTags = [
-    "Beans", "carrots",
-    "apple", "garlic",
-    "mushrooms", "tomatoes",
-    "Chilli peppers", "Broccoli",
-    "Cherries", "Meat", "Seo tag"
-    , "Bananas", "Grapes", "watermelons",
-    "meat", "fish", "fresh food",
-    "seo Tag", "broccoli"
-]
 const categoryPage = <>
     <Header />
     <Category />
-    <Footer sec1={footerData} Tags={footerTags} />
+    <Footer footerData={footerData} />
 </>;
+
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<>
-                    <Header />
-                    <HomePage />
-                    <Footer sec1={footerData} Tags={footerTags} />
-                </>} />
+                <Route path="/" element={
+                    <>
+                        <Header />
+                        <HomePage />
+                        <Footer footerData={footerData} />
+                    </>
+                } />
                 <Route path="/category" element={categoryPage}>
                     <Route path="Bakery" element={categoryPage} />
                     <Route path="FruitsAndVegetables" element={categoryPage} />
@@ -77,16 +39,19 @@ function App() {
                     <Route path="Baby" element={categoryPage} />
                     <Route path='Pharmacy' element={categoryPage} />
                 </Route>
-                <Route path="/product" element={<>
-                    <Header />
-                    <ProductDisplay />
-                    <Footer sec1={footerData} Tags={footerTags} /></>}
+                <Route path="/product" element={
+                    <>
+                        <Header />
+                        <ProductDisplay />
+                        <Footer footerData={footerData} />
+                    </>
+                }
                 />
                 <Route path="/billing" element={
                     <>
                         <Header />
                         <Billing />
-                        <Footer sec1={footerData} Tags={footerTags} />
+                        <Footer footerData={footerData} />
                     </>
                 } />
             </Routes>

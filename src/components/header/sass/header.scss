@@ -91,14 +91,31 @@ header {
         .middlepart-icons {
             margin-right: $marginLeftRight;
             justify-self: end;
+            display: flex;
 
             .profileIcon {
                 width: 20px;
                 margin-right: 16px;
             }
 
-            .shoppingCartIcon {
-                width: 24px;
+            .cartSec {
+                position: relative;
+                .numItems{
+                    position: absolute;
+                    left: -8px;
+                    bottom: -8px;
+                }
+                .num{
+                    font-family: 'Poppins';
+                    position: absolute;
+                    left: 0px;
+                    bottom: -3px;
+                    color: white;
+                    font-weight: bold;
+                }
+                .shoppingCartIcon {
+                    width: 24px;
+                }
             }
         }
     }

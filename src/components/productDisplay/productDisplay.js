@@ -3,7 +3,6 @@ import './sass/productDisplay.css';
 import {
     faPlus
     , faChevronDown,
-    faListSquares,
     faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,11 +10,18 @@ import ProductBlock from "../commonComponent/ProductBlock";
 import ExtraDetails from "../commonComponent/ProductExtraDetails";
 import Ratings from "../commonComponent/Ratings";
 
-import heart from '../productImages/heart.png';
+import heart from '../svg/heart.svg';
+import compareIcon from '../svg/compareIcon.svg';
 import profilePic from '../productImages/profilePic.png';
 
 import { useLocation } from "react-router-dom";
-import products from "../products.js"
+import products from "../products.js";
+
+//---- contextt sharring t0 header ----// 
+import { createContext } from 'react';
+export const ItemInCart = createContext(null);
+//-------------------------------------//
+
 
 const AddToCart = ({ product }) => {
     const [pieces, setPieces] = useState(1);
@@ -34,9 +40,6 @@ const AddToCart = ({ product }) => {
         'borderRadius': '10px',
         'alignSelf': 'center'
     }
-
-
-
     return (
         <div className="addToCart">
 
@@ -73,7 +76,9 @@ const AddToCart = ({ product }) => {
                     </div>
                 </div>
 
-                <div className="btnAddToCart">
+                <div className="btnAddToCart" onClick={() => {
+
+                }}>
                     <FontAwesomeIcon className="plus" icon={faPlus} />
                     <span> Add to Cart</span>
                 </div>
@@ -90,7 +95,7 @@ const AddToWishList = () => {
                 <span> Add to my wish list</span>
             </div>
             <div className="compare">
-                <FontAwesomeIcon className="listSqure" icon={faListSquares} />
+                <img className="listSqure" src={compareIcon} alt="compare icon" />
                 <span> Compare</span>
             </div>
         </div>
@@ -361,10 +366,11 @@ const scrollUp = () => {
         behavior: 'smooth'
     })
 }
+
+
 function ProductDisplay() {
     const location = useLocation();
     const { productId } = location.state;
-
     const product = products.filter(product => product['id'] === productId)[0];
     const relatedProducts = products.filter(elem => elem['category'] === product['category']).slice(0, 5);
     scrollUp();
