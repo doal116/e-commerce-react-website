@@ -54,7 +54,6 @@ header .Middle-part .search-tool {
   width: 420px;
 }
 header .Middle-part .search-tool .category {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   display: flex;
@@ -91,16 +90,16 @@ header .Middle-part .middlepart-icons .shoppingCartIcon {
 header .Bottom-part {
   justify-self: flex-end;
   width: 100%;
-  height: 48px;
+  height: -moz-fit-content;
+  height: fit-content;
   padding-left: 80px;
   background-color: rgb(233, 233, 233);
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   -moz-column-gap: 65px;
        column-gap: 65px;
 }
 header .Bottom-part .elem {
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   padding: 12px 8px 12px 8px;
@@ -109,7 +108,6 @@ header .Bottom-part .elem {
 header .Bottom-part .elem .dropDownNavigation {
   display: none;
   position: absolute;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   left: 0;

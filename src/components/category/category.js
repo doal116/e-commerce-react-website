@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import './sass/category.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faList,
     faDotCircle, faCircle,
     faSquareCheck,
     faChevronDown, faGripLinesVertical,
     faX,
     faHeart, faChevronRight,
-    faSortAlphaUp, faSortAlphaDesc, faChevronUp, faThLarge
+    faSortAlphaUp, faSortAlphaDesc, faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Link, useLocation } from "react-router-dom";
@@ -18,6 +17,9 @@ import BoxChecker from "../commonComponent/BoxChecker";
 import ProductBlock from "../commonComponent/ProductBlock";
 import ExtraDetails from "../commonComponent/ProductExtraDetails";
 import products from "../products";
+
+import gridDisplay from "../svg/gridDisplay.svg";
+import listDisplay from "../svg/listDisplay.svg";
 
 //-----------Upper Filter ------------//
 const AppliedFilters = ({ filterList }) => {
@@ -137,8 +139,8 @@ const Title = ({ categoryName,
                         }>
                         {
                             !listGridDisplay ?
-                                <FontAwesomeIcon icon={faThLarge} style={{ 'color': 'rgb(0, 187, 124)' }} /> :
-                                <FontAwesomeIcon icon={faThLarge} />
+                                <img src={gridDisplay} style={{ 'filter': 'invert(51%) sepia(67%) saturate(404%) hue-rotate(47deg) brightness(93%) contrast(81%)' }} alt="gridDisplay icon"/> :
+                                <img src={gridDisplay}   alt="griddisplay icon"/>
                         }
                         <span> Gird view</span></p>
                     <p className="listView" onClick={
@@ -148,8 +150,8 @@ const Title = ({ categoryName,
                     } >
                         {
                             listGridDisplay ?
-                                <FontAwesomeIcon icon={faList} style={{ 'color': 'rgb(0, 187, 124)' }} /> :
-                                <FontAwesomeIcon icon={faList} />
+                                <img src={listDisplay} style={{ 'filter': 'invert(51%) sepia(67%) saturate(404%) hue-rotate(47deg) brightness(93%) contrast(81%)' }}  alt="listDisplay icon"/> :
+                                <img src={listDisplay}   alt="listDisplay icon"/>
                         }
                         <span> List View</span></p>
                     <p className="productAvailable"><span>{numAvailableProducts}</span> Products</p>
@@ -458,7 +460,7 @@ function Category() {
         category: category
     });
 
-    
+
     const [listGridDisplay, setlistGridDisplay] = useState(false);
     //-------------------------------------------------//
     //------Ascending & Descending order filters-------//

@@ -1,11 +1,11 @@
 import './billing.css';
-import fedex from './fedex.svg';
-import visaCard from './visaCard.svg';
-import payPal from './payPal.svg';
-import bitcoin from './bitcoin.svg';
-import heart from './heart.svg';
-import dhl from './dhl.svg';
-import compareIcon from './compareIcon.svg';
+import fedex from '../svg/fedex.svg';
+import visaCard from '../svg/visaCard.svg';
+import payPal from '../svg/payPal.svg';
+import bitcoin from '../svg/bitcoin.svg';
+import heart from '../svg/heart.svg';
+import dhl from '../svg/dhl.svg';
+import compareIcon from '../svg/compareIcon.svg';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,7 +16,7 @@ import {
 
 import BoxChecker from '../commonComponent/BoxChecker';
 import Ratings from '../commonComponent/Ratings';
-import baguette from './baguette.jpg';
+import baguette from '../productImages/baguette.jpg';
 import { useState } from 'react';
 
 const BillingInfo = () => {
@@ -120,7 +120,7 @@ const ShippingMethod = () => {
                     <span>{method['name']}</span>
                 </div>
                 <div className='price'>
-                    <span className='addedMoney'>{method['addPrice']} USD</span>
+                    <span className='addedMoney'>+{method['addPrice']} USD</span>
                     <span>Addition price</span>
                 </div>
                 <img src={method['image']} alt={method['name'] + 'Logo'} ></img>
@@ -217,7 +217,7 @@ const PayementMethod = () => {
                 </div>
                 <div className='cvcSec'>
                     <label htmlFor='Cvc'>CVC</label>
-                    <input id='Cvc' type='number' placeholder='CVC' min={0}></input>
+                    <input id='Cvc' type='number' placeholder='CVC' min={0} max={999}></input>
                 </div>
             </div>
         </div>

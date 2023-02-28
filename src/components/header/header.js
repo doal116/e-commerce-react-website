@@ -1,5 +1,5 @@
-import profile from './profile-icon.png';
-import shoppingCart from './shopping-cart.png';
+import profile from '../svg/accountIcon.svg';
+import shoppingCart from '../svg/shoppingCart.svg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 import React from "react";

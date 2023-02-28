@@ -104,7 +104,6 @@
   font-weight: bold;
 }
 .Title .filters .filter3 {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   display: flex;
@@ -197,7 +196,6 @@
 }
 
 .SearchSection {
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   display: grid;
@@ -209,7 +207,6 @@
 .SearchSection .ProductSearchResults .ProductDisplay {
   border: 2px solid rgb(205, 205, 205);
   margin: 16px;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   display: grid;
@@ -282,7 +279,6 @@
   -moz-column-gap: 5px;
        column-gap: 5px;
   margin-top: 8px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   background-color: rgb(206, 206, 206);
@@ -291,15 +287,7 @@
   padding: 8px 16px 10px 16px;
 }
 .SearchSection .ProductSearchResults .ProductDisplay .buySection .addToWishList .btnWishList:hover {
-  -webkit-animation: wishBtn 0.4s forwards ease-out;
-          animation: wishBtn 0.4s forwards ease-out;
-}
-@-webkit-keyframes wishBtn {
-  100% {
-    background-color: white;
-    color: rgb(16, 155, 109);
-    border: 2px solid rgb(0, 92, 61);
-  }
+  animation: wishBtn 0.4s forwards ease-out;
 }
 @keyframes wishBtn {
   100% {
@@ -313,7 +301,6 @@
   border: 2px solid;
   font-weight: bold;
   padding: 8px 16px 10px 16px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   background-color: rgb(16, 155, 109);
@@ -328,21 +315,10 @@
 }
 .SearchSection .ProductSearchResults .ProductDisplay .buySection .addToWishList .btnproductDetails:hover {
   cursor: pointer;
-  -webkit-animation: productDetails;
-          animation: productDetails;
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-}
-@-webkit-keyframes productDetails {
-  100% {
-    background-color: white;
-    color: rgb(16, 155, 109);
-    border: 2px solid rgb(16, 155, 109);
-  }
+  animation: productDetails;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
 }
 @keyframes productDetails {
   100% {
@@ -353,19 +329,10 @@
 }
 .SearchSection .ProductSearchResults .ProductDisplay .buySection .addToWishList .btnproductDetails:hover .btnProductDetailsLink {
   cursor: pointer;
-  -webkit-animation: link;
-          animation: link;
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-}
-@-webkit-keyframes link {
-  100% {
-    color: rgb(16, 155, 109);
-  }
+  animation: link;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
 }
 @keyframes link {
   100% {
@@ -375,7 +342,6 @@
 .SearchSection .productDisplayGrid {
   margin-right: 40px;
   display: flex;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   flex-wrap: wrap;
@@ -417,7 +383,6 @@
 .LeftSideFilters .submittingFilter .apply {
   cursor: pointer;
   background-color: rgb(16, 155, 109);
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 6px 10px 10px 10px;
@@ -426,15 +391,7 @@
   color: white;
 }
 .LeftSideFilters .submittingFilter .apply:hover {
-  -webkit-animation: applyBtn 0.4s forwards ease-out;
-          animation: applyBtn 0.4s forwards ease-out;
-}
-@-webkit-keyframes applyBtn {
-  to {
-    background-color: white;
-    color: rgb(16, 155, 109);
-    border: 2px solid rgb(16, 155, 109);
-  }
+  animation: applyBtn 0.4s forwards ease-out;
 }
 @keyframes applyBtn {
   to {
@@ -447,7 +404,6 @@
   cursor: pointer;
   background-color: rgb(212, 212, 212);
   padding: 10px 10px 10px 10px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 10px;
@@ -455,15 +411,7 @@
   border: 2px solid transparent;
 }
 .LeftSideFilters .submittingFilter .reset:hover {
-  -webkit-animation: reset 0.4s forwards ease-out;
-          animation: reset 0.4s forwards ease-out;
-}
-@-webkit-keyframes reset {
-  to {
-    background-color: white;
-    color: rgb(16, 155, 109);
-    border: 2px solid rgb(16, 155, 109);
-  }
+  animation: reset 0.4s forwards ease-out;
 }
 @keyframes reset {
   to {
@@ -556,10 +504,8 @@
   justify-self: center;
   -moz-column-gap: 5px;
        column-gap: 5px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   padding: 7px 16px 10px 16px;
@@ -585,10 +531,8 @@
 }
 .BottomNavigation .allProductFound .num {
   color: rgb(16, 155, 109);
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   background-color: rgb(167, 255, 186);

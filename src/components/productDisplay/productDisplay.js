@@ -7,11 +7,12 @@ import {
     faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import heart from './heart.png';
-import profilePic from './profilePic.png';
 import ProductBlock from "../commonComponent/ProductBlock";
 import ExtraDetails from "../commonComponent/ProductExtraDetails";
 import Ratings from "../commonComponent/Ratings";
+
+import heart from '../productImages/heart.png';
+import profilePic from '../productImages/profilePic.png';
 
 import { useLocation } from "react-router-dom";
 import products from "../products.js"

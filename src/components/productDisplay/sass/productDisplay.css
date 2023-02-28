@@ -53,7 +53,6 @@
 }
 .productDisplay .descriptionSec .addToCart .addToCartOptions .btnAddToCart {
   background-color: rgb(76, 139, 0);
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   padding: 6px 16px 8px 16px;
@@ -67,21 +66,10 @@
 }
 .productDisplay .descriptionSec .addToCart .addToCartOptions .btnAddToCart:hover {
   cursor: pointer;
-  -webkit-animation: btnAddToCart;
-          animation: btnAddToCart;
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-}
-@-webkit-keyframes btnAddToCart {
-  100% {
-    background-color: white;
-    color: rgb(0, 92, 61);
-    border: 3px solid rgb(0, 92, 61);
-  }
+  animation: btnAddToCart;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
 }
 @keyframes btnAddToCart {
   100% {
@@ -195,7 +183,6 @@
 }
 .productDisplay .descriptionSec .ReviewDescripQuestion .reviews .userInfo img {
   width: 100px;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   border-radius: 50%;
@@ -230,25 +217,13 @@
   height: inherit;
 }
 .productDisplay .descriptionSec .ReviewDescripQuestion nav .greenSlider {
-  -webkit-animation-name: greenSlider;
-          animation-name: greenSlider;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease;
-          animation-timing-function: ease;
+  animation-name: greenSlider;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
 }
 .productDisplay .descriptionSec .ReviewDescripQuestion nav .graySlider {
   border-bottom: 1px solid rgb(214, 214, 214);
-}
-@-webkit-keyframes greenSlider {
-  from {
-    border-bottom: 1px solid rgb(214, 214, 214);
-  }
-  to {
-    border-bottom: 2px solid rgb(0, 208, 80);
-  }
 }
 @keyframes greenSlider {
   from {
@@ -299,7 +274,6 @@
 .productDisplay .pictureSec .grid img {
   cursor: pointer;
   max-width: 150px;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   border-radius: 10px;
@@ -320,7 +294,6 @@
 }
 .RelatedProducts .upperSec button {
   justify-self: end;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   background-color: transparent;

@@ -106,11 +106,11 @@ header {
     .Bottom-part {
         justify-self: flex-end;
         width: 100%;
-        height: 48px;
+        height: fit-content;
         padding-left: $marginLeftRight;
         background-color: rgb(233, 233, 233);
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
         column-gap: 65px;
 
         .elem {
