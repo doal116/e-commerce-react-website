@@ -97,7 +97,7 @@ const UpperPart = ({ Options1, Options2 }) => {
 
 function Header() {
     const [itemsCart, setItemsCart] = useState(0);
-
+    setItemsCart()
     return (
         <header>
             <UpperPart
