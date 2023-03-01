@@ -17,13 +17,11 @@ import profilePic from '../productImages/profilePic.png';
 import { useLocation } from "react-router-dom";
 import products from "../products.js";
 
-//---- contextt sharring t0 header ----// 
-import { createContext } from 'react';
-export const ItemInCart = createContext(null);
-//-------------------------------------//
-
+import { useContext } from 'react';
+import { cartItems } from "../../cartItemsContext";
 
 const AddToCart = ({ product }) => {
+    const { cartItemsValue, setCartItemsValue } = useContext(cartItems);
     const [pieces, setPieces] = useState(1);
     const availablePieces = () => {
         let numPieces = [];
@@ -77,7 +75,7 @@ const AddToCart = ({ product }) => {
                 </div>
 
                 <div className="btnAddToCart" onClick={() => {
-
+                    setCartItemsValue(cartItemsValue + 1);
                 }}>
                     <FontAwesomeIcon className="plus" icon={faPlus} />
                     <span> Add to Cart</span>

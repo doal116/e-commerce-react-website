@@ -5,14 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import React from "react";
-import { useState } from 'react';
 import './sass/header.css';
 import { Link } from 'react-router-dom';
 
-//----- receiving context from productDisplay -----//
 import { useContext } from 'react';
-import { ItemInCart } from '../productDisplay/productDisplay';
-//-------------------------------------------------//
+import { cartItems } from '../../cartItemsContext';
 
 const BottomPart = ({ Options }) => {
     const pathName = (category) => {
@@ -70,7 +67,7 @@ const MiddlePart = ({ itemsCart }) => {
                     <img className="shoppingCartIcon" src={shoppingCart} alt='Shopping cart icon'></img>
                     {
                         itemsCart !== 0 ? <><img className="numItems" src={numberCartObject} alt="number of elements in cart"></img>
-                    <span className='num'>{itemsCart}</span></> :<></>}
+                            <span className='num'>{itemsCart}</span></> : <></>}
                 </div>
 
             </div>
@@ -96,14 +93,15 @@ const UpperPart = ({ Options1, Options2 }) => {
 
 
 function Header() {
-    const [itemsCart, setItemsCart] = useState(0);
-    setItemsCart()
+    
+    const { cartItemsValue } = useContext(cartItems);
+    
     return (
         <header>
             <UpperPart
                 Options1={["Chat with us", "+420 336 775 664", "info@freshenescom.com"]}
                 Options2={["Blog", "About Us", "Careers"]} />
-            <MiddlePart itemsCart={itemsCart} />
+            <MiddlePart itemsCart={cartItemsValue} />
             <BottomPart
                 Options={[
                     {

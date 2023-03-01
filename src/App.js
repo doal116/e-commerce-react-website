@@ -11,45 +11,103 @@ import Header from './components/header/header';
 import ProductDisplay from './components/productDisplay/productDisplay';
 import Billing from './components/billing/billing';
 import footerData from './components/footer/footerData';
+import { cartItems } from './cartItemsContext';
+import { useState } from 'react';
 
-const categoryPage = <>
-    <Header />
-    <Category />
-    <Footer footerData={footerData} />
-</>;
 
 function App() {
+    const [cartItemsValue, setCartItemsValue] = useState(0);
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={
                     <>
-                        <Header />
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
                         <HomePage />
                         <Footer footerData={footerData} />
                     </>
                 } />
-                <Route path="/category" element={categoryPage}>
-                    <Route path="Bakery" element={categoryPage} />
-                    <Route path="FruitsAndVegetables" element={categoryPage} />
-                    <Route path="MeatAndFish" element={categoryPage} />
-                    <Route path="Drinks" element={categoryPage} />
-                    <Route path="Kitchen" element={categoryPage} />
-                    <Route path="SpecialNutrition" element={categoryPage} />
-                    <Route path="Baby" element={categoryPage} />
-                    <Route path='Pharmacy' element={categoryPage} />
+                <Route path="/category" element={<>
+                    <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                        <Header />
+                    </cartItems.Provider >
+                    <Category />
+                    <Footer footerData={footerData} />
+                </>}>
+                    <Route path="Bakery" element={<>
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
+                        <Category />
+                        <Footer footerData={footerData} />
+                    </>} />
+                    <Route path="FruitsAndVegetables" element={<>
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
+                        <Category />
+                        <Footer footerData={footerData} />
+                    </>} />
+                    <Route path="MeatAndFish" element={<>
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
+                        <Category />
+                        <Footer footerData={footerData} />
+                    </>} />
+                    <Route path="Drinks" element={<>
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
+                        <Category />
+                        <Footer footerData={footerData} />
+                    </>} />
+                    <Route path="Kitchen" element={<>
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
+                        <Category />
+                        <Footer footerData={footerData} />
+                    </>} />
+                    <Route path="SpecialNutrition" element={<>
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
+                        <Category />
+                        <Footer footerData={footerData} />
+                    </>} />
+                    <Route path="Baby" element={<>
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
+                        <Category />
+                        <Footer footerData={footerData} />
+                    </>} />
+                    <Route path='Pharmacy' element={<>
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
+                        <Category />
+                        <Footer footerData={footerData} />
+                    </>} />
                 </Route>
                 <Route path="/product" element={
                     <>
-                        <Header />
-                        <ProductDisplay />
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                            <ProductDisplay />
+                        </cartItems.Provider >
                         <Footer footerData={footerData} />
                     </>
                 }
                 />
                 <Route path="/billing" element={
                     <>
-                        <Header />
+                        <cartItems.Provider value={{ cartItemsValue, setCartItemsValue }}>
+                            <Header />
+                        </cartItems.Provider >
                         <Billing />
                         <Footer footerData={footerData} />
                     </>
