@@ -1,4 +1,4 @@
-#Ecommerce Organic Food Template
+# Ecommerce Organic Food Template
 
 Welcome to the Ecommerce Organic Food Template repository! 
 This repository serves as a starting point for building an ecommerce website that specializes in selling organic food. 
