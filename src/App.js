@@ -16,6 +16,7 @@ import { useState } from 'react';
 
 
 function App() {
+    //Redux should be used instead of useSate here
     const [cartItemsValue, setCartItemsValue] = useState(0);
     return (
         <BrowserRouter>
